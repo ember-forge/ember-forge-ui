@@ -1,26 +1,41 @@
-# Ember-forge-ui
-
-This README outlines the details of collaborating on this Ember addon.
+# How to use this addon in your application
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+    ember install ember-forge-ui
 
-## Running
+# What ember-forge-ui is
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+Lorem ipsum
 
-## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+# Create template addon
 
-## Building
+Lorem ipsum
 
-* `ember build`
+## Addon should run before ember-forge-ui addon
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+Add this entry to the template addon's *package.json* file:
+
+    "ember-addon": {
+        "before": "ember-forge-ui"
+    }
+
+## Define config() hook
+
+Lorem ipsum
+
+Add this entry to the template addon's *index.js* file:
+
+    /**
+     * Set name of companion ember-forge-ui template addon
+     *
+     * @param {String} environment
+     * @param {Object} appConfig
+     * @returns {Object}
+     */
+    config: function( environment, appConfig ) {
+        return {
+            emberForgeUiTemplateAddon: this.name
+        };
+    }
