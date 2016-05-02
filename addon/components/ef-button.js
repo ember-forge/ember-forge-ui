@@ -6,5 +6,5 @@ import layout from '../templates/components/ef-button';
  * @augments ember/Component
  */
 export default Ember.Component.extend({
-
+    layout
 });
