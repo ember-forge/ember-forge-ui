@@ -39,3 +39,16 @@ Add this entry to the template addon's *index.js* file:
             emberForgeUiTemplateAddon: this.name
         };
     }
+
+# Extend existing template addon
+
+Lorem ipsum
+
+## Addon should run before ember-forge-ui addon and after template addon being extended
+
+Add this entry to the template addon's *package.json* file:
+
+    "ember-addon": {
+        "after": "other-template-addon",
+        "before": "ember-forge-ui"
+    }
