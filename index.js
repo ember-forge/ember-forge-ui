@@ -30,7 +30,7 @@ module.exports = {
      * @returns {undefined}
      */
     config: function( environment, appConfig ) {
-        if ( appConfig[this.name].addonName ) {
+        if ( appConfig[this.name] && appConfig[this.name].addonName ) {
             this.emberForgeUiCompanionAddonName = appConfig[this.name].addonName;
         }
     },
