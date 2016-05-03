@@ -30,8 +30,8 @@ module.exports = {
      * @returns {undefined}
      */
     config: function( environment, appConfig ) {
-        if ( appConfig.emberForgeUiTemplateAddon ) {
-            this.emberForgeUiTemplateAddon = appConfig.emberForgeUiTemplateAddon;
+        if ( appConfig[this.name].emberForgeUiTemplateAddon ) {
+            this.emberForgeUiTemplateAddon = appConfig[this.name].emberForgeUiTemplateAddon;
         }
     },
 
