@@ -44,7 +44,7 @@ module.exports = {
     treeForAddonTemplates: function() {
         if ( this.emberForgeUiCompanionAddonName ) {
             return this.treeGenerator(
-                path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
+                path.join( this.nodeModulesPath, '../../', this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
             );
 
         } else {
