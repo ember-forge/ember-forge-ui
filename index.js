@@ -23,7 +23,7 @@ module.exports = {
     emberForgeUiCompanionAddonName: null,
 
     /**
-     * Set name of companion ember-forge-ui addon to local context if exists
+     * Set name of ember-forge-ui companion addon to local context if exists
      *
      * @param {String} environment
      * @param {Object} appConfig
