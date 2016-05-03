@@ -16,14 +16,14 @@ module.exports = {
     name: 'ember-forge-ui',
 
     /**
-     * Name of companion ember-forge-ui template addon
+     * Name of companion ember-forge-ui addon
      *
      * @type {?String}
      */
-    emberForgeUiTemplateAddon: null,
+    emberForgeUiCompanionAddonName: null,
 
     /**
-     * Set name of companion ember-forge-ui template addon to local context if exists
+     * Set name of companion ember-forge-ui addon to local context if exists
      *
      * @param {String} environment
      * @param {Object} appConfig
@@ -31,20 +31,20 @@ module.exports = {
      */
     config: function( environment, appConfig ) {
         if ( appConfig[this.name].addonName ) {
-            this.emberForgeUiTemplateAddon = appConfig[this.name].addonName;
+            this.emberForgeUiCompanionAddonName = appConfig[this.name].addonName;
         }
     },
 
     /**
-     * Return templates if ember-forge-ui template addon is installed, default ones if not
+     * Return templates if ember-forge-ui companion addon is installed, default ones if not
      *
      * @param {Object} tree
      * @returns {Object}
      */
     treeForAddonTemplates: function() {
-        if ( this.emberForgeUiTemplateAddon ) {
+        if ( this.emberForgeUiCompanionAddonName ) {
             return this.treeGenerator(
-                path.join( this.nodeModulesPath, this.emberForgeUiTemplateAddon, 'addon', 'templates' )
+                path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
             );
 
         } else {
