@@ -41,7 +41,7 @@ export default Component.extend( AttributeBindings, ClassNames, ClassNameBinding
     init() {
         this._super( ...arguments );
         this.componentInit();
-    }
+    },
 
     // -------------------------------------------------------------------------
     // Properties
@@ -59,7 +59,7 @@ export default Component.extend( AttributeBindings, ClassNames, ClassNameBinding
    * @returns {undefined}
    */
     componentInit() {
-        if ( !this.get ( 'clearAttributeBindings' ) ) {
+        if ( !this.get( 'clearAttributeBindings' ) ) {
             this.addAttributeBindings([
                 'visible'
             ]);
