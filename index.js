@@ -44,15 +44,14 @@ module.exports = {
     treeForAddonTemplates: function() {
         if ( this.emberForgeUiCompanionAddonName ) {
             return this.treeGenerator(
-                path.join( this.nodeModulesPath, '../../', this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
+                path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
             );
 
         } else {
             var componentTemplateTrees = [];
-            var files = fs.readdirSync( path.join( this.nodeModulesPath, '../', 'addon', 'components' ) );
+            var files = fs.readdirSync( path.join( this.nodeModulesPath, 'addon', 'components' ) );
             var placeholderContentPath = path.join(
                 this.nodeModulesPath,
-                '../',
                 'addon',
                 'templates',
                 'components'
