@@ -2,13 +2,21 @@
 
 *ember-forge-ui* is an approach to providing UI Components that separate the logic of the components from the DOM, CSS, and any DOM-related Javascript use to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
 
-So if today your application is leveraging Twitter Bootstrap and tomorrow you need to leverage Materialize instead you do not need to change any of your application's code, but instead install a different companion addon (explained in the next section).
+
+# What is gained by this?
+
+If today your application is leveraging Twitter Bootstrap and tomorrow you need to leverage Materialize instead you do not need to change any of your application's code, but instead install a different companion addon (explained in later sections).
+
 
 # How is this accomplished?
 
-The culmination of `ember-forge-ui`s capabilities is achieved through the use of two addons: 1) `ember-forge-ui` (this one), and 2) a companion addon that provides the templates, CSS and any necessary DOM-related Javascript.
+By the combined installation of two addons:
 
-The second
+1. `ember-forge-ui` (this one)
+2. a companion addon that provides the templates, CSS and any necessary DOM-related Javascript
+
+The companion addon can provide much more than just templates, CSS and any necessary DOM-related Javascript though.  It can also extend the components provided by `ember-forge-ui` as well as provide its own.
+
 
 # How is this architected?
 
