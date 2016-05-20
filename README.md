@@ -1,6 +1,6 @@
 # What is ember-forge-ui?
 
-*ember-forge-ui* is an approach to providing UI Components that separate the logic of the components from the DOM, CSS, and any DOM-related Javascript use to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
+An approach to providing UI Components that separate the logic of the components from the DOM, CSS, and any DOM-related Javascript use to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
 
 
 # What is gained by this?
