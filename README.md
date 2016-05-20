@@ -115,6 +115,7 @@ Demonstrates that a companion addon can do more than just provide template conte
 
 ### We also need to demonstrate the following combinations
 
+* https://github.com/ember-forge/ember-forge-ui/issues/21
 * a companion addon is not extending `ember-forge-ui` but is extended and the extending one does
 * a companion addon is not extending `ember-forge-ui` and is extended and the extending one does not
 * a companion addon is extending `ember-forge-ui` but is extended and the extending one does not
