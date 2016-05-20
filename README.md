@@ -97,7 +97,7 @@ Add this entry to the template addon's *package.json* file:
 
 * [demo-ember-forge-ui-app-without-companion-addon](https://github.com/ember-forge/demo-ember-forge-ui-app-without-companion-addon)
 
-Demonstrates an application that only has the `ember-forge-ui` addon installed without any companion addons.  Due to this default template content will be dispalyed when a component is used indicating that a companion addon needs to be employed as well.
+Demonstrates an application that only has the `ember-forge-ui` addon installed without any companion addons.  Due to this default template content will be displayed when a component is used indicating that a companion addon needs to be employed as well.
 
 
 ### Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed
