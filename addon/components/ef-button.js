@@ -26,6 +26,9 @@ export default Component.extend( AttributeBindings, ClassNames, ClassNameBinding
     /** @type {Object} */
     layout,
 
+    /** @type {String} */
+    tagName: 'button',
+
     // -------------------------------------------------------------------------
     // Actions
 
