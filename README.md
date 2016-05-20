@@ -31,6 +31,8 @@ Not where this goes, but don't lose track of
 },
 ```
 
+move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
+
 
 
 ## Installation
