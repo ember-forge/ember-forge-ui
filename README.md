@@ -15,6 +15,16 @@ The second
 
 # So how do I use this then?
 
+Not where this goes, but don't lose track of 
+
+```
+'ember-forge-ui': {
+    addonName: 'ember-forge-ui-bootstrap4'
+},
+```
+
+
+
 ## Installation
 
 `ember install ember-forge-ui`
