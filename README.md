@@ -83,29 +83,29 @@ Add this entry to the template addon's *package.json* file:
 
 # Demos
 
-## Application with only ember-forge-ui installed
+### Application with only ember-forge-ui installed
 
-Repo: [demo-ember-forge-ui-app-without-companion-addon](https://github.com/ember-forge/demo-ember-forge-ui-app-without-companion-addon)
+* Repo: [demo-ember-forge-ui-app-without-companion-addon](https://github.com/ember-forge/demo-ember-forge-ui-app-without-companion-addon)
 
 Demonstrates an application that only has the `ember-forge-ui` addon installed without any companion addons.  Due to this default template content will be dispalyed when a component is used indicating that a companion addon needs to be employed as well.
 
 
-## Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed
+### Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed
 
-Repo: [demo-ember-forge-ui-app-1](https://github.com/ember-forge/demo-ember-forge-ui-app-1)
+* Repo: [demo-ember-forge-ui-app-1](https://github.com/ember-forge/demo-ember-forge-ui-app-1)
 
 Demonstrates that the combination of `ember-forge-ui` and a companion addon such as `ember-forge-ui-bootstrap4` allows for the use of a component from `ember-forge-ui` with the content of its rendered template provided by a companion addon, such as `ember-forge-ui-bootstrap4`.
 
 
-## A companion addon extending ember-forge-ui
+### A companion addon extending ember-forge-ui
 
-Repo: [demo-ember-forge-ui-app-2](https://github.com/ember-forge/demo-ember-forge-ui-app-2)
-Repo: [demo-ember-forge-ui-extending-addon-1](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-1)
+* Repo: [demo-ember-forge-ui-app-2](https://github.com/ember-forge/demo-ember-forge-ui-app-2)
+* Repo: [demo-ember-forge-ui-extending-addon-1](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-1)
 
 Demonstrates that a companion addon can do more than just provide template content to `ember-forge-ui` components but can actually extend their capabilities as well.
 
 
-## A companion addon can extend another companion addon
+### A companion addon can extend another companion addon
 
 Repo: [demo-ember-forge-ui-app-3](https://github.com/ember-forge/demo-ember-forge-ui-app-3)
 Repo: [demo-ember-forge-ui-extending-addon-2](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-2)
