@@ -49,9 +49,10 @@ module.exports = {
 
         } else {
             var componentTemplateTrees = [];
-            var files = fs.readdirSync( path.join( this.nodeModulesPath, 'addon', 'components' ) );
+            var files = fs.readdirSync( path.join( this.nodeModulesPath, this.name, 'addon', 'components' ) );
             var placeholderContentPath = path.join(
                 this.nodeModulesPath,
+                this.name,
                 'addon',
                 'templates',
                 'components'
