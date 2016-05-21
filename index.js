@@ -67,5 +67,33 @@ module.exports = {
 
             return mergeTrees( componentTemplateTrees );
         }
+    },
+
+    /**
+     * Add initializer exports to the app tree for each component that has been redefined by the companion addon
+     *
+     * @param {Object} tree
+     * @returns {Object}
+     */
+    treeForApp: function( tree ) {
+        var emberForgeUiCompanionAddonName = this.emberForgeUiCompanionAddonName;
+        var files = fs.readdirSync(
+            path.join( this.nodeModulesPath, emberForgeUiCompanionAddonName, 'addon', 'components' )
+        );
+        var initializerTrees = [];
+
+        files.forEach( function( element ) {
+            var content = "export { default, initialize } from '";
+            content += emberForgeUiCompanionAddonName + '/initializers/' + emberForgeUiCompanionAddonName;
+            content += '-' + element.substring( 0, element.length - 3 ) + "';";
+
+            initializerTrees.push(
+                writeFile( 'initializers/' + emberForgeUiCompanionAddonName + '-' + element, content )
+            );
+        });
+
+        return mergeTrees(
+            tree ? initializerTrees.concat( tree ) : initializerTrees
+        );
     }
 };
