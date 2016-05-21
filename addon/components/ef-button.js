@@ -56,11 +56,11 @@ export default Component.extend( AttributeBindings, ClassNames, ClassNameBinding
     // Methods
 
     /**
-   * Initializes the state of the attributeBindings, classNameBindings and classNames arrays
-   *
-   * @function
-   * @returns {undefined}
-   */
+     * Initializes the state of the attributeBindings, classNameBindings and classNames arrays
+     *
+     * @function
+     * @returns {undefined}
+     */
     componentInit() {
         if ( !this.get( 'clearAttributeBindings' ) ) {
             this.addAttributeBindings([
