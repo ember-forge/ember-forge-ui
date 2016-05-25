@@ -70,6 +70,45 @@ module.exports = {
     },
 
     /**
+     * Add initializer exports to the addon tree for each component that has been redefined by the companion addon
+     *
+     * @param {Object} tree
+     * @returns {Object}
+     */
+    treeForAddon: function( tree ) {
+        var addonTree = this._super.treeForAddon.apply( this, arguments );
+        var blueprintPath = path.join(
+            this.nodeModulesPath,
+            this.name,
+            'blueprints',
+            'addon',
+            'initializers',
+            '__name__.js'
+        );
+        var emberForgeUiCompanionAddonName = this.emberForgeUiCompanionAddonName;
+        var files = fs.readdirSync(
+            path.join( this.nodeModulesPath, emberForgeUiCompanionAddonName, 'addon', 'components' )
+        );
+        var initializerTrees = [];
+        var template = fs.readFileSync( blueprintPath, 'utf8' );
+
+        files.forEach( function( element ) {
+            var content = template;
+            content = content.replace( new RegExp( '<%= componentName %>', 'g' ), element.substring( 0, element.length - 3 ) );
+            content = content.replace( new RegExp( '<%= addonName %>', 'g' ), emberForgeUiCompanionAddonName );
+
+            initializerTrees.push(
+                writeFile( 'modules/' + emberForgeUiCompanionAddonName + '/initializers/' + emberForgeUiCompanionAddonName + '-' + element, content )
+            );
+        });
+
+        return mergeTrees([
+            addonTree,
+            mergeTrees( initializerTrees )
+        ]);
+    },
+
+    /**
      * Add initializer exports to the app tree for each component that has been redefined by the companion addon
      *
      * @param {Object} tree
