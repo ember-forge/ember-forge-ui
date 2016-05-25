@@ -36,6 +36,29 @@ module.exports = {
     },
 
     /**
+     * Get list of component file names from companion addon `addon/components` directory
+     *
+     * @returns {Array}
+     */
+    getCompanionAddonComponents: function() {
+        return fs.readdirSync(
+            path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'components' )
+        );
+    },
+
+    /**
+     * Remove the file extension off of file name
+     *
+     * Provided that there is single extension, indicated by a period
+     *
+     * @param {String} file
+     * @returns {String}
+     */
+    removeFileExtension: function( file ) {
+        return file.substring( 0, file.length - 3 );
+    },
+
+    /**
      * Return templates if ember-forge-ui companion addon is installed, default ones if not
      *
      * @param {Object} tree
@@ -76,7 +99,6 @@ module.exports = {
      * @returns {Object}
      */
     treeForAddon: function( tree ) {
-        var addonTree = this._super.treeForAddon.apply( this, arguments );
         var blueprintPath = path.join(
             this.nodeModulesPath,
             this.name,
@@ -85,25 +107,25 @@ module.exports = {
             'initializers',
             '__name__.js'
         );
-        var emberForgeUiCompanionAddonName = this.emberForgeUiCompanionAddonName;
-        var files = fs.readdirSync(
-            path.join( this.nodeModulesPath, emberForgeUiCompanionAddonName, 'addon', 'components' )
-        );
+        var blueprint = fs.readFileSync( blueprintPath, 'utf8' );
+        var companionAddonName = this.emberForgeUiCompanionAddonName;
         var initializerTrees = [];
-        var template = fs.readFileSync( blueprintPath, 'utf8' );
+        var removeFileExtension = this.removeFileExtension;
 
-        files.forEach( function( element ) {
-            var content = template;
-            content = content.replace( new RegExp( '<%= componentName %>', 'g' ), element.substring( 0, element.length - 3 ) );
-            content = content.replace( new RegExp( '<%= addonName %>', 'g' ), emberForgeUiCompanionAddonName );
+        this.getCompanionAddonComponents().forEach( function( element ) {
+            var content = blueprint;
+            content = content.replace( new RegExp( '<%= componentName %>', 'g' ), removeFileExtension( element ) );
+            content = content.replace( new RegExp( '<%= addonName %>', 'g' ), companionAddonName );
 
             initializerTrees.push(
-                writeFile( 'modules/' + emberForgeUiCompanionAddonName + '/initializers/' + emberForgeUiCompanionAddonName + '-' + element, content )
+                writeFile(
+                    'modules/' + companionAddonName + '/initializers/' + companionAddonName + '-' + element, content
+                )
             );
         });
 
         return mergeTrees([
-            addonTree,
+            this._super.treeForAddon.apply( this, tree ),
             mergeTrees( initializerTrees )
         ]);
     },
@@ -115,19 +137,17 @@ module.exports = {
      * @returns {Object}
      */
     treeForApp: function( tree ) {
-        var emberForgeUiCompanionAddonName = this.emberForgeUiCompanionAddonName;
-        var files = fs.readdirSync(
-            path.join( this.nodeModulesPath, emberForgeUiCompanionAddonName, 'addon', 'components' )
-        );
+        var companionAddonName = this.emberForgeUiCompanionAddonName;
         var initializerTrees = [];
+        var removeFileExtension = this.removeFileExtension;
 
-        files.forEach( function( element ) {
+        this.getCompanionAddonComponents().forEach( function( element ) {
             var content = "export { default, initialize } from '";
-            content += emberForgeUiCompanionAddonName + '/initializers/' + emberForgeUiCompanionAddonName;
-            content += '-' + element.substring( 0, element.length - 3 ) + "';";
+            content += companionAddonName + '/initializers/' + companionAddonName;
+            content += '-' + removeFileExtension( element ) + "';";
 
             initializerTrees.push(
-                writeFile( 'initializers/' + emberForgeUiCompanionAddonName + '-' + element, content )
+                writeFile( 'initializers/' + companionAddonName + '-' + element, content )
             );
         });
 
