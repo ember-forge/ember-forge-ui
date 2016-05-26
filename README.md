@@ -20,6 +20,8 @@ The companion addon can provide much more than just templates, CSS and any neces
 
 # How is this architected?
 
+@TODO
+
 
 # So how do I use this then?
 
@@ -37,28 +39,16 @@ If you have found a companion addon you wish to use, such as [ember-forge-ui-boo
 }
 ```
 
+
 ## Create own companion addon
 
-Lorem ipsum
-
-## Extend existing companion addon
-
-Lorem ipsum
-
-
-
-
+@TODO
 
 move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
 
-
-
-
-# Create template addon
-
-Lorem ipsum
-
 ## Addon should run before ember-forge-ui addon
+
+@TODO - yet to be determined:
 
 Add this entry to the template addon's *package.json* file:
 
@@ -67,11 +57,15 @@ Add this entry to the template addon's *package.json* file:
     }
 
 
-# Extend existing template addon
+## Extend existing companion addon
 
-Lorem ipsum
+@TODO
+
+move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
 
 ## Addon should run before ember-forge-ui addon and after template addon being extended
+
+@TODO - yet to be determined:
 
 Add this entry to the template addon's *package.json* file:
 
@@ -113,8 +107,9 @@ Demonstrates that a companion addon can do more than just provide template conte
 
 
 
-
 ### We also need to demonstrate the following combinations
+
+@TODO
 
 * https://github.com/ember-forge/ember-forge-ui/issues/21
 * a companion addon is not extending `ember-forge-ui` but is extended and the extending one does
