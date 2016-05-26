@@ -138,14 +138,23 @@ module.exports = {
      * @returns {Object}
      */
     treeForApp: function( tree ) {
+        var blueprintPath = path.join(
+            this.nodeModulesPath,
+            this.name,
+            'blueprints',
+            'app',
+            'initializers',
+            '__name__.js'
+        );
+        var blueprint = fs.readFileSync( blueprintPath, 'utf8' );
         var companionAddonName = this.emberForgeUiCompanionAddonName;
         var initializerTrees = [];
         var removeFileExtension = this.removeFileExtension;
 
         this.getCompanionAddonComponents().forEach( function( element ) {
-            var content = "export { default, initialize } from '";
-            content += companionAddonName + '/initializers/' + companionAddonName;
-            content += '-' + removeFileExtension( element ) + "';";
+            var content = blueprint;
+            content = content.replace( new RegExp( '<%= componentName %>', 'g' ), removeFileExtension( element ) );
+            content = content.replace( new RegExp( '<%= addonName %>', 'g' ), companionAddonName );
 
             initializerTrees.push(
                 writeFile( 'initializers/' + companionAddonName + '-' + element, content )
