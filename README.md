@@ -40,13 +40,13 @@ If you have found a companion addon you wish to use, such as [ember-forge-ui-boo
 ```
 
 
-## Create own companion addon
+## Create your own companion addon
 
 @TODO
 
 move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
 
-## Addon should run before ember-forge-ui addon
+### Addon should run before ember-forge-ui addon
 
 @TODO - yet to be determined:
 
@@ -63,7 +63,7 @@ Add this entry to the template addon's *package.json* file:
 
 move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
 
-## Addon should run before ember-forge-ui addon and after template addon being extended
+### Addon should run before ember-forge-ui addon and after template addon being extended
 
 @TODO - yet to be determined:
 
