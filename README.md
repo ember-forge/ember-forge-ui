@@ -23,24 +23,33 @@ The companion addon can provide much more than just templates, CSS and any neces
 
 # So how do I use this then?
 
-Not where this goes, but don't lose track of
+## Use an existing companion addon
+
+If you have found a companion addon you wish to use, such as [ember-forge-ui-bootstrap4](https://github.com/ember-forge/ember-forge-ui-bootstrap4), which you do not wish to make any modifications to you simply only need to:
+
+1. `ember install ember-forge-ui`
+2. `ember install <companion addon name>`
+3. Add this entry to your application's *config/environment.js* file:
 
 ```
 'ember-forge-ui': {
-    addonName: 'ember-forge-ui-bootstrap4'
+    addonName: '<companion addon name>'
 },
 ```
 
+## Create own companion addon
+
+Lorem ipsum
+
+## Extend existing companion addon
+
+Lorem ipsum
+
+
+
+
+
 move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
-
-
-
-## Installation
-
-`ember install ember-forge-ui`
-
-
-
 
 
 
@@ -57,24 +66,6 @@ Add this entry to the template addon's *package.json* file:
         "before": "ember-forge-ui"
     }
 
-## Define config() hook
-
-Lorem ipsum
-
-Add this entry to the template addon's *index.js* file:
-
-    /**
-     * Set name of companion ember-forge-ui template addon
-     *
-     * @param {String} environment
-     * @param {Object} appConfig
-     * @returns {Object}
-     */
-    config: function( environment, appConfig ) {
-        return {
-            emberForgeUiTemplateAddon: this.name
-        };
-    }
 
 # Extend existing template addon
 
