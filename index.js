@@ -99,6 +99,7 @@ module.exports = {
      * @returns {Object}
      */
     treeForAddon: function( tree ) {
+        var addonTree = this._super.treeForAddon.apply( this, arguments );
         var blueprintPath = path.join(
             this.nodeModulesPath,
             this.name,
@@ -125,7 +126,7 @@ module.exports = {
         });
 
         return mergeTrees([
-            this._super.treeForAddon.apply( this, tree ),
+            addonTree,
             mergeTrees( initializerTrees )
         ]);
     },
