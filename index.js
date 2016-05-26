@@ -16,6 +16,13 @@ module.exports = {
     name: 'ember-forge-ui',
 
     /**
+     * Cached list of component names in companion addon
+     *
+     * @type {?Array}
+     */
+    companionAddonComponents: null,
+
+    /**
      * Name of companion ember-forge-ui addon
      *
      * @type {?String}
@@ -41,9 +48,13 @@ module.exports = {
      * @returns {Array}
      */
     getCompanionAddonComponents: function() {
-        return fs.readdirSync(
-            path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'components' )
-        );
+        if ( !this.companionAddonComponents ) {
+            this.companionAddonComponents = fs.readdirSync(
+                path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'components' )
+            );
+        }
+
+        return this.companionAddonComponents;
     },
 
     /**
