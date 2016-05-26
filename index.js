@@ -49,9 +49,13 @@ module.exports = {
      */
     getCompanionAddonComponents: function() {
         if ( !this.companionAddonComponents ) {
-            this.companionAddonComponents = fs.readdirSync(
-                path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'components' )
-            );
+            try {
+                this.companionAddonComponents = fs.readdirSync(
+                    path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'components' )
+                );
+            } catch( error ) {
+                this.companionAddonComponents = [];
+            }
         }
 
         return this.companionAddonComponents;
