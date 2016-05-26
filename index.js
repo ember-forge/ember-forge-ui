@@ -93,8 +93,9 @@ module.exports = {
                 this.name,
                 'addon',
                 'templates',
-                'components'
-            ) + path.sep + 'placeholder-content.hbs';
+                'components',
+                'placeholder-content.hbs'
+            );
             var placeholderContent = require( placeholderContentPath );
 
             files.forEach( function( element ) {
