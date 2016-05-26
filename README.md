@@ -34,7 +34,7 @@ If you have found a companion addon you wish to use, such as [ember-forge-ui-boo
 ```
 'ember-forge-ui': {
     addonName: '<companion addon name>'
-},
+}
 ```
 
 ## Create own companion addon
