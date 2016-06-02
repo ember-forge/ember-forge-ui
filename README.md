@@ -80,7 +80,13 @@ You are **STRONGLY** encouraged to create new components within the `ef-` namesp
 
 ### Extending existing components
 
-#### reopen instead of extend
+#### Template changes only
+
+If the only changes you wish to make to an existing component are template changes then you need only define a `.hbs` template file and the changes will be picked up automatically.
+
+#### Component logic changes
+
+##### reopen instead of extend
 
 When extending a component that exists in the `ember-forge-ui` addon (this one) you need to reopen the component you wish to extend, rather than calling `OriginalComponent.extend()`.  For example:
 
@@ -98,7 +104,7 @@ You can still use Mixins with `reopen()` just like can with `extend()`.
 For this to work there are also initializers that must be created but this is done automagically for you by the `ember-forge-ui` addon (this one) and more information about that, and why `reopen()` must be used rather than `extend()`, can be found in the ["How is this architected?"](#how-is-this-architected) section.
 
 
-#### attributeBindings, classNames, and classNameBindings
+##### attributeBindings, classNames, and classNameBindings
 
 There is nothing special that must be done to modify these values and the normal Ember approaches can be used.  Since this might be an area developers may not be as familiar with we have provided several examples below illustrating these approaches.
 
