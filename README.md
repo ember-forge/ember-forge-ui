@@ -93,6 +93,8 @@ Button.reopen({
 });
 ```
 
+You can still use Mixins with `reopen()` just like can with `extend()`.
+
 For this to work there are also initializers that must be created but this is done automagically for you by the `ember-forge-ui` addon (this one) and more information about that, and why `reopen()` must be used rather than `extend()`, can be found in the ["How is this architected?"](#how-is-this-architected) section.
 
 
