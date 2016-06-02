@@ -10,8 +10,10 @@
         * [NPM dependencies](#npm-dependencies)
         * [Adding new components](#adding-new-components)
         * [Extending existing components](#extending-existing-components)
-            * [reopen instead of extend](#reopen-instead-of-extend)
-            * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
+            * [Template changes only](#template-changes-only)
+            * [Component logic changes](#component-logic-changes)
+                * [reopen instead of extend](#reopen-instead-of-extend)
+                * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
 
 
 # What is ember-forge-ui?
@@ -108,16 +110,16 @@ For this to work there are also initializers that must be created but this is do
 
 There is nothing special that must be done to modify these values and the normal Ember approaches can be used.  Since this might be an area developers may not be as familiar with we have provided several examples below illustrating these approaches.
 
-**Removing already-applied attributeBindings**
+*Removing already-applied attributeBindings*
 
 * The [Ember.js Guides](https://guides.emberjs.com/v2.5.0/components/customizing-a-components-element/#toc_customizing-attributes) describe how setting the bound attribute property to a `null` value will cause the attribute to be cleared.
 * Can also use this code: `this.get( 'attributeBindings' ).removeObject( attributeProperty );`
 
-**Removing already-applied classNames**
+*Removing already-applied classNames*
 
 * Can use this code: `this.get( 'classNames' ).removeObject( className );`
 
-**Removing already-applied classNameBindings**
+*Removing already-applied classNameBindings*
 
 * Set the binding value to `false` if the property is a Boolean value
 * Redefine the computed property returning the bound value if the property is a computed property
