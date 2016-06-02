@@ -42,19 +42,75 @@ If you have found a companion addon you wish to use, such as [ember-forge-ui-boo
 
 ## Create your own companion addon
 
-@TODO
+There are a few items to keep in mind when creating your own companion addon, which are listed below.
 
-move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
+### NPM dependencies
+
+* Move `ember-cli-htmlbars` dependency from `devDependencies` to `dependencies` in *package.json*
+
+### Adding new components
+
+When adding a new component that does not exist in the `ember-forge-ui` addon (this one) create a component in the usual Ember manner.  For example:
+
+```
+// addon/components/ef-new-component.js
+
+export default Ember.Component.extend({
+});
+```
+
+You are **STRONGLY** encouraged to create new components within the `ef-` namespace to provide consistency when using the `ember-forge-ui` ecosystem. See the ["How is this architected?"](#how-is-this-architected) section for more details.
+
+
+### Extending existing components
+
+#### reopen instead of extend
+
+When extending a component that exists in the `ember-forge-ui` addon (this one) you need to reopen the component you wish to extend, rather than calling `OriginalComponent.extend()`.  For example:
+
+```
+// addon/components/ef-button.js
+
+import Button from 'ember-forge-ui/components/ef-button';
+
+Button.reopen({
+});
+```
+
+For this to work there are also initializers that must be created but this is done automagically for you by the `ember-forge-ui` addon (this one) and more information about that, and why `reopen()` must be used rather than `extend()`, can be found in the ["How is this architected?"](#how-is-this-architected) section.
+
+
+#### attributeBindings, classNames, and classNameBindings
+
+There is nothing special that must be done to modify these values and the normal Ember approaches can be used.  Since this might be an area developers may not be as familiar with we have provided several examples below illustrating these approaches.
+
+**Removing already-applied attributeBindings**
+
+* The [Ember.js Guides](https://guides.emberjs.com/v2.5.0/components/customizing-a-components-element/#toc_customizing-attributes) describe how setting the bound attribute property to a `null` value will cause the attribute to be cleared.
+* Can also use this code: `this.get( 'attributeBindings' ).removeObject( attributeProperty );`
+
+**Removing already-applied classNames**
+
+* Can use this code: `this.get( 'classNames' ).removeObject( className );`
+
+**Removing already-applied classNameBindings**
+
+* Set the binding value to `false` if the property is a Boolean value
+* Redefine the computed property returning the bound value if the property is a computed property
+* Can also use this code: `this.get( 'classNameBindings' ).removeObject( classNameBinding );`
+
 
 ### Addon should run before ember-forge-ui addon
 
-@TODO - yet to be determined:
+@TODO - yet to be determined
 
 Add this entry to the template addon's *package.json* file:
 
     "ember-addon": {
         "before": "ember-forge-ui"
     }
+
+
 
 
 ## Extend existing companion addon
