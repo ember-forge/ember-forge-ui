@@ -14,6 +14,12 @@
             * [Component logic changes](#component-logic-changes)
                 * [reopen instead of extend](#reopen-instead-of-extend)
                 * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
+    * [Extend existing companion addon](#extend-existing-companion-addon)
+* [Demos](#demos)
+  * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
+  * [Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed](#application-with-ember-forge-ui-and-ember-forge-ui-bootstrap4-installed)
+  * [A companion addon extending ember-forge-ui](#a-companion-addon-extending-ember-forge-ui)
+  * [A companion addon can extend another companion addon](#a-companion-addon-can-extend-another-companion-addon)
 
 
 # What is ember-forge-ui?
