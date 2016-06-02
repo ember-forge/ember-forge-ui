@@ -138,16 +138,7 @@ There is nothing special that must be done to modify these values and the normal
 
 move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
 
-### Addon should run before ember-forge-ui addon and after template addon being extended
 
-@TODO - yet to be determined:
-
-Add this entry to the template addon's *package.json* file:
-
-    "ember-addon": {
-        "after": "other-template-addon",
-        "before": "ember-forge-ui"
-    }
 
 
 
