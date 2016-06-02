@@ -1,3 +1,17 @@
+* [What is ember-forge-ui?](#what-is-ember-forge-ui)
+* [What is gained by this?](#what-is-gained-by-this)
+* [How is this accomplished?](#how-is-this-accomplished)
+* [How is this architected?](#how-is-this-architected)
+* [So how do I use this then?](#so-how-do-i-use-this-then)
+    * [Use an existing companion addon](#use-an-existing-companion-addon)
+    * [Create your own companion addon](#create-your-own-companion-addon)
+        * [NPM dependencies](#npm-dependencies)
+        * [Adding new components](#adding-new-components)
+        * [Extending existing components](#extending-existing-components)
+            * [reopen instead of extend](#reopen-instead-of-extend)
+            * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
+
+
 # What is ember-forge-ui?
 
 An approach to providing UI Components that separate the logic of the components from the DOM, CSS, and any DOM-related Javascript use to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
