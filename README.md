@@ -180,6 +180,8 @@ Demonstrates that a companion addon can do more than just provide template conte
 * [demo-ember-forge-ui-app-3](https://github.com/ember-forge/demo-ember-forge-ui-app-3)
 * [demo-ember-forge-ui-extending-addon-2](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-2)
 
+Demonstrates that a companion addon can extend another companion addon.
+
 
 
 ### We also need to demonstrate the following combinations
