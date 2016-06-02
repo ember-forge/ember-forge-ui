@@ -1,3 +1,5 @@
+# Table of Contents
+
 * [What is ember-forge-ui?](#what-is-ember-forge-ui)
 * [What is gained by this?](#what-is-gained-by-this)
 * [How is this accomplished?](#how-is-this-accomplished)
