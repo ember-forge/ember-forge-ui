@@ -116,19 +116,6 @@ There is nothing special that must be done to modify these values and the normal
 * Can also use this code: `this.get( 'classNameBindings' ).removeObject( classNameBinding );`
 
 
-### Addon should run before ember-forge-ui addon
-
-@TODO - yet to be determined
-
-Add this entry to the template addon's *package.json* file:
-
-    "ember-addon": {
-        "before": "ember-forge-ui"
-    }
-
-
-
-
 ## Extend existing companion addon
 
 @TODO
