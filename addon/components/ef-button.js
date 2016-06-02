@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/ef-button';
-import AttributeBindings from '../mixins/components/attribute-bindings';
-import ClassNames from '../mixins/components/class-names';
-import ClassNameBindings from '../mixins/components/class-name-bindings';
+// import AttributeBindings from '../mixins/components/attribute-bindings';
+// import ClassNames from '../mixins/components/class-names';
+// import ClassNameBindings from '../mixins/components/class-name-bindings';
 
 const {
   Component
@@ -15,13 +15,27 @@ const {
  * @augments module:mixins/components/class-names
  * @augments module:mixins/components/class-name-bindings
  */
-export default Component.extend( AttributeBindings, ClassNames, ClassNameBindings, {
+export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBindings, */ {
 
     // -------------------------------------------------------------------------
     // Dependencies
 
     // -------------------------------------------------------------------------
     // Attributes
+
+    attributeBindings: [
+        'title'
+    ],
+
+    classNames: [
+        'className1',
+        'className2'
+    ],
+
+    classNameBindings: [
+        'classNameBinding1',
+        'classNameBinding2'
+    ],
 
     /** @type {Object} */
     layout,
@@ -143,13 +157,19 @@ export default Component.extend( AttributeBindings, ClassNames, ClassNameBinding
      */
     init() {
         this._super( ...arguments );
-        this.componentInit();
+//        this.componentInit();
 
         console.log( 'init() from ember-forge-ui ef-button' );
     },
 
     // -------------------------------------------------------------------------
     // Properties
+
+    classNameBinding1: true,
+
+    classNameBinding2: true,
+
+    title: 'Bound attribute value',
 
     // -------------------------------------------------------------------------
     // Observers
