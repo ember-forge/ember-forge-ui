@@ -14,7 +14,7 @@
             * [Component logic changes](#component-logic-changes)
                 * [reopen instead of extend](#reopen-instead-of-extend)
                 * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
-    * [Extend an existing companion addon](#extend-existing-companion-addon)
+    * [Extend an existing companion addon](#extend-an-existing-companion-addon)
         * [NPM dependencies](#npm-dependencies-1)
         * [Extending existing components](#extending-existing-components-1)
             * [Template changes only](#template-changes-only-1)
