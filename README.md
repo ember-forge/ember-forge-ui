@@ -204,11 +204,13 @@ Demonstrates that a companion addon can extend another companion addon.
 @TODO
 
 * https://github.com/ember-forge/ember-forge-ui/issues/21
-* a companion addon is not extending `ember-forge-ui` but is extended and the extending one does
-* a companion addon is not extending `ember-forge-ui` and is extended and the extending one does not
-* a companion addon is extending `ember-forge-ui` but is extended and the extending one does not
-* a companion addon is extending `ember-forge-ui` and is extended and the extending one does
-
+* a companion addon is not extending an `ember-forge-ui` component but is extended and the extending one does
+* a companion addon is not extending an `ember-forge-ui` component and is extended and the extending one does not
+* a companion addon is not extending an `ember-forge-ui` component but introduces a new component and the extending addon extends it
+* a companion addon is extending an `ember-forge-ui` component but is extended and the extending one does not
+* a companion addon is extending an `ember-forge-ui` component and is extended and the extending one does
+* a companion addon is extending an `ember-forge-ui` component directly
+* an extending companion addon can introduce a new component
 
 Can likely use different combinations of the existing demo repos above but need to figure that matrix out
 
