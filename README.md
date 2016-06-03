@@ -14,7 +14,7 @@
             * [Component logic changes](#component-logic-changes)
                 * [reopen instead of extend](#reopen-instead-of-extend)
                 * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
-    * [Extend existing companion addon](#extend-existing-companion-addon)
+    * [Extend an existing companion addon](#extend-existing-companion-addon)
 * [Demos](#demos)
   * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
   * [Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed](#application-with-ember-forge-ui-and-ember-forge-ui-bootstrap4-installed)
@@ -132,12 +132,33 @@ There is nothing special that must be done to modify these values and the normal
 * Can also use this code: `this.get( 'classNameBindings' ).removeObject( classNameBinding );`
 
 
-## Extend existing companion addon
+## Extend an existing companion addon
 
-@TODO
+There are a few items to keep in mind when extending an existing companion addon, which are listed below.
 
-move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
+### NPM dependencies
 
+* Move `ember-cli-htmlbars` dependency from `devDependencies` to `dependencies` in *package.json*
+
+### Adding new components
+
+When adding a new component that does not exist in the `ember-forge-ui` addon (this one) create a component in the usual Ember manner.  For example:
+
+```
+// addon/components/ef-new-component.js
+
+export default Ember.Component.extend({
+});
+```
+
+You are **STRONGLY** encouraged to create new components within the `ef-` namespace to provide consistency when using the `ember-forge-ui` ecosystem. See the ["How is this architected?"](#how-is-this-architected) section for more details.
+
+
+### Extending existing components
+
+#### Template changes only
+
+If the only changes you wish to make to an existing component are template changes then you need only define a `.hbs` template file and the changes will be picked up automatically.
 
 
 
