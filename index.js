@@ -51,11 +51,10 @@ module.exports = {
 
         } else {
             var componentTemplateTrees = [];
-            var files = fs.readdirSync( path.join( this.nodeModulesPath, this.name, 'addon', 'components' ) );
+            var addonPath = path.join( this.nodeModulesPath, this.name, 'addon' );
+            var files = fs.readdirSync( path.join( addonPath, 'components' ) );
             var placeholderContentPath = path.join(
-                this.nodeModulesPath,
-                this.name,
-                'addon',
+                addonPath,
                 'templates',
                 'components',
                 'placeholder-content.hbs'
