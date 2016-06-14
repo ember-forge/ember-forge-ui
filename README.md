@@ -1,6 +1,33 @@
+# Table of Contents
+
+* [What is ember-forge-ui?](#what-is-ember-forge-ui)
+* [What is gained by this?](#what-is-gained-by-this)
+* [How is this accomplished?](#how-is-this-accomplished)
+* [How is this architected?](#how-is-this-architected)
+* [So how do I use this then?](#so-how-do-i-use-this-then)
+    * [Use an existing companion addon](#use-an-existing-companion-addon)
+    * [Create your own companion addon](#create-your-own-companion-addon)
+        * [NPM dependencies](#npm-dependencies)
+        * [Adding new components](#adding-new-components)
+        * [Extending existing components](#extending-existing-components)
+            * [Template changes only](#template-changes-only)
+            * [Component logic changes](#component-logic-changes)
+                * [reopen instead of extend](#reopen-instead-of-extend)
+                * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
+    * [Extend an existing companion addon](#extend-an-existing-companion-addon)
+        * [NPM dependencies](#npm-dependencies-1)
+        * [Extending existing components](#extending-existing-components-1)
+            * [Template changes only](#template-changes-only-1)
+* [Demos](#demos)
+  * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
+  * [Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed](#application-with-ember-forge-ui-and-ember-forge-ui-bootstrap4-installed)
+  * [A companion addon extending ember-forge-ui](#a-companion-addon-extending-ember-forge-ui)
+  * [A companion addon can extend another companion addon](#a-companion-addon-can-extend-another-companion-addon)
+
+
 # What is ember-forge-ui?
 
-An approach to providing UI Components that separate the logic of the components from the DOM, CSS, and any DOM-related Javascript use to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
+An approach to providing UI Components that separates the logic of the components from the DOM, CSS, and any DOM-related Javascript used to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
 
 
 # What is gained by this?
@@ -42,37 +69,100 @@ If you have found a companion addon you wish to use, such as [ember-forge-ui-boo
 
 ## Create your own companion addon
 
-@TODO
+There are a few items to keep in mind when creating your own companion addon, which are listed below.
 
-move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
+### NPM dependencies
 
-### Addon should run before ember-forge-ui addon
+* Move `ember-cli-htmlbars` dependency from `devDependencies` to `dependencies` in *package.json*
 
-@TODO - yet to be determined:
+### Adding new components
 
-Add this entry to the template addon's *package.json* file:
+When adding a new component that does not exist in the `ember-forge-ui` addon (this one) create a component in the usual Ember manner.  For example:
 
-    "ember-addon": {
-        "before": "ember-forge-ui"
-    }
+```
+// addon/components/ef-new-component.js
+
+export default Ember.Component.extend({
+});
+```
+
+You are **STRONGLY** encouraged to create new components within the `ef-` namespace to provide consistency when using the `ember-forge-ui` ecosystem. See the ["How is this architected?"](#how-is-this-architected) section for more details.
 
 
-## Extend existing companion addon
+### Extending existing components
 
-@TODO
+#### Template changes only
 
-move `ember-cli-htmlbars` from `devDependencies` to `dependencies`
+If the only changes you wish to make to an existing component are template changes then you need only define a `.hbs` template file and the changes will be picked up automatically.
 
-### Addon should run before ember-forge-ui addon and after template addon being extended
+#### Component logic changes
 
-@TODO - yet to be determined:
+##### reopen instead of extend
 
-Add this entry to the template addon's *package.json* file:
+When extending a component that exists in the `ember-forge-ui` addon (this one) you need to reopen the component you wish to extend, rather than calling `OriginalComponent.extend()`.  For example:
 
-    "ember-addon": {
-        "after": "other-template-addon",
-        "before": "ember-forge-ui"
-    }
+```
+// addon/components/ef-button.js
+
+import Button from 'ember-forge-ui/components/ef-button';
+
+Button.reopen({
+});
+```
+
+You can still use Mixins with `reopen()` just like can with `extend()`.
+
+For this to work there are also initializers that must be created but this is done automagically for you by the `ember-forge-ui` addon (this one) and more information about that, and why `reopen()` must be used rather than `extend()`, can be found in the ["How is this architected?"](#how-is-this-architected) section.
+
+
+##### attributeBindings, classNames, and classNameBindings
+
+There is nothing special that must be done to modify these values and the normal Ember approaches can be used.  Since this might be an area developers may not be as familiar with we have provided several examples below illustrating these approaches.
+
+*Removing already-applied attributeBindings*
+
+* The [Ember.js Guides](https://guides.emberjs.com/v2.5.0/components/customizing-a-components-element/#toc_customizing-attributes) describe how setting the bound attribute property to a `null` value will cause the attribute to be cleared.
+* Can also use this code: `this.get( 'attributeBindings' ).removeObject( attributeProperty );`
+
+*Removing already-applied classNames*
+
+* Can use this code: `this.get( 'classNames' ).removeObject( className );`
+
+*Removing already-applied classNameBindings*
+
+* Set the binding value to `false` if the property is a Boolean value
+* Redefine the computed property returning the bound value if the property is a computed property
+* Can also use this code: `this.get( 'classNameBindings' ).removeObject( classNameBinding );`
+
+
+## Extend an existing companion addon
+
+There are a few items to keep in mind when extending an existing companion addon, which are listed below.
+
+### NPM dependencies
+
+* Move `ember-cli-htmlbars` dependency from `devDependencies` to `dependencies` in *package.json*
+
+### Adding new components
+
+When adding a new component that does not exist in the `ember-forge-ui` addon (this one) create a component in the usual Ember manner.  For example:
+
+```
+// addon/components/ef-new-component.js
+
+export default Ember.Component.extend({
+});
+```
+
+You are **STRONGLY** encouraged to create new components within the `ef-` namespace to provide consistency when using the `ember-forge-ui` ecosystem. See the ["How is this architected?"](#how-is-this-architected) section for more details.
+
+
+### Extending existing components
+
+#### Template changes only
+
+If the only changes you wish to make to an existing component are template changes then you need only define a `.hbs` template file and the changes will be picked up automatically.
+
 
 
 
@@ -105,6 +195,8 @@ Demonstrates that a companion addon can do more than just provide template conte
 * [demo-ember-forge-ui-app-3](https://github.com/ember-forge/demo-ember-forge-ui-app-3)
 * [demo-ember-forge-ui-extending-addon-2](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-2)
 
+Demonstrates that a companion addon can extend another companion addon.
+
 
 
 ### We also need to demonstrate the following combinations
@@ -112,11 +204,13 @@ Demonstrates that a companion addon can do more than just provide template conte
 @TODO
 
 * https://github.com/ember-forge/ember-forge-ui/issues/21
-* a companion addon is not extending `ember-forge-ui` but is extended and the extending one does
-* a companion addon is not extending `ember-forge-ui` and is extended and the extending one does not
-* a companion addon is extending `ember-forge-ui` but is extended and the extending one does not
-* a companion addon is extending `ember-forge-ui` and is extended and the extending one does
-
+* a companion addon is not extending an `ember-forge-ui` component but is extended and the extending one does
+* a companion addon is not extending an `ember-forge-ui` component and is extended and the extending one does not
+* a companion addon is not extending an `ember-forge-ui` component but introduces a new component and the extending addon extends it
+* a companion addon is extending an `ember-forge-ui` component but is extended and the extending one does not
+* a companion addon is extending an `ember-forge-ui` component and is extended and the extending one does
+* a companion addon is extending an `ember-forge-ui` component directly
+* an extending companion addon can introduce a new component
 
 Can likely use different combinations of the existing demo repos above but need to figure that matrix out
 
