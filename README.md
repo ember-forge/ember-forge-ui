@@ -8,14 +8,16 @@
     * [Use an existing companion addon](#use-an-existing-companion-addon)
     * [Create your own companion addon](#create-your-own-companion-addon)
         * [NPM dependencies](#npm-dependencies)
+        * [Addon configuration](#addon-configuration)
         * [Adding new components](#adding-new-components)
         * [Extending existing components](#extending-existing-components)
             * [Template changes only](#template-changes-only)
             * [Component logic changes](#component-logic-changes)
-                * [reopen instead of extend](#reopen-instead-of-extend)
                 * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
     * [Extend an existing companion addon](#extend-an-existing-companion-addon)
         * [NPM dependencies](#npm-dependencies-1)
+        * [Addon configuration](#addon-configuration-1)
+        * [Adding new components](#adding-new-components-1)
         * [Extending existing components](#extending-existing-components-1)
 * [Demos](#demos)
   * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
@@ -130,7 +132,8 @@ There are a few items to keep in mind when extending an existing companion addon
 
 ### NPM dependencies
 
-* Move `ember-cli-htmlbars` dependency from `devDependencies` to `dependencies` in *package.json*
+The same instructions in the ["NPM Dependencies"](#npm-dependencies) section apply here as well.
+
 
 ### Addon configuration
 
@@ -144,16 +147,7 @@ Be sure to set your companion addon to run after whichever existing companion ad
 
 ### Adding new components
 
-When adding a new component that does not exist in the `ember-forge-ui` addon (this one) create a component in the usual Ember manner.  For example:
-
-```
-// addon/components/ef-new-component.js
-
-export default Ember.Component.extend({
-});
-```
-
-You are **STRONGLY** encouraged to create new components within the `ef-` namespace to provide consistency when using the `ember-forge-ui` ecosystem. See the ["How is this architected?"](#how-is-this-architected) section for more details.
+The same instructions in the ["Adding New Components"](#adding-new-components) section apply here as well.
 
 
 ### Extending existing components
