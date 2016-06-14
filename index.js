@@ -16,13 +16,6 @@ module.exports = {
     name: 'ember-forge-ui',
 
     /**
-     * Cached list of component names in companion addon
-     *
-     * @type {?Array}
-     */
-    companionAddonComponents: null,
-
-    /**
      * Name of companion ember-forge-ui addon
      *
      * @type {?String}
@@ -32,6 +25,7 @@ module.exports = {
     /**
      * Set name of ember-forge-ui companion addon to local context if exists
      *
+     * @override
      * @param {String} environment
      * @param {Object} appConfig
      * @returns {undefined}
@@ -43,39 +37,9 @@ module.exports = {
     },
 
     /**
-     * Get list of component file names from companion addon `addon/components` directory
-     *
-     * @returns {Array}
-     */
-    getCompanionAddonComponents: function() {
-        if ( !this.companionAddonComponents ) {
-            try {
-                this.companionAddonComponents = fs.readdirSync(
-                    path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'components' )
-                );
-            } catch( error ) {
-                this.companionAddonComponents = [];
-            }
-        }
-
-        return this.companionAddonComponents;
-    },
-
-    /**
-     * Remove the file extension off of file name
-     *
-     * Provided that there is single extension, indicated by a period
-     *
-     * @param {String} file
-     * @returns {String}
-     */
-    removeFileExtension: function( file ) {
-        return file.substring( 0, file.length - 3 );
-    },
-
-    /**
      * Return templates if ember-forge-ui companion addon is installed, default ones if not
      *
+     * @override
      * @param {Object} tree
      * @returns {Object}
      */
@@ -106,79 +70,5 @@ module.exports = {
 
             return mergeTrees( componentTemplateTrees );
         }
-    },
-
-    /**
-     * Add initializer exports to the addon tree for each component that has been redefined by the companion addon
-     *
-     * @param {Object} tree
-     * @returns {Object}
-     */
-    treeForAddon: function( tree ) {
-        var addonTree = this._super.treeForAddon.apply( this, arguments );
-        var blueprintPath = path.join(
-            this.nodeModulesPath,
-            this.name,
-            'blueprints',
-            'addon',
-            'initializers',
-            '__name__.js'
-        );
-        var blueprint = fs.readFileSync( blueprintPath, 'utf8' );
-        var companionAddonName = this.emberForgeUiCompanionAddonName;
-        var initializerTrees = [];
-        var removeFileExtension = this.removeFileExtension;
-
-        this.getCompanionAddonComponents().forEach( function( element ) {
-            var content = blueprint;
-            content = content.replace( new RegExp( '<%= componentName %>', 'g' ), removeFileExtension( element ) );
-            content = content.replace( new RegExp( '<%= addonName %>', 'g' ), companionAddonName );
-
-            initializerTrees.push(
-                writeFile(
-                    'modules/' + companionAddonName + '/initializers/' + companionAddonName + '-' + element, content
-                )
-            );
-        });
-
-        return mergeTrees([
-            addonTree,
-            mergeTrees( initializerTrees )
-        ]);
-    },
-
-    /**
-     * Add initializer exports to the app tree for each component that has been redefined by the companion addon
-     *
-     * @param {Object} tree
-     * @returns {Object}
-     */
-    treeForApp: function( tree ) {
-        var blueprintPath = path.join(
-            this.nodeModulesPath,
-            this.name,
-            'blueprints',
-            'app',
-            'initializers',
-            '__name__.js'
-        );
-        var blueprint = fs.readFileSync( blueprintPath, 'utf8' );
-        var companionAddonName = this.emberForgeUiCompanionAddonName;
-        var initializerTrees = [];
-        var removeFileExtension = this.removeFileExtension;
-
-        this.getCompanionAddonComponents().forEach( function( element ) {
-            var content = blueprint;
-            content = content.replace( new RegExp( '<%= componentName %>', 'g' ), removeFileExtension( element ) );
-            content = content.replace( new RegExp( '<%= addonName %>', 'g' ), companionAddonName );
-
-            initializerTrees.push(
-                writeFile( 'initializers/' + companionAddonName + '-' + element, content )
-            );
-        });
-
-        return mergeTrees(
-            tree ? initializerTrees.concat( tree ) : initializerTrees
-        );
     }
 };
