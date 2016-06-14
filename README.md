@@ -21,8 +21,6 @@
 * [Demos](#demos)
   * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
   * [Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed](#application-with-ember-forge-ui-and-ember-forge-ui-bootstrap4-installed)
-  * [A companion addon extending ember-forge-ui](#a-companion-addon-extending-ember-forge-ui)
-  * [A companion addon can extend another companion addon](#a-companion-addon-can-extend-another-companion-addon)
 
 
 # What is ember-forge-ui?
@@ -180,40 +178,4 @@ Demonstrates an application that only has the `ember-forge-ui` addon installed w
 * [demo-ember-forge-ui-app-1](https://github.com/ember-forge/demo-ember-forge-ui-app-1)
 
 Demonstrates that the combination of `ember-forge-ui` and a companion addon such as `ember-forge-ui-bootstrap4` allows for the use of a component from `ember-forge-ui` with the content of its rendered template provided by a companion addon, such as `ember-forge-ui-bootstrap4`.
-
-
-### A companion addon extending ember-forge-ui
-
-* [demo-ember-forge-ui-app-2](https://github.com/ember-forge/demo-ember-forge-ui-app-2)
-* [demo-ember-forge-ui-extending-addon-1](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-1)
-
-Demonstrates that a companion addon can do more than just provide template content to `ember-forge-ui` components but can actually extend their capabilities as well.
-
-
-### A companion addon can extend another companion addon
-
-* [demo-ember-forge-ui-app-3](https://github.com/ember-forge/demo-ember-forge-ui-app-3)
-* [demo-ember-forge-ui-extending-addon-2](https://github.com/ember-forge/demo-ember-forge-ui-extending-addon-2)
-
-Demonstrates that a companion addon can extend another companion addon.
-
-
-
-### We also need to demonstrate the following combinations
-
-@TODO
-
-* https://github.com/ember-forge/ember-forge-ui/issues/21
-* a companion addon is not extending an `ember-forge-ui` component but is extended and the extending one does
-* a companion addon is not extending an `ember-forge-ui` component and is extended and the extending one does not
-* a companion addon is not extending an `ember-forge-ui` component but introduces a new component and the extending addon extends it
-* a companion addon is extending an `ember-forge-ui` component but is extended and the extending one does not
-* a companion addon is extending an `ember-forge-ui` component and is extended and the extending one does
-* a companion addon is extending an `ember-forge-ui` component directly
-* an extending companion addon can introduce a new component
-
-Can likely use different combinations of the existing demo repos above but need to figure that matrix out
-
-
-
 
