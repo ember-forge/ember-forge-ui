@@ -17,7 +17,6 @@
     * [Extend an existing companion addon](#extend-an-existing-companion-addon)
         * [NPM dependencies](#npm-dependencies-1)
         * [Extending existing components](#extending-existing-components-1)
-            * [Template changes only](#template-changes-only-1)
 * [Demos](#demos)
   * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
   * [Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed](#application-with-ember-forge-ui-and-ember-forge-ui-bootstrap4-installed)
@@ -159,11 +158,7 @@ You are **STRONGLY** encouraged to create new components within the `ef-` namesp
 
 ### Extending existing components
 
-#### Template changes only
-
-If the only changes you wish to make to an existing component are template changes then you need only define a `.hbs` template file and the changes will be picked up automatically.
-
-
+The same instructions in the ["Extending Existing Components"](#extending-existing-components) section apply here as well.
 
 
 # Demos
