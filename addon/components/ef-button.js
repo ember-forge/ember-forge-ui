@@ -1,8 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/ef-button';
-// import AttributeBindings from '../mixins/components/attribute-bindings';
-// import ClassNames from '../mixins/components/class-names';
-// import ClassNameBindings from '../mixins/components/class-name-bindings';
 
 const {
   Component
@@ -11,11 +8,8 @@ const {
 /**
  * @module
  * @augments ember/Component
- * @augments module:mixins/components/attribute-bindings
- * @augments module:mixins/components/class-names
- * @augments module:mixins/components/class-name-bindings
  */
-export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBindings, */ {
+export default Component.extend({
 
     // -------------------------------------------------------------------------
     // Dependencies
@@ -24,17 +18,17 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
     // Attributes
 
     attributeBindings: [
-        'title'
+      'title'
     ],
 
     classNames: [
-        'className1',
-        'className2'
+      'className1',
+      'className2'
     ],
 
     classNameBindings: [
-        'classNameBinding1',
-        'classNameBinding2'
+      'classNameBinding1',
+      'classNameBinding2'
     ],
 
     /** @type {Object} */
@@ -56,7 +50,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     didInsertElement() {
-        console.log( 'didInsertElement() from ember-forge-ui ef-button' );
+      console.log( 'didInsertElement() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -66,7 +60,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     didReceiveAttrs() {
-        console.log( 'didReceiveAttrs() from ember-forge-ui ef-button' );
+      console.log( 'didReceiveAttrs() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -76,7 +70,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     didRender() {
-        console.log( 'didRender() from ember-forge-ui ef-button' );
+      console.log( 'didRender() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -86,7 +80,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     didUpdate() {
-        console.log( 'didUpdate() from ember-forge-ui ef-button' );
+      console.log( 'didUpdate() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -96,7 +90,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     didUpdateAttrs() {
-        console.log( 'didUpdateAttrs() from ember-forge-ui ef-button' );
+      console.log( 'didUpdateAttrs() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -106,7 +100,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     willClearRender() {
-        console.log( 'willClearRender() from ember-forge-ui ef-button' );
+      console.log( 'willClearRender() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -116,7 +110,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     willDestroyElement() {
-        console.log( 'willDestroyElement() from ember-forge-ui ef-button' );
+      console.log( 'willDestroyElement() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -126,7 +120,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     willInsertElement() {
-        console.log( 'willInsertElement() from ember-forge-ui ef-button' );
+      console.log( 'willInsertElement() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -136,7 +130,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     willRender() {
-        console.log( 'willRender() from ember-forge-ui ef-button' );
+      console.log( 'willRender() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -146,7 +140,7 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     willUpdate() {
-        console.log( 'willUpdate() from ember-forge-ui ef-button' );
+      console.log( 'willUpdate() from ember-forge-ui ef-button' );
     },
 
     /**
@@ -156,10 +150,9 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
      * @returns {undefined}
      */
     init() {
-        this._super( ...arguments );
-//        this.componentInit();
+      this._super( ...arguments );
 
-        console.log( 'init() from ember-forge-ui ef-button' );
+      console.log( 'init() from ember-forge-ui ef-button' );
     },
 
     // -------------------------------------------------------------------------
@@ -177,31 +170,4 @@ export default Component.extend( /* AttributeBindings, ClassNames, ClassNameBind
     // -------------------------------------------------------------------------
     // Methods
 
-    /**
-     * Initializes the state of the attributeBindings, classNameBindings and classNames arrays
-     *
-     * @function
-     * @returns {undefined}
-     */
-    componentInit() {
-        if ( !this.get( 'clearAttributeBindings' ) ) {
-            this.addAttributeBindings([
-                'visible'
-            ]);
-        }
-
-        if ( !this.get( 'clearClassNames' ) ) {
-            this.addClassNames([
-                'className1',
-                'className2'
-            ]);
-        }
-
-        if ( !this.get( 'clearClassNameBindings' ) ) {
-            this.addClassNameBindings([
-                'classNameBinding1',
-                'classNameBinding2'
-            ]);
-        }
-    }
 });
