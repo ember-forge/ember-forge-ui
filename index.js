@@ -37,37 +37,44 @@ module.exports = {
     },
 
     /**
-     * Return templates if ember-forge-ui companion addon is installed, default ones if not
+     * Create default templates for components, override with those defined in ember-forge-ui companion addon
      *
      * @override
      * @param {Object} tree
      * @returns {Object}
      */
-    treeForAddonTemplates: function() {
+    treeForAddonTemplates: function( tree ) {
+        var addonPath = path.join( this.nodeModulesPath, this.name, 'addon' );
+        var componentTemplateTrees = [];
+        var files = fs.readdirSync( path.join( addonPath, 'components' ) );
+        var placeholderContentPath = path.join(
+            addonPath,
+            'templates',
+            'components',
+            'placeholder-content.hbs'
+        );
+        var placeholderContent = require( placeholderContentPath );
+        placeholderContent = placeholderContent();
+
+        files.forEach( function( element ) {
+            componentTemplateTrees.push(
+                writeFile( '/components/' + element.replace( '.js', '' ) + '.hbs', placeholderContent )
+            );
+        });
+
+        var treesToMerge = [
+            tree,
+            mergeTrees( componentTemplateTrees )
+        ];
+
         if ( this.emberForgeUiCompanionAddonName ) {
-            return this.treeGenerator(
-                path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
+            treesToMerge.push(
+                this.treeGenerator(
+                    path.join( this.nodeModulesPath, this.emberForgeUiCompanionAddonName, 'addon', 'templates' )
+                )
             );
-
-        } else {
-            var componentTemplateTrees = [];
-            var addonPath = path.join( this.nodeModulesPath, this.name, 'addon' );
-            var files = fs.readdirSync( path.join( addonPath, 'components' ) );
-            var placeholderContentPath = path.join(
-                addonPath,
-                'templates',
-                'components',
-                'placeholder-content.hbs'
-            );
-            var placeholderContent = require( placeholderContentPath );
-
-            files.forEach( function( element ) {
-                componentTemplateTrees.push(
-                    writeFile( '/components/' + element.replace( '.js', '' ) + '.hbs', placeholderContent() )
-                );
-            });
-
-            return mergeTrees( componentTemplateTrees );
         }
+
+        return mergeTrees( treesToMerge, { overwrite: true } );
     }
 };
