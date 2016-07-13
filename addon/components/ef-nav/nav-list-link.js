@@ -48,10 +48,12 @@ export default Component.extend({
    *
    * @function
    * @param {Event} event - The raw click event
-   * @returns {undefined}
+   * @returns {Boolean} false
    */
   click() {
     this.get( 'onClick' )();
+
+    return false;
   },
 
   // -------------------------------------------------------------------------
