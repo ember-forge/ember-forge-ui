@@ -8,7 +8,6 @@
     * [Use an existing companion addon](#use-an-existing-companion-addon)
     * [Create your own companion addon](#create-your-own-companion-addon)
         * [NPM dependencies](#npm-dependencies)
-        * [Addon configuration](#addon-configuration)
         * [Adding new components](#adding-new-components)
         * [Extending existing components](#extending-existing-components)
             * [Template changes only](#template-changes-only)
@@ -16,7 +15,6 @@
                 * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
     * [Extend an existing companion addon](#extend-an-existing-companion-addon)
         * [NPM dependencies](#npm-dependencies-1)
-        * [Addon configuration](#addon-configuration-1)
         * [Adding new components](#adding-new-components-1)
         * [Extending existing components](#extending-existing-components-1)
 * [Demos](#demos)
@@ -57,13 +55,6 @@ If you have found a companion addon you wish to use, such as [ember-forge-ui-boo
 
 1. `ember install ember-forge-ui`
 2. `ember install <companion addon name>`
-3. Add this entry to your application's *config/environment.js* file:
-
-```
-'ember-forge-ui': {
-    addonName: '<companion addon name>'
-}
-```
 
 
 ## Create your own companion addon
@@ -74,15 +65,6 @@ There are a few items to keep in mind when creating your own companion addon, wh
 
 * Move `ember-cli-htmlbars` dependency from `devDependencies` to `dependencies` in *package.json*
 
-### Addon configuration
-
-Be sure to set your companion addon to run after `ember-forge-ui`, such as
-
-```
-"ember-addon": {
-  "after": "ember-forge-ui"
-}
-```
 
 ### Adding new components
 
@@ -134,16 +116,6 @@ There are a few items to keep in mind when extending an existing companion addon
 
 The same instructions in the ["NPM Dependencies"](#npm-dependencies) section apply here as well.
 
-
-### Addon configuration
-
-Be sure to set your companion addon to run after whichever existing companion addon you are extending, such as
-
-```
-"ember-addon": {
-  "after": "existing-companion-addon-extending"
-}
-```
 
 ### Adding new components
 
