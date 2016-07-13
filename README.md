@@ -9,7 +9,7 @@
     * [Create your own companion addon](#create-your-own-companion-addon)
         * [NPM dependencies](#npm-dependencies)
         * [Adding new components](#adding-new-components)
-            * [package.json](#package-json)
+            * [package.json](#packagejson)
             * [blueprint](#blueprint)
         * [Extending existing components](#extending-existing-components)
             * [Template changes only](#template-changes-only)
