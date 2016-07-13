@@ -135,7 +135,7 @@ such as
 
 #### blueprint
 
-In the *blueprints/<name-of-your-companion-addon>/index.js* file define the `afterInstall()` method such as either of
+In the *blueprints/name-of-your-companion-addon/index.js* file define the `afterInstall()` method such as either of
 the following:
 
 ```
