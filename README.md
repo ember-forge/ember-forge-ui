@@ -9,12 +9,15 @@
     * [Create your own companion addon](#create-your-own-companion-addon)
         * [NPM dependencies](#npm-dependencies)
         * [Adding new components](#adding-new-components)
+            * [package.json](#package-json)
+            * [blueprint](#blueprint)
         * [Extending existing components](#extending-existing-components)
             * [Template changes only](#template-changes-only)
             * [Component logic changes](#component-logic-changes)
                 * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
     * [Extend an existing companion addon](#extend-an-existing-companion-addon)
         * [NPM dependencies](#npm-dependencies-1)
+        * [Addon configuration](#addon-configuration)
         * [Adding new components](#adding-new-components-1)
         * [Extending existing components](#extending-existing-components-1)
 * [Demos](#demos)
@@ -117,9 +120,47 @@ There are a few items to keep in mind when extending an existing companion addon
 The same instructions in the ["NPM Dependencies"](#npm-dependencies) section apply here as well.
 
 
+### Addon configuration
+
+#### package.json
+
+In the *package.json* file set your companion addon to run after whichever existing companion addon you are extending,
+such as
+
+```
+"ember-addon": {
+  "after": "existing-companion-addon-extending"
+}
+```
+
+#### blueprint
+
+In the *blueprints/<name-of-your-companion-addon>/index.js* file define the `afterInstall()` method such as either of
+the following:
+
+```
+afterInstall: function() {
+  return this.addAddonToProject( 'existing-companion-addon-extending', '1.3.0' );
+}
+```
+
+```
+afterInstall: function() {
+  return this.addAddonsToProject([
+    { name: 'existing-companion-addon-extending', version: '^1.0.1' },
+    { name: 'some-other-addon', version: '^2.1.0' }
+  ]);
+}
+```
+
+The version numbers in these examples are illustrative only.
+
+
+
 ### Adding new components
 
 The same instructions in the ["Adding New Components"](#adding-new-components) section apply here as well.
+
 
 
 ### Extending existing components
@@ -129,16 +170,14 @@ The same instructions in the ["Extending Existing Components"](#extending-existi
 
 # Demos
 
-### Application with only ember-forge-ui installed
-
-* [demo-ember-forge-ui-app-without-companion-addon](https://github.com/ember-forge/demo-ember-forge-ui-app-without-companion-addon)
-
-Demonstrates an application that only has the `ember-forge-ui` addon installed without any companion addons.  Due to this default template content will be displayed when a component is used indicating that a companion addon needs to be employed as well.
-
-
 ### Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed
 
-* [demo-ember-forge-ui-app-1](https://github.com/ember-forge/demo-ember-forge-ui-app-1)
+* [demo-ember-forge-ui-app-consuming-bootstrap4](https://github.com/ember-forge/demo-ember-forge-ui-app-consuming-bootstrap4)
 
-Demonstrates that the combination of `ember-forge-ui` and a companion addon such as `ember-forge-ui-bootstrap4` allows for the use of a component from `ember-forge-ui` with the content of its rendered template provided by a companion addon, such as `ember-forge-ui-bootstrap4`.
+Demonstrates that the combination of `ember-forge-ui` and a companion addon such as `ember-forge-ui-bootstrap4` allows
+for:
+
+* the use of a component defined in `ember-forge-ui` with the content of its rendered template provided by a companion addon
+* the extension of a component defined in `ember-forge-ui` by a companion addon
+
 
