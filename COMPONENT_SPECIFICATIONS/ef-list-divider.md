@@ -34,6 +34,11 @@ An `<li>` element serving as a separator between other `<li>` elements.
 * None
 
 
+## Properties
+
+* None
+
+
 ### Block/Non Block support
 
 * **Block support:** *No*
