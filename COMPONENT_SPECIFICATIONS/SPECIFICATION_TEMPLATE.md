@@ -1,7 +1,5 @@
 # COMPONENT NAME
 
-## Purpose
-
 ## Description
 
 ## Influences
