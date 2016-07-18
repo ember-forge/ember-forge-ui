@@ -44,6 +44,11 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 * **disabled:** *ef-disabled* (defaults to `disabled: false`)
 
 
+## Properties
+
+None
+
+
 ### Block/Non Block support
 
 * **Block support:** *Yes*
