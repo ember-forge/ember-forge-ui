@@ -32,6 +32,11 @@ An `<li>` element serving as header for a group of `<li>` elements.
 * None
 
 
+## Properties
+
+* None
+
+
 ### Block/Non Block support
 
 * **Block support:** *Yes*
