@@ -1,4 +1,4 @@
-# <COMPONENT NAME>
+# COMPONENT NAME
 
 ## Purpose
 
@@ -28,8 +28,8 @@ These are CSS class name bindings, listed as **property:** *class name applied*
 
 ### Block/Non Block support
 
-**Block support:** *Yes or No*
-**Non-Block support:** *Yes or No*
+* **Block support:** *Yes or No*
+* **Non-Block support:** *Yes or No*
 
 ## Example Usage
 
