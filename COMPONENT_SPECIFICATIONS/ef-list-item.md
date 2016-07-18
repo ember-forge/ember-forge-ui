@@ -21,7 +21,7 @@ Render the `li` HTML element for use by these components
 
 ### HTML element
 
-* <li>
+* li
 
 
 ### HTML Attributes
