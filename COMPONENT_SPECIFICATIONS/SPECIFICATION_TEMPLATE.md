@@ -14,17 +14,17 @@
 
 These are attribute bindings to properties of the same name
 
-* 
+*
 
 ### CSS Class
 
-* 
+*
 
 ### CSS Class Name Bindings
 
 These are CSS class name bindings, listed as **property:** *class name applied*
 
-* 
+*
 
 ### Block/Non Block support
 
