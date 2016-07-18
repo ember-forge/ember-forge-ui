@@ -55,8 +55,8 @@ none
 
 *Default: false*
 
-A value of `true` will render an `ol` element.
-A value of `false` will render an `ul` element.
+* A value of `true` will render an `ol` element.
+* A value of `false` will render an `ul` element.
 
 
 ### Block/Non Block support
