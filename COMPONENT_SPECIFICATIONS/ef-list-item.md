@@ -38,10 +38,10 @@ These are attribute bindings to properties of the same name
 
 ### CSS Class Name Bindings
 
-These are CSS class name bindings, listed as **property:** *class name applied*
+These are CSS class name bindings, listed as **property:** *class name applied* (default state)
 
-* **active:** *ef-active*
-* **disabled:** *ef-disabled*
+* **active:** *ef-active* (defaults to `active: false`)
+* **disabled:** *ef-disabled* (defaults to `disabled: false`)
 
 
 ### Block/Non Block support
