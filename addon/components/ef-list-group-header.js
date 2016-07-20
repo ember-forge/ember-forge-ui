@@ -18,7 +18,7 @@ export default Component.extend({
 
   /** @type {String[]} */
   classNames: [
-    'ef-nav-list-group-header'
+    'ef-list-group-header'
   ],
 
   /** @type {String} */
