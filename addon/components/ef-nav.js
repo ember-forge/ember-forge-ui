@@ -19,8 +19,7 @@ export default Component.extend({
   /** @type {String[]} */
   classNameBindings: [
     'inline:ef-inline',
-    'inverse:ef-inverse',
-    'pills:ef-pills'
+    'inverse:ef-inverse'
   ],
 
   /** @type {String[]} */
@@ -52,14 +51,7 @@ export default Component.extend({
    *
    * @type {Boolean}
    */
-  inverse: false,
-
-  /**
-   * Whether to display the nav items as pills
-   *
-   * @type {Boolean}
-   */
-  pills: false
+  inverse: false
 
   // -------------------------------------------------------------------------
   // Observers
