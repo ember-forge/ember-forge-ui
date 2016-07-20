@@ -50,7 +50,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    set(this, tagName, get('ordered') ? 'ol' : 'ul');
+    set(this, 'tagName', get(this, 'ordered') ? 'ol' : 'ul');
   },
 
   // -------------------------------------------------------------------------
