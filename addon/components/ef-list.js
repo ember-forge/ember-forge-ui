@@ -31,7 +31,7 @@ export default Component.extend({
   ],
 
   /** @type {String} */
-  tagName: null,
+  tagName: '',
 
   // -------------------------------------------------------------------------
   // Actions
