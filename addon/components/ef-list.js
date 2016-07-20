@@ -3,6 +3,7 @@ import Ember from 'ember';
 const {
   Component,
   get,
+  observer,
   set
 } = Ember;
 
@@ -50,7 +51,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    set(this, 'tagName', get(this, 'ordered') ? 'ol' : 'ul');
+    this.setListType();
   },
 
   // -------------------------------------------------------------------------
@@ -82,12 +83,22 @@ export default Component.extend({
    *
    * @type {?String}
    */
-  type: null
+  type: null,
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * Set `tagName` value dependent on `ordered` value
+   *
+   * @private
+   * @returns {undefined}
+   */
+  setListType() {
+    set(this, 'tagName', get(this, 'ordered') ? 'ol' : 'ul');
+  }
 
 });
