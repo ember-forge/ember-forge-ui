@@ -85,7 +85,6 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
 * **inline:** *ef-inline* (defaults to `inline: false`)
 * **inverse:** *ef-inverse* (defaults to `inverse: false`)
-* **pills:** *ef-pills* (defaults to `pills: false`)
 
 
 ## Properties
