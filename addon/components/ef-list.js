@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 const {
-  Component
+  Component,
+  get,
+  set
 } = Ember;
 
 /**
@@ -17,12 +19,19 @@ export default Component.extend({
   // Attributes
 
   /** @type {String[]} */
+  attributeBindings: [
+    'reversed',
+    'start',
+    'type'
+  ],
+
+  /** @type {String[]} */
   classNames: [
-    'ef-nav-list'
+    'ef-list'
   ],
 
   /** @type {String} */
-  tagName: 'ul',
+  tagName: null,
 
   // -------------------------------------------------------------------------
   // Actions
@@ -30,15 +39,50 @@ export default Component.extend({
   // -------------------------------------------------------------------------
   // Events
 
+  /**
+   * init event hook
+   *
+   * Sets tagname to `ol` or `ul` dependent on the `ordered` property value
+   *
+   * @function
+   * @returns {undefined}
+   */
+  init() {
+    this._super(...arguments);
+
+    set(this, tagName, get('ordered') ? 'ol' : 'ul');
+  },
+
   // -------------------------------------------------------------------------
   // Properties
 
   /**
-   * Whether to display the nav items as pills
+   * Whether to order the list items
    *
    * @type {Boolean}
    */
-  pills: false
+  ordered: false,
+
+  /**
+   * Whether to reverse the order of the list items
+   *
+   * @type {Boolean}
+   */
+  reversed: false,
+
+  /**
+   * The ordinal value of the first list item
+   *
+   * @type {?Number}
+   */
+  start: null,
+
+  /**
+   * The kind of marker to use in the list
+   *
+   * @type {?String}
+   */
+  type: null
 
   // -------------------------------------------------------------------------
   // Observers
