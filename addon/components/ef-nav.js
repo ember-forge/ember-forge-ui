@@ -36,6 +36,19 @@ export default Component.extend({
   // -------------------------------------------------------------------------
   // Events
 
+  /**
+   * didInsertElement event hook
+   *
+   * Contextualize the list component
+   *
+   * @returns {undefined}
+   */
+  didInsertElement() {
+    this._super(...arguments);
+
+    this.setListContext();
+  },
+
   // -------------------------------------------------------------------------
   // Properties
 
@@ -51,12 +64,50 @@ export default Component.extend({
    *
    * @type {Boolean}
    */
-  inverse: false
+  inverse: false,
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * Set context-specific classes on these rendered components:
+   *   - ef-list
+   *   - ef-list-divider
+   *   - ef-list-group-header
+   *   - ef-list-header
+   *   - ef-list-item
+   *
+   * @private
+   * @returns {undefined}
+   */
+  setListContext: function() {
+    // ef-list
+    this.$('.ef-list')
+      .removeClass('ef-list')
+      .addClass('ef-nav-list');
+
+    // ef-list-divider
+    this.$('.ef-list-divider')
+      .removeClass('ef-list-divider')
+      .addClass('ef-nav-list-divider');
+
+    // ef-list-group-header
+    this.$('.ef-list-group-header')
+      .removeClass('ef-list-group-header')
+      .addClass('ef-nav-list-group-header');
+
+    // ef-list-header
+    this.$('.ef-list-header')
+      .removeClass('ef-list-header')
+      .addClass('ef-nav-list-header');
+
+    // ef-list-item
+    this.$('.ef-list-item')
+      .removeClass('ef-list-item')
+      .addClass('ef-nav-list-item');
+  }
 
 });
