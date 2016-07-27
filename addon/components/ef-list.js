@@ -84,6 +84,13 @@ export default Component.extend({
    */
   type: null,
 
+  /**
+   * The context in which the component is being used
+   *
+   * @type {?String}
+   */
+  usedAs: null,
+
   // -------------------------------------------------------------------------
   // Observers
 

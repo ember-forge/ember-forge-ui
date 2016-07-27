@@ -59,6 +59,13 @@ export default Component.extend({
   disabled: false,
 
   /**
+   * The context in which the component is being used
+   *
+   * @type {?String}
+   */
+  usedAs: null,
+
+  /**
    * Ordinal value of the list item
    *
    * @see {@link https://html.spec.whatwg.org/multipage/semantics.html#the-li-element}

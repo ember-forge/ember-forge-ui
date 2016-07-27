@@ -37,13 +37,13 @@ export default Component.extend({
   // Events
 
   /**
-   * didInsertElement event hook
+   * didRender event hook
    *
    * Contextualize the list component
    *
    * @returns {undefined}
    */
-  didInsertElement() {
+  didRender() {
     this._super(...arguments);
 
     this.setListContext();
