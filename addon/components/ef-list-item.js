@@ -59,6 +59,13 @@ export default Component.extend({
   disabled: false,
 
   /**
+   * Whether the list items are ordered in the list
+   *
+   * @type {Boolean}
+   */
+  ordered: false,
+
+  /**
    * The context in which the component is being used
    *
    * @type {?String}
