@@ -74,7 +74,6 @@ export default Component.extend({
 
   /**
    * Set context-specific classes on these rendered components:
-   *   - ef-list
    *   - ef-list-divider
    *   - ef-list-group-header
    *   - ef-list-header
@@ -84,11 +83,6 @@ export default Component.extend({
    * @returns {undefined}
    */
   setListContext: function() {
-    // ef-list
-    this.$('.ef-list')
-      .removeClass('ef-list')
-      .addClass('ef-nav-list');
-
     // ef-list-divider
     this.$('.ef-list-divider')
       .removeClass('ef-list-divider')

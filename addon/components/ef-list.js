@@ -25,11 +25,6 @@ export default Component.extend({
     'type'
   ],
 
-  /** @type {String[]} */
-  classNames: [
-    'ef-list'
-  ],
-
   /** @type {String} */
   tagName: '',
 
@@ -42,7 +37,8 @@ export default Component.extend({
   /**
    * init event hook
    *
-   * Sets tagname to `ol` or `ul` dependent on the `ordered` property value
+   * Set tagname
+   * Set context classes
    *
    * @function
    * @returns {undefined}
@@ -50,7 +46,8 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    this.setListType();
+    this.setTagName();
+    this.setContextClasses();
   },
 
   // -------------------------------------------------------------------------
@@ -98,12 +95,33 @@ export default Component.extend({
   // Methods
 
   /**
-   * Set `tagName` value dependent on `ordered` value
+   * Manage class names dependent on context of usage
    *
    * @private
    * @returns {undefined}
    */
-  setListType() {
+  setContextClasses() {
+    let className;
+
+    switch(get(this, 'usedAs')) {
+      case 'nav':
+        className = 'ef-nav-list';
+        break;
+
+      default:
+        className = 'ef-list';
+    }
+
+    get(this, 'classNames').addObject(className);
+  },
+
+  /**
+   * Set `tagName` element dependent on `ordered` value
+   *
+   * @private
+   * @returns {undefined}
+   */
+  setTagName() {
     set(this, 'tagName', get(this, 'ordered') ? 'ol' : 'ul');
   }
 
