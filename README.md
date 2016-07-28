@@ -9,8 +9,9 @@ Guidance is provided on how to extend these components for use with your favorit
 
 ## Why this approach?
 
-Provides a consistent API and behavior for the components regardless of the specifics of any one CSS framework.  This
-allows you to be excited about the functionality of the components without being disappointed that they only work with
+Provides a consistent API and behavior for the components regardless of the specifics of any one CSS framework.
+
+This allows you to be excited about the functionality of the components without being disappointed that they only work with
 once CSS framework.
 
 
