@@ -82,11 +82,6 @@ export default Component.extend({
    * @returns {undefined}
    */
   setListContext: function() {
-    // ef-list-divider
-    this.$('.ef-list-divider')
-      .removeClass('ef-list-divider')
-      .addClass('ef-nav-list-divider');
-
     // ef-list-group-header
     this.$('.ef-list-group-header')
       .removeClass('ef-list-group-header')
