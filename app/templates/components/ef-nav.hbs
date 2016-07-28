@@ -1,0 +1,16 @@
+{{#if hasBlockParams}}
+  {{#ef-list
+    usedAs="nav"
+  }}
+    {{yield (hash
+      item=(component
+        "ef-list-item"
+        active=active
+        disabled=disabled
+        usedAs="nav"
+      )
+    )}}
+  {{/ef-list}}
+{{else}}
+  You must use block params (<code>as | |</code>) when using the <code>ef-nav</code> component.
+{{/if}}
