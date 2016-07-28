@@ -1,21 +1,18 @@
-# What is ember-forge-ui?
+# What and Why
 
-An approach to providing UI Components that separates the logic of the components from the DOM, CSS, and any DOM-related Javascript used to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
+## What is ember-forge-ui?
+
+Ember.js UI Components that are independent of any CSS framework for their implementation.
+
+Guidance is provided on how to extend these components for use with your favorite CSS framework.
 
 
-# What is gained by this?
+## Why this approach?
 
-If today your application is leveraging Twitter Bootstrap and tomorrow you need to leverage Materialize instead you do not need to change any of your application's code, but instead install a different companion addon (explained in later sections).
+Provides a consistent API and behavior for the components regardless of the specifics of any one CSS framework.  This
+allows you to be excited about the functionality of the components without being disappointed that they only work with
+once CSS framework.
 
-
-# How is this accomplished?
-
-By the combined installation of two addons:
-
-1. `ember-forge-ui` (this one)
-2. a companion addon that provides the templates, CSS and any necessary DOM-related Javascript
-
-The companion addon can provide much more than just templates, CSS and any necessary DOM-related Javascript though.  It can also extend the components provided by `ember-forge-ui` as well as provide its own.
 
 
 # How is this architected?
