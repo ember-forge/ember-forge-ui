@@ -27,11 +27,6 @@ export default Component.extend({
     'disabled:ef-disabled'
   ],
 
-  /** @type {String[]} */
-  classNames: [
-    'ef-list-item'
-  ],
-
   /** @type {String} */
   tagName: 'li',
 
@@ -40,6 +35,20 @@ export default Component.extend({
 
   // -------------------------------------------------------------------------
   // Events
+
+  /**
+   * init event hook
+   *
+   * Set context classes
+   *
+   * @function
+   * @returns {undefined}
+   */
+  init() {
+    this._super(...arguments);
+
+    this.setContextClasses();
+  },
 
   // -------------------------------------------------------------------------
   // Properties
@@ -78,12 +87,33 @@ export default Component.extend({
    * @see {@link https://html.spec.whatwg.org/multipage/semantics.html#the-li-element}
    * @type {?Number}
    */
-  value: null
+  value: null,
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * Manage class names dependent on context of usage
+   *
+   * @private
+   * @returns {undefined}
+   */
+  setContextClasses() {
+    let className;
+
+    switch(get(this, 'usedAs')) {
+      case 'nav':
+        className = 'ef-nav-list-item';
+        break;
+
+      default:
+        className = 'ef-list-item';
+    }
+
+    get(this, 'classNames').addObject(className);
+  }
 
 });

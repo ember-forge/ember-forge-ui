@@ -77,7 +77,6 @@ export default Component.extend({
    *   - ef-list-divider
    *   - ef-list-group-header
    *   - ef-list-header
-   *   - ef-list-item
    *
    * @private
    * @returns {undefined}
@@ -97,11 +96,6 @@ export default Component.extend({
     this.$('.ef-list-header')
       .removeClass('ef-list-header')
       .addClass('ef-nav-list-header');
-
-    // ef-list-item
-    this.$('.ef-list-item')
-      .removeClass('ef-list-item')
-      .addClass('ef-nav-list-item');
   }
 
 });
