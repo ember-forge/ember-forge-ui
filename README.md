@@ -1,30 +1,3 @@
-# Table of Contents
-
-* [What is ember-forge-ui?](#what-is-ember-forge-ui)
-* [What is gained by this?](#what-is-gained-by-this)
-* [How is this accomplished?](#how-is-this-accomplished)
-* [How is this architected?](#how-is-this-architected)
-* [So how do I use this then?](#so-how-do-i-use-this-then)
-    * [Use an existing companion addon](#use-an-existing-companion-addon)
-    * [Create your own companion addon](#create-your-own-companion-addon)
-        * [NPM dependencies](#npm-dependencies)
-        * [Adding new components](#adding-new-components)
-            * [package.json](#packagejson)
-            * [blueprint](#blueprint)
-        * [Extending existing components](#extending-existing-components)
-            * [Template changes only](#template-changes-only)
-            * [Component logic changes](#component-logic-changes)
-                * [attributeBindings, classNames, and classNameBindings](#attributebindings-classnames-and-classnamebindings)
-    * [Extend an existing companion addon](#extend-an-existing-companion-addon)
-        * [NPM dependencies](#npm-dependencies-1)
-        * [Addon configuration](#addon-configuration)
-        * [Adding new components](#adding-new-components-1)
-        * [Extending existing components](#extending-existing-components-1)
-* [Demos](#demos)
-  * [Application with only ember-forge-ui installed](#application-with-only-ember-forge-ui-installed)
-  * [Application with ember-forge-ui and ember-forge-ui-bootstrap4 installed](#application-with-ember-forge-ui-and-ember-forge-ui-bootstrap4-installed)
-
-
 # What is ember-forge-ui?
 
 An approach to providing UI Components that separates the logic of the components from the DOM, CSS, and any DOM-related Javascript used to render them, providing a consistent API and behavior for the components regardless of how they are rendered.
