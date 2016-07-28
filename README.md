@@ -11,14 +11,57 @@ Guidance is provided on how to extend these components for use with your favorit
 
 Provides a consistent API and behavior for the components regardless of the specifics of any one CSS framework.
 
-This allows you to be excited about the functionality of the components without being disappointed that they only work with
-once CSS framework.
+This allows you to be excited about the functionality of the components without being disappointed that they only work
+with one CSS framework.
 
 
 
 # How is this architected?
 
-@TODO
+This repo provides the unstyled components.
+
+For each CSS framework desired to be supported the guidance is to create two additional, separate repos.  The first repo
+will map all of `ember-forge-ui`'s functionality to the equivalent capabilities in the CSS framework.  The second repo
+will fill in the gaps between `ember-forge-ui`'s provided functionality and the gaps in what the CSS framework's repo was
+able to support.
+
+Additionally, the CSS framework repo is recommended to be named `ember-forge-ui-FRAMEWORK_NAME` where "FRAMEWORK_NAME"
+is the name of the CSS framework the components are being styled as and the second repo to be named
+`ember-forge-ui-FRAMEWORK_NAME-polyfill`.
+
+## Example
+
+`ember-forge-ui` provides the following components:
+
+* ef-list
+* ef-list-divider
+* ef-list-group-header
+* ef-list-header
+* ef-list-item
+
+`ember-forge-ui-bootstrap4` provides a Twitter Bootstrap 4 implementation of these components, but only for:
+
+* ef-list
+* ef-list-item
+
+because these are the only concepts that Twitter Bootstrap 4 offers natively.  They do not have any out-of-the-box
+experience for list headers, group headers, or dividers.
+
+`ember-forge-ui-bootstrap4-polyfill` fills in the gaps between the full offering of `ember-forge-ui` and the partial
+implementation of `ember-forge-ui-bootstrap4` by implementing these components in a Twitter Bootstrap 4 compatible way:
+
+* ef-list-divider
+* ef-list-group-header
+* ef-list-header
+
+What "Twitter Bootstrap 4 compatible way" means is that the addon does not introduce new Twitter Bootstrap 4 capabilities
+but rather applies existing Twitter Bootstrap 4 concepts and stylings to these components.
+
+So for further example, these 3 components have either the class of `list-group-item` or `nav-item` added to them by the
+`ember-forge-ui-bootstrap4-polyfill` addon dependent on the context in which the list is being used because those are the
+only Twitter Bootstrap 4 concepts that can be applied to these components.  Doing so aligns them with the classes that
+Twitter Bootstrap 4 applies to `<li>` elements in lists.
+
 
 
 # So how do I use this then?
