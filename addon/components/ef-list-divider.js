@@ -17,7 +17,7 @@ export default Component.extend({
   // Attributes
 
   /** @type {String} */
-  tagName: 'li'
+  tagName: 'li',
 
   // -------------------------------------------------------------------------
   // Actions
