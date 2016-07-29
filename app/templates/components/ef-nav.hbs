@@ -3,6 +3,22 @@
     usedAs="nav"
   }}
     {{yield (hash
+
+      divider=(component
+        "ef-list-divider"
+        usedAs="nav"
+      )
+
+      group-header=(component
+        "ef-list-group-header"
+        usedAs="nav"
+      )
+
+      header=(component
+        "ef-list-header"
+        usedAs="nav"
+      )
+
       item=(component
         "ef-list-item"
         active=active
