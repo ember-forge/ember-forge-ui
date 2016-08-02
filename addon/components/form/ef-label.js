@@ -1,0 +1,64 @@
+import Ember from 'ember';
+import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
+
+const {
+  Component
+} = Ember;
+
+/**
+ * @module
+ * @augments ember/Component
+ * @augments ember-forge-ui/mixins/ef-html-global-attributes
+ */
+export default Component.extend(GlobalAttributes, {
+
+  // -------------------------------------------------------------------------
+  // Dependencies
+
+  // -------------------------------------------------------------------------
+  // Attributes
+
+  /** @type {String[]} */
+  attributeBindings: [
+    'for'
+  ],
+
+  /** @type {String[]} */
+  classNames: [
+    'ef-label'
+  ],
+
+  /** @type {String} */
+  tagName: 'label',
+
+  // -------------------------------------------------------------------------
+  // Actions
+
+  // -------------------------------------------------------------------------
+  // Events
+
+  // -------------------------------------------------------------------------
+  // Properties
+
+  /**
+   * Form control with which the caption is to be associated
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-label-element}
+   * @type {?String}
+   */
+  for: null,
+
+  /**
+   * Label text when used in non-block form
+   *
+   * @type {?String}
+   */
+  label: null
+
+  // -------------------------------------------------------------------------
+  // Observers
+
+  // -------------------------------------------------------------------------
+  // Methods
+
+});
