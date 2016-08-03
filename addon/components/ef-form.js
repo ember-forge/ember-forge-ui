@@ -21,6 +21,7 @@ export default Component.extend(GlobalAttributes, {
   /** @type {String[]} */
   attributeBindings: [
     'autocomplete',
+    'name',
     'novalidate'
   ],
 
@@ -42,6 +43,14 @@ export default Component.extend(GlobalAttributes, {
   // Properties
 
   /**
+   * Specifies whether or not input fields should have autocomplete enabled.
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-form-autocomplete}
+   * @type {?String}
+   */
+  autocomplete: null,
+
+  /**
    * Holds the properties the form fields should edit
    *
    * @type {?Object}
@@ -49,11 +58,20 @@ export default Component.extend(GlobalAttributes, {
   data: null,
 
   /**
-   * Whether the form is being edited
+   * Represents the form's name within the forms collection
    *
-   * @type {Boolean}
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-form-name}
+   * @type {?String}
    */
-  isEditing: false
+  name: null,
+
+  /**
+   * Indicate that the form is not to be validated during submission
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fs-novalidate}
+   * @type {?Boolean}
+   */
+  novalidate: null
 
   // -------------------------------------------------------------------------
   // Observers

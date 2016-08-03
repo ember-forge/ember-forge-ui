@@ -43,6 +43,7 @@ Render a `form` HTML element containing any of these components:
 ### HTML Attributes
 
 * autocomplete
+* name
 * novalidate
 * all from ef-html-global-attributes mixin
 
@@ -67,14 +68,6 @@ Render a `form` HTML element containing any of these components:
 **data** *(Object)*
 
 * The object which holds the properties the form fields should edit
-
-
-
-**isEditing** *(Boolean)*
-
-*Default: false*
-
-* This value is propogated to all of the contextual components
 
 
 
