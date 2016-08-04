@@ -9,6 +9,7 @@ const {
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
+ * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-label-element}
  */
 export default Component.extend(GlobalAttributes, {
 
@@ -43,7 +44,6 @@ export default Component.extend(GlobalAttributes, {
   /**
    * Form control with which the caption is to be associated
    *
-   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-label-element}
    * @type {?String}
    */
   for: null,
