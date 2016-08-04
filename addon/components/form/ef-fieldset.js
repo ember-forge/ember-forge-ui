@@ -9,6 +9,7 @@ const {
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
+ * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-fieldset-element}
  */
 export default Component.extend(GlobalAttributes, {
 
@@ -85,7 +86,6 @@ export default Component.extend(GlobalAttributes, {
   /**
    * Associates the control with a form element
    *
-   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-fieldset-element}
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fae-form}
    * @type {?String}
    */
@@ -94,7 +94,6 @@ export default Component.extend(GlobalAttributes, {
   /**
    * Name of form control to use in the form.elements API
    *
-   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-fieldset-element}
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fe-name}
    * @type {?String}
    */
