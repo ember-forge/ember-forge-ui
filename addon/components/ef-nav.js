@@ -74,7 +74,6 @@ export default Component.extend({
 
   /**
    * Set context-specific classes on these rendered components:
-   *   - ef-list-divider
    *   - ef-list-group-header
    *   - ef-list-header
    *
