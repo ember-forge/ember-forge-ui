@@ -9,6 +9,7 @@ const {
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
+ * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-form-element}
  */
 export default Component.extend(GlobalAttributes, {
 
