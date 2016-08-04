@@ -59,7 +59,7 @@ Render a `label` HTML element containing any of these components:
 // template
 
 {{#ef-form as |f|}}
-  {{f.label label="Label Text"}}
+  {{f.label text="Label Text"}}
 {{/ef-form}}
 
 // rendered HTML
@@ -73,7 +73,7 @@ Render a `label` HTML element containing any of these components:
 // template
 
 {{#ef-form as |f|}}
-  {{f.label for="address" label="Label Text"}}
+  {{f.label for="address" text="Label Text"}}
 {{/ef-form}}
 
 // rendered HTML
