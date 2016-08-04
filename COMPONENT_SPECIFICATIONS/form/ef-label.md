@@ -46,13 +46,6 @@ Render a `label` HTML element containing any of these components:
 * Text to display when used in non-block form
 
 
-**isEditing** *(Boolean)*
-
-*Default: false*
-
-* This value is propogated to all of the contextual components
-
-
 
 ### Block/Non Block support
 
