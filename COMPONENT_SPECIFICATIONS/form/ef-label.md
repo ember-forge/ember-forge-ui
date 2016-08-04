@@ -41,9 +41,9 @@ Render a `label` HTML element containing any of these components:
 
 ## Properties
 
-**label** *String*
+**text** *String*
 
-* Label text when used in non-block form
+* Text to display when used in non-block form
 
 
 **isEditing** *(Boolean)*

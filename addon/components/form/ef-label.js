@@ -49,11 +49,11 @@ export default Component.extend(GlobalAttributes, {
   for: null,
 
   /**
-   * Label text when used in non-block form
+   * Text to display when used in non-block form
    *
    * @type {?String}
    */
-  label: null
+  text: null
 
   // -------------------------------------------------------------------------
   // Observers
