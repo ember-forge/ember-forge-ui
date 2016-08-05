@@ -5,8 +5,11 @@ const {
 } = Ember;
 
 /**
+ * Add bindings for common HTML attributes
+ *
  * @module
  * @augments ember/Mixin
+ * @see {@link https://html.spec.whatwg.org/multipage/dom.html#global-attributes}
  */
 export default Mixin.create({
 
