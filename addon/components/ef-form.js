@@ -1,3 +1,4 @@
+import ElementEvents from 'ember-forge-ui/mixins/ef-html-element-events';
 import Ember from 'ember';
 import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
 
@@ -8,10 +9,11 @@ const {
 /**
  * @module
  * @augments ember/Component
+ * @augments ember-forge-ui/mixins/ef-html-element-events
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
  * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-form-element}
  */
-export default Component.extend(GlobalAttributes, {
+export default Component.extend(ElementEvents, GlobalAttributes, {
 
   // -------------------------------------------------------------------------
   // Dependencies
