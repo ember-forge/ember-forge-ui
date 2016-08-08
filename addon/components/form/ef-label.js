@@ -1,3 +1,5 @@
+import AriaAttributes from 'ember-forge-ui/mixins/ef-html-aria-attributes';
+import DataAttributes from 'ember-forge-ui/mixins/ef-html-data-attributes';
 import ElementEvents from 'ember-forge-ui/mixins/ef-html-element-events';
 import Ember from 'ember';
 import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
@@ -9,11 +11,13 @@ const {
 /**
  * @module
  * @augments ember/Component
+ * @augments ember-forge-ui/mixins/ef-html-aria-attributes
+ * @augments ember-forge-ui/mixins/ef-html-data-attributes
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
  * @augments ember-forge-ui/mixins/ef-html-element-events
  * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-label-element}
  */
-export default Component.extend(ElementEvents, GlobalAttributes, {
+export default Component.extend(AriaAttributes, DataAttributes, ElementEvents, GlobalAttributes, {
 
   // -------------------------------------------------------------------------
   // Dependencies
