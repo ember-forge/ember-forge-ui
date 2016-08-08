@@ -1,0 +1,9 @@
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{#if pending}}
+    {{pendingText}}
+  {{else}}
+    {{text}}
+  {{/if}}
+{{/if}}
