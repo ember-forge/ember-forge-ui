@@ -1,9 +1,9 @@
-{{#if hasBlock}}
+{{~#if hasBlock~}}
   {{yield}}
-{{else}}
-  {{#if pending}}
+{{~else~}}
+  {{~#if pending~}}
     {{pendingText}}
-  {{else}}
+  {{~else~}}
     {{text}}
-  {{/if}}
-{{/if}}
+  {{~/if~}}
+{{~/if~}}
