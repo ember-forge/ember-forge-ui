@@ -58,7 +58,7 @@ export default Mixin.create({
     let bindings = get(this, 'attributeBindings');
 
     Object.keys(this).forEach(function(element) {
-      if(/^data-./.test(element.toLowerCase())) {
+      if (/^data-./.test(element.toLowerCase())) {
         bindings.push(element);
       }
     });
