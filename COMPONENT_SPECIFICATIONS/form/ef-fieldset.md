@@ -28,6 +28,7 @@ Render a `fieldset` HTML element containing any of these components:
 * disabled
 * form
 * name
+* all from ef-html-aria-attributes mixin
 * all from ef-html-global-attributes mixin
 
 

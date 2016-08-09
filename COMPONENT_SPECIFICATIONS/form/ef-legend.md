@@ -19,6 +19,7 @@ Render a `legend` HTML element
 
 ### HTML Attributes
 
+* all from ef-html-aria-attributes mixin
 * all from ef-html-global-attributes mixin
 
 

@@ -26,6 +26,7 @@ Render a `label` HTML element containing any of these components:
 ### HTML Attributes
 
 * for
+* all from ef-html-aria-attributes mixin
 * all from ef-html-global-attributes mixin
 
 

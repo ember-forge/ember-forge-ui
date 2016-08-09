@@ -45,6 +45,7 @@ Render a `form` HTML element containing any of these components:
 * autocomplete
 * name
 * novalidate
+* all from ef-html-aria-attributes mixin
 * all from ef-html-global-attributes mixin
 
 

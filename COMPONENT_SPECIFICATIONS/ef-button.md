@@ -33,6 +33,7 @@ Render a `button` HTML element
 * name
 * type (defaults to "button")
 * value
+* all from ef-html-aria-attributes mixin
 * all from ef-html-global-attributes mixin
 
 
