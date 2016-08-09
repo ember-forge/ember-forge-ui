@@ -10,6 +10,7 @@ const {
  * @module
  * @augments ember/Mixin
  * @see {@link https://html.spec.whatwg.org/multipage/infrastructure.html#attr-aria-*}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role}
  */
 export default Mixin.create({
 
@@ -32,6 +33,7 @@ export default Mixin.create({
     'aria-multiline',
     'aria-multiselectable',
     'aria-owns',
+    'aria-pressed',
     'aria-readonly',
     'aria-required',
     'aria-selected',
