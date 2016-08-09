@@ -16,6 +16,7 @@ const {
  * @augments ember-forge-ui/mixins/ef-html-element-events
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
  * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-form-element}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form}
  */
 export default Component.extend(AriaAttributes, DataAttributes, ElementEvents, GlobalAttributes, {
 
@@ -27,6 +28,7 @@ export default Component.extend(AriaAttributes, DataAttributes, ElementEvents, G
 
   /** @type {String[]} */
   attributeBindings: [
+    'autocapitalize',
     'autocomplete',
     'name',
     'novalidate'
