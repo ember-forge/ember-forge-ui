@@ -52,15 +52,13 @@ Render a `textarea` HTML element
 
 ## Properties
 
-**text** *String*
-
-* Text to display when used in non-block form
+none
 
 
 
 ### Block/Non Block support
 
-* **Block support:** *Yes*
+* **Block support:** *No*
 * **Non-Block support:** *Yes*
 
 

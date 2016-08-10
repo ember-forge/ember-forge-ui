@@ -1,11 +1,5 @@
-import AriaAttributes from 'ember-forge-ui/mixins/ef-html-aria-attributes';
-import ComponentData from 'ember-forge-ui/mixins/ef-component-data';
-import DataAttributes from 'ember-forge-ui/mixins/ef-html-data-attributes';
-import ElementEvents from 'ember-forge-ui/mixins/ef-html-element-events';
 import Ember from 'ember';
-import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
-import InputSelection from 'ember-forge-ui/mixins/ef-html-input-selection';
-import KeyPress from 'ember-forge-ui/mixins/ef-html-input-keypress';
+import InputElement from 'ember-forge-ui/mixins/form/input';
 
 const {
   Component
@@ -14,22 +8,9 @@ const {
 /**
  * @module
  * @augments ember/Component
- * @augments ember-forge-ui/mixins/ef-component-data
- * @augments ember-forge-ui/mixins/ef-html-aria-attributes
- * @augments ember-forge-ui/mixins/ef-html-data-attributes
- * @augments ember-forge-ui/mixins/ef-html-element-events
- * @augments ember-forge-ui/mixins/ef-html-global-attributes
- * @augments ember-forge-ui/mixins/ef-html-input-selection
- * @augments ember-forge-ui/mixins/ef-html-input-keypress
+ * @augments ember-forge-ui/mixins/form/input
  */
-export default Component.extend(
-  AriaAttributes,
-  ComponentData,
-  DataAttributes,
-  ElementEvents,
-  GlobalAttributes,
-  InputSelection,
-  KeyPress, {
+export default Component.extend(InputElement, {
 
   // -------------------------------------------------------------------------
   // Dependencies
@@ -193,13 +174,6 @@ export default Component.extend(
    * @type {?Number}
    */
   rows: null,
-
-  /**
-   * Text to display when used in non-block form
-   *
-   * @type {?String}
-   */
-  text: null,
 
   /**
    * How the value of the form control is to be wrapped for form submission
