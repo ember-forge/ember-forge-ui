@@ -67,8 +67,11 @@ export default Mixin.create({
    * @returns {KeyUpData}
    */
   getKeyUpData() {
+    let content = this.$().get(0).value;
+
     return {
-      characterCount: this.$().get(0).value.length
+      allCharactersCount: content.length,
+      withoutLineBreaksCount: content.replace(/(?:\r\n|\r|\n)/g, '').length
     };
   }
 
