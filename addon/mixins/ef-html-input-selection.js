@@ -35,6 +35,7 @@ export default Mixin.create({
    * retrieve data and send it
    *
    * @override
+   * @param {Object} event Browser event object
    * @returns {undefined}
    */
   select() {
@@ -45,7 +46,7 @@ export default Mixin.create({
     let proxiedAction = 'onSelectData';
 
     if (!Ember.isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
-      this.get(proxiedAction)(this.getSelectionData());
+      this.get(proxiedAction)(this.getSelectionData(event));
     }
   },
 
@@ -62,7 +63,8 @@ export default Mixin.create({
    * @typedef SelectionData
    * @type {Object}
    * @property {null|String} direction Current direction of the selection
-   * @property {Number|undefined} endthe Offset to the end of the selection
+   * @property {Number|undefined} end Offset to the end of the selection
+   * @property {Object} event Browser event object
    * @property {null|String} selectedText The text contained within the selection
    * @property {Number|undefined} start Offset to the start of the selection
    */
@@ -70,9 +72,10 @@ export default Mixin.create({
   /**
    * Retrieve data about the selection
    *
+   * @param {Object} event Browser event object
    * @returns {SelectionData}
    */
-  getSelectionData() {
+  getSelectionData(event) {
     let element = this.$().get(0);
     let end;
     let selectedText = (window.getSelection) ? window.getSelection().toString() : null;
@@ -121,6 +124,7 @@ export default Mixin.create({
     return {
       direction: selectionDirection,
       end: end,
+      event,
       selectedText: selectedText,
       start: start
     };
