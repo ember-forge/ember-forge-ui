@@ -6,7 +6,7 @@ const {
 } = Ember;
 
 /**
- * Retrieve keyUp data about the input
+ * Retrieve keyPress data about the input
  *
  * @module
  * @augments ember/Mixin
@@ -26,24 +26,24 @@ export default Mixin.create({
   // Events
 
   /**
-   * HTML event: keyUp
+   * HTML event: keyPress
    *
-   * If contextual action has been proxied to the `onKeyUpData` property then
+   * If contextual action has been proxied to the `onKeyPressData` property then
    * retrieve data and send it
    *
    * @override
    * @param {Object} event Browser event object
    * @returns {undefined}
    */
-  keyUp(event) {
-    if (!Ember.isEmpty(get(this, 'onKeyUp')) && typeof get(this, 'onKeyUp') === 'function') {
+  keyPress(event) {
+    if (!Ember.isEmpty(get(this, 'onKeyPress')) && typeof get(this, 'onKeyPress') === 'function') {
       this._super(...arguments);
     }
 
-    let proxiedAction = 'onKeyUpData';
+    let proxiedAction = 'onKeyPressData';
 
     if (!Ember.isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
-      this.get(proxiedAction)(this.getKeyUpData(event));
+      this.get(proxiedAction)(this.getKeyPressData(event));
     }
   },
 
@@ -57,7 +57,7 @@ export default Mixin.create({
   // Methods
 
   /**
-   * @typedef KeyUpData
+   * @typedef KeyPressData
    * @type {Object}
    * @property {Number} allCharactersCount Number of all characters in element's value
    * @property {Object} event Browser event object
@@ -65,12 +65,12 @@ export default Mixin.create({
    */
 
   /**
-   * Retrieve keyUp data
+   * Retrieve KeyPress data
    *
    * @param {Object} event Browser event object
-   * @returns {KeyUpData}
+   * @returns {KeyPressData}
    */
-  getKeyUpData(event) {
+  getKeyPressData(event) {
     let content = this.$().get(0).value;
 
     return {
