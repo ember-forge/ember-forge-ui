@@ -5,6 +5,7 @@ import ElementEvents from 'ember-forge-ui/mixins/ef-html-element-events';
 import Ember from 'ember';
 import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
 import InputSelection from 'ember-forge-ui/mixins/ef-html-input-selection';
+import KeyUp from 'ember-forge-ui/mixins/ef-html-input-keyup';
 
 const {
   Component
@@ -19,6 +20,7 @@ const {
  * @augments ember-forge-ui/mixins/ef-html-element-events
  * @augments ember-forge-ui/mixins/ef-html-global-attributes
  * @augments ember-forge-ui/mixins/ef-html-input-selection
+ * @augments ember-forge-ui/mixins/ef-html-input-keyup
  */
 export default Component.extend(
   AriaAttributes,
@@ -26,7 +28,8 @@ export default Component.extend(
   DataAttributes,
   ElementEvents,
   GlobalAttributes,
-  InputSelection, {
+  InputSelection,
+  KeyUp, {
 
   // -------------------------------------------------------------------------
   // Dependencies
