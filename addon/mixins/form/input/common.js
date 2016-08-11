@@ -10,7 +10,8 @@ import InputChange from 'ember-forge-ui/mixins/form/input/event/input';
 const {
   computed,
   get,
-  Mixin
+  Mixin,
+  set
 } = Ember;
 
 /**
@@ -57,6 +58,32 @@ export default Mixin.create(
   // -------------------------------------------------------------------------
   // Events
 
+  /**
+   * HTML event: change
+   *
+   * Handle element value change
+   *
+   * @returns {undefined}
+   */
+  change() {
+    this._super(...arguments);
+
+    this.handleChangeEvent();
+  },
+
+  /**
+   * HTML event: input
+   *
+   * Handle element value change
+   *
+   * @returns {undefined}
+   */
+  input() {
+    this._super(...arguments);
+
+    this.handleChangeEvent();
+  },
+
   // -------------------------------------------------------------------------
   // Properties
 
@@ -84,12 +111,29 @@ export default Mixin.create(
     function() {
       return get(this, 'data.' + get(this, 'property'));
     }
-  )
+  ),
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * If `onUpdate` contextual action is defined then call it with element's value.
+   * If not then update the `data.<property>` path with the element's value.
+   *
+   * @returns {undefined}
+   */
+  handleChangeEvent() {
+    let value = this.$().val();
+
+    if (!Ember.isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
+      this.get('onUpdate')(value);
+
+    } else {
+      set(get(this, 'data'), get(this, 'property'), value);
+    }
+  }
 
 });
