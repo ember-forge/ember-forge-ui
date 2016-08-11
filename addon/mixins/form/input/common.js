@@ -1,11 +1,11 @@
-import AriaAttributes from 'ember-forge-ui/mixins/ef-html-aria-attributes';
-import ComponentData from 'ember-forge-ui/mixins/ef-component-data';
-import DataAttributes from 'ember-forge-ui/mixins/ef-html-data-attributes';
-import ElementEvents from 'ember-forge-ui/mixins/ef-html-element-events';
+import AriaAttributes from 'ember-forge-ui/mixins/html/attributes/aria';
+import ComponentData from 'ember-forge-ui/mixins/component/data';
+import DataAttributes from 'ember-forge-ui/mixins/html/attributes/data';
+import ElementEvents from 'ember-forge-ui/mixins/html/events/element';
 import Ember from 'ember';
-import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
-import InputSelection from 'ember-forge-ui/mixins/ef-html-input-selection';
-import KeyPress from 'ember-forge-ui/mixins/ef-html-input-keypress';
+import GlobalAttributes from 'ember-forge-ui/mixins/html/attributes/global';
+import InputSelection from 'ember-forge-ui/mixins/form/input/event/selection';
+import InputChange from 'ember-forge-ui/mixins/form/input/event/input';
 
 const {
   computed,
@@ -18,13 +18,13 @@ const {
  *
  * @module
  * @augments ember/Mixin
- * @augments ember-forge-ui/mixins/ef-html-aria-attributes
- * @augments ember-forge-ui/mixins/ef-component-data
- * @augments ember-forge-ui/mixins/ef-html-data-attributes
- * @augments ember-forge-ui/mixins/ef-html-element-events
- * @augments ember-forge-ui/mixins/ef-html-global-attributes
- * @augments ember-forge-ui/mixins/ef-html-input-keypress
- * @augments ember-forge-ui/mixins/ef-html-input-selection
+ * @augments ember-forge-ui/mixins/component/data
+ * @augments ember-forge-ui/mixins/form/input/event/input
+ * @augments ember-forge-ui/mixins/form/input/event/selection
+ * @augments ember-forge-ui/mixins/html/attributes/aria
+ * @augments ember-forge-ui/mixins/html/attributes/data
+ * @augments ember-forge-ui/mixins/html/attributes/global
+ * @augments ember-forge-ui/mixins/html/events/element
  */
 export default Mixin.create(
   AriaAttributes,
@@ -33,7 +33,7 @@ export default Mixin.create(
   ElementEvents,
   GlobalAttributes,
   InputSelection,
-  KeyPress,
+  InputChange,
   {
 
   // -------------------------------------------------------------------------

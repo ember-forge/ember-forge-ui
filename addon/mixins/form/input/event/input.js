@@ -6,10 +6,11 @@ const {
 } = Ember;
 
 /**
- * Retrieve keyPress data about the input
+ * Retrieve input data about the input
  *
  * @module
  * @augments ember/Mixin
+ * @see {@link http://stackoverflow.com/questions/15727324/for-a-javascript-autocomplete-search-box-must-we-use-the-input-event-handler}
  */
 export default Mixin.create({
 
@@ -26,24 +27,24 @@ export default Mixin.create({
   // Events
 
   /**
-   * HTML event: keyPress
+   * HTML event: input
    *
-   * If contextual action has been proxied to the `onKeyPressData` property then
+   * If contextual action has been proxied to the `onInputData` property then
    * retrieve data and send it
    *
    * @override
    * @param {Object} event Browser event object
    * @returns {undefined}
    */
-  keyPress(event) {
-    if (!Ember.isEmpty(get(this, 'onKeyPress')) && typeof get(this, 'onKeyPress') === 'function') {
+  input(event) {
+    if (!Ember.isEmpty(get(this, 'onInput')) && typeof get(this, 'onInput') === 'function') {
       this._super(...arguments);
     }
 
-    let proxiedAction = 'onKeyPressData';
+    let proxiedAction = 'onInputData';
 
     if (!Ember.isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
-      this.get(proxiedAction)(this.getKeyPressData(event));
+      this.get(proxiedAction)(this.getInputData(event));
     }
   },
 
@@ -57,7 +58,7 @@ export default Mixin.create({
   // Methods
 
   /**
-   * @typedef KeyPressData
+   * @typedef InputData
    * @type {Object}
    * @property {Number} allCharactersCount Number of all characters in element's value
    * @property {Object} event Browser event object
@@ -65,12 +66,12 @@ export default Mixin.create({
    */
 
   /**
-   * Retrieve KeyPress data
+   * Retrieve Input data
    *
    * @param {Object} event Browser event object
-   * @returns {KeyPressData}
+   * @returns {InputData}
    */
-  getKeyPressData(event) {
+  getInputData(event) {
     let content = this.$().get(0).value;
 
     return {

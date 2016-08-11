@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import InputElement from 'ember-forge-ui/mixins/form/input';
+import InputElement from 'ember-forge-ui/mixins/form/input/common';
 
 const {
   Component
@@ -8,7 +8,7 @@ const {
 /**
  * @module
  * @augments ember/Component
- * @augments ember-forge-ui/mixins/form/input
+ * @augments ember-forge-ui/mixins/form/input/common
  */
 export default Component.extend(InputElement, {
 

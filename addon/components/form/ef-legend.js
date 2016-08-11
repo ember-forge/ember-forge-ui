@@ -1,9 +1,9 @@
-import AriaAttributes from 'ember-forge-ui/mixins/ef-html-aria-attributes';
-import ComponentData from 'ember-forge-ui/mixins/ef-component-data';
-import DataAttributes from 'ember-forge-ui/mixins/ef-html-data-attributes';
-import ElementEvents from 'ember-forge-ui/mixins/ef-html-element-events';
+import AriaAttributes from 'ember-forge-ui/mixins/html/attributes/aria';
+import ComponentData from 'ember-forge-ui/mixins/component/data';
+import DataAttributes from 'ember-forge-ui/mixins/html/attributes/data';
+import ElementEvents from 'ember-forge-ui/mixins/html/events/element';
 import Ember from 'ember';
-import GlobalAttributes from 'ember-forge-ui/mixins/ef-html-global-attributes';
+import GlobalAttributes from 'ember-forge-ui/mixins/html/attributes/global';
 
 const {
   Component
@@ -12,11 +12,11 @@ const {
 /**
  * @module
  * @augments ember/Component
- * @augments ember-forge-ui/mixins/ef-component-data
- * @augments ember-forge-ui/mixins/ef-html-aria-attributes
- * @augments ember-forge-ui/mixins/ef-html-data-attributes
- * @augments ember-forge-ui/mixins/ef-html-element-events
- * @augments ember-forge-ui/mixins/ef-html-global-attributes
+ * @augments ember-forge-ui/mixins/component/data
+ * @augments ember-forge-ui/mixins/html/attributes/aria
+ * @augments ember-forge-ui/mixins/html/attributes/data
+ * @augments ember-forge-ui/mixins/html/attributes/global
+ * @augments ember-forge-ui/mixins/html/events/element
  * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-legend-element}
  */
 export default Component.extend(AriaAttributes, ComponentData, DataAttributes, ElementEvents, GlobalAttributes, {
