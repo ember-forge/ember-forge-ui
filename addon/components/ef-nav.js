@@ -36,19 +36,6 @@ export default Component.extend({
   // -------------------------------------------------------------------------
   // Events
 
-  /**
-   * didRender event hook
-   *
-   * Contextualize the list component
-   *
-   * @returns {undefined}
-   */
-  didRender() {
-    this._super(...arguments);
-
-    this.setListContext();
-  },
-
   // -------------------------------------------------------------------------
   // Properties
 
@@ -64,33 +51,12 @@ export default Component.extend({
    *
    * @type {Boolean}
    */
-  inverse: false,
+  inverse: false
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
-
-  /**
-   * Set context-specific classes on these rendered components:
-   *   - ef-list-divider
-   *   - ef-list-group-header
-   *   - ef-list-header
-   *
-   * @private
-   * @returns {undefined}
-   */
-  setListContext: function() {
-    // ef-list-group-header
-    this.$('.ef-list-group-header')
-      .removeClass('ef-list-group-header')
-      .addClass('ef-nav-list-group-header');
-
-    // ef-list-header
-    this.$('.ef-list-header')
-      .removeClass('ef-list-header')
-      .addClass('ef-nav-list-header');
-  }
 
 });
