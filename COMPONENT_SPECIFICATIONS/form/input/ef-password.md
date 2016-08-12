@@ -35,17 +35,22 @@ Render an `input` HTML element with `type=password`
 
 ### CSS Class
 
-* ef-input-password
+* ef-input-password-text
 
 
 ### CSS Class Name Bindings
 
-* None
+These are CSS class name bindings, listed as **property:** *class name applied* (default state)
+
+* **display:** *ef-input-text if true / ef-input-password if false* (defaults to `display: false`)
+
 
 
 ## Properties
 
-* none
+**display** *Boolean*
+
+* Whether to display the value of the password
 
 
 

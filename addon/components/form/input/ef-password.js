@@ -3,6 +3,8 @@ import InputElement from 'ember-forge-ui/mixins/form/input/common';
 
 const {
   Component,
+  computed,
+  get
 } = Ember;
 
 /**
@@ -31,12 +33,18 @@ export default Component.extend(InputElement, {
     'placeholder',
     'readonly',
     'required',
-    'size'
+    'size',
+    'elementType:type'
   ],
 
   /** @type {String[]} */
   classNames: [
-    'ef-input-password'
+    'ef-input-password-text'
+  ],
+
+  /** @type {String[]} */
+  classNameBindings: [
+    'display:ef-input-text:ef-input-password'
   ],
 
   // -------------------------------------------------------------------------
@@ -55,6 +63,13 @@ export default Component.extend(InputElement, {
    * @type {?String}
    */
   autocomplete: null,
+
+  /**
+   * Whether to display password value
+   *
+   * @type {Boolean}
+   */
+  display: false,
 
   /**
    * Specifies what kind of input mechanism would be most helpful for users entering content into the form control.
@@ -121,17 +136,23 @@ export default Component.extend(InputElement, {
    */
   size: null,
 
-  /**
-   * Input type: password
-   *
-   * @type {String}
-   */
-  type: 'password'
-
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * Element type, either `text` or `password`, depending on whether displaying the value
+   *
+   * @function
+   * @returns {String}
+   */
+  elementType: computed(
+    'display',
+    function() {
+      return get(this, 'display') ? 'text' : 'password';
+    }
+  )
 
 });
