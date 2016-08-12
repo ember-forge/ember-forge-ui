@@ -2,7 +2,7 @@
 
 ## Description
 
-Render a `hidden` HTML element
+Render an `input` HTML element with `type=hidden`
 
 
 
@@ -15,7 +15,7 @@ Render a `hidden` HTML element
 
 ### HTML element
 
-* hidden
+* input[type=hidden]
 
 
 ### HTML Attributes
