@@ -6,9 +6,12 @@ const {
 } = Ember;
 
 /**
+ * textarea HTML element
+ *
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/form/input/common
+ * @see {@link https://html.spec.whatwg.org/multipage/forms.html#the-textarea-element}
  */
 export default Component.extend(InputElement, {
 

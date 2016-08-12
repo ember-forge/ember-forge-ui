@@ -6,9 +6,12 @@ const {
 } = Ember;
 
 /**
+ * input[type="search"] HTML element
+ *
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/form/input/common
+ * @see {@link https://html.spec.whatwg.org/multipage/forms.html#text-(type=text)-state-and-search-state-(type=search)}
  */
 export default Component.extend(InputElement, {
 

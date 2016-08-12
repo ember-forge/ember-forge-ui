@@ -10,6 +10,8 @@ const {
 } = Ember;
 
 /**
+ * form HTML element
+ *
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/component/data

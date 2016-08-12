@@ -6,9 +6,12 @@ const {
 } = Ember;
 
 /**
+ * input[type="hidden"] HTML element
+ *
  * @module
  * @augments ember/Component
  * @augments ember-forge-ui/mixins/form/input/common
+ * @see {@link https://html.spec.whatwg.org/multipage/forms.html#hidden-state-(type=hidden)}
  */
 export default Component.extend(InputElement, {
 
