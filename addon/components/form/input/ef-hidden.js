@@ -46,7 +46,7 @@ export default Component.extend(InputElement, {
   autocomplete: null,
 
   /**
-   * Input element type
+   * Input type: hidden
    *
    * @type {String}
    */
