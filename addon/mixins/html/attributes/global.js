@@ -198,6 +198,7 @@ export default Mixin.create({
    * Represents advisory information for the element, such as would be appropriate for a tooltip
    *
    * @see {@link https://html.spec.whatwg.org/multipage/dom.html#attr-title}
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-input-title}
    * @type {?String}
    */
   title: null,
