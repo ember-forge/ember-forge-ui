@@ -45,6 +45,10 @@ export default Mixin.create(
 
   /** @type {String[]} */
   attributeBindings: [
+    'autofocus',
+    'disabled',
+    'form',
+    'name',
     'type',
     'value'
   ],
@@ -88,11 +92,44 @@ export default Mixin.create(
   // Properties
 
   /**
+   * Indicate that a control is to be focused as soon as the page is loaded
+   * or as soon as the dialog within which it finds itself is shown.
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fe-autofocus}
+   * @type {?Boolean}
+   */
+  autofocus: null,
+
+  /**
    * Holds the properties the form fields should edit
    *
    * @type {?Object}
    */
   data: null,
+
+  /**
+   * Whether is disabled
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fe-disabled}
+   * @type {?Boolean}
+   */
+  disabled: null,
+
+  /**
+   * Form associated with
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fae-form}
+   * @type {?String}
+   */
+  form: null,
+
+  /**
+   * Name of the form control
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fe-name}
+   * @type {?String}
+   */
+  name: null,
 
   /**
    * Property to access on `data` object
