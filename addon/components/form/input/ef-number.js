@@ -67,7 +67,7 @@ export default Component.extend(InputElement, {
    * Maximum element value
    *
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-input-max}
-   * @type {?Number}
+   * @type {?Number|String}
    */
   max: null,
 
@@ -75,7 +75,7 @@ export default Component.extend(InputElement, {
    * Minimum element value
    *
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-input-min}
-   * @type {?Number}
+   * @type {?Number|String}
    */
   min: null,
 
