@@ -25,6 +25,7 @@ export default Component.extend(InputElement, {
   attributeBindings: [
     'autocapitalize',
     'autocomplete',
+    'autocorrect',
     'autofocus',
     'cols',
     'dirname',
@@ -74,6 +75,14 @@ export default Component.extend(InputElement, {
    * @type {?String}
    */
   autocomplete: null,
+
+  /**
+   * Specifies a form field allows automatic correction.
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
+   * @type {?String}
+   */
+  autocorrect: null,
 
   /**
    * Automatically focus the form control when the page is loaded

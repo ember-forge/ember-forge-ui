@@ -22,6 +22,7 @@ Render an `input` HTML element with `type=email`
 
 * autocapitalize
 * autocomplete
+* autocorrect
 * list
 * maxlength
 * minlength

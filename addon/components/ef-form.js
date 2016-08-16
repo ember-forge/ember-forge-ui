@@ -34,6 +34,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   attributeBindings: [
     'autocapitalize',
     'autocomplete',
+    'autocorrect',
     'name',
     'novalidate'
   ],
@@ -72,6 +73,14 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    * @type {?String}
    */
   autocomplete: null,
+
+  /**
+   * Specifies a form field allows automatic correction.
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
+   * @type {?String}
+   */
+  autocorrect: null,
 
   /**
    * Holds the properties the form fields should edit

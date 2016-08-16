@@ -22,6 +22,7 @@ Render an `input` HTML element with `type=url`
 
 * autocapitalize
 * autocomplete
+* autocorrect
 * list
 * maxlength
 * minlength

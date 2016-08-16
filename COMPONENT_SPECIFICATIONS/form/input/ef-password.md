@@ -22,6 +22,7 @@ Render an `input` HTML element with `type=password`
 
 * autocapitalize
 * autocomplete
+* autocorrect
 * inputmode
 * maxlength
 * minlength

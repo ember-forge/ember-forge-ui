@@ -27,6 +27,7 @@ export default Component.extend(InputElement, {
   attributeBindings: [
     'autocapitalize',
     'autocomplete',
+    'autocorrect',
     'inputmode',
     'maxlength',
     'minlength',
@@ -74,6 +75,14 @@ export default Component.extend(InputElement, {
    * @type {?String}
    */
   autocomplete: null,
+
+  /**
+   * Specifies a form field allows automatic correction.
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
+   * @type {?String}
+   */
+  autocorrect: null,
 
   /**
    * Whether to display password value

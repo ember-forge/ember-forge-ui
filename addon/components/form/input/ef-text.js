@@ -25,6 +25,7 @@ export default Component.extend(InputElement, {
   attributeBindings: [
     'autocapitalize',
     'autocomplete',
+    'autocorrect',
     'dirname',
     'inputmode',
     'list',
@@ -68,6 +69,14 @@ export default Component.extend(InputElement, {
    * @type {?String}
    */
   autocomplete: null,
+
+  /**
+   * Specifies a form field allows automatic correction.
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
+   * @type {?String}
+   */
+  autocorrect: null,
 
   /**
    * Name of form control to use for sending the element's directionality in form submission

@@ -22,6 +22,7 @@ Render a `textarea` HTML element
 
 * autocapitalize
 * autocomplete
+* autocorrect
 * autofocus
 * cols
 * dirname

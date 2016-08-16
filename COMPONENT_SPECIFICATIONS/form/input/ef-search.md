@@ -22,6 +22,7 @@ Render an `input` HTML element with `type=search`
 
 * autocapitalize
 * autocomplete
+* autocorrect
 * autosave
 * dirname
 * incremental
