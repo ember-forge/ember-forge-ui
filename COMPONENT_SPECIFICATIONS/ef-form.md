@@ -42,6 +42,7 @@ Render a `form` HTML element containing any of these components:
 
 ### HTML Attributes
 
+* autocapitalize
 * autocomplete
 * name
 * novalidate
