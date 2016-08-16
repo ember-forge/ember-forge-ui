@@ -20,6 +20,7 @@ Render an `input` HTML element with `type=url`
 
 ### HTML Attributes
 
+* autocapitalize
 * autocomplete
 * list
 * maxlength

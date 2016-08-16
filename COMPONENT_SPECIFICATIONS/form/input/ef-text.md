@@ -20,6 +20,7 @@ Render an `input` HTML element with `type=text`
 
 ### HTML Attributes
 
+* autocapitalize
 * autocomplete
 * dirname
 * inputmode

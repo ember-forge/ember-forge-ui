@@ -23,6 +23,7 @@ export default Component.extend(InputElement, {
 
   /** @type {String[]} */
   attributeBindings: [
+    'autocapitalize',
     'autocomplete',
     'dirname',
     'inputmode',
@@ -49,6 +50,16 @@ export default Component.extend(InputElement, {
 
   // -------------------------------------------------------------------------
   // Properties
+
+  /**
+   * Controls whether and how the text value for textual form control descendants
+   * should be automatically capitalized as it is entered/edited by the user
+   *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
+   * @type {?String}
+   */
+  autocapitalize: null,
 
   /**
    * Specifies whether or not input fields should have autocomplete enabled.

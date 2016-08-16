@@ -20,6 +20,7 @@ Render an `input` HTML element with `type=search`
 
 ### HTML Attributes
 
+* autocapitalize
 * autocomplete
 * autosave
 * dirname
