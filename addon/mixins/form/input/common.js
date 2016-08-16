@@ -139,6 +139,14 @@ export default Mixin.create(
   property: null,
 
   /**
+   * Tracked value of element to debounce the handling of `change` and `input` event firings
+   *
+   * @private
+   * @type {?Number|String}
+   */
+  trackedValue: null,
+
+  /**
    * Element value
    *
    * @type {?String|Number}
@@ -147,8 +155,11 @@ export default Mixin.create(
     'property',
     function() {
       let property = get(this, 'property');
+      let value = `data.${property}`;
 
-      return get(this, `data.${property}`);
+      set(this, 'trackedValue', value);
+
+      return get(this, value);
     }
   ),
 
@@ -167,11 +178,15 @@ export default Mixin.create(
   handleChangeEvent() {
     let value = this.$().val();
 
-    if (!Ember.isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
-      this.get('onUpdate')(value);
+    if (value !== get(this, 'trackedValue')) {
+      if (!Ember.isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
+        this.get('onUpdate')(value);
 
-    } else {
-      set(get(this, 'data'), get(this, 'property'), value);
+      } else {
+        set(get(this, 'data'), get(this, 'property'), value);
+      }
+
+      set(this, 'trackedValue', value);
     }
   }
 
