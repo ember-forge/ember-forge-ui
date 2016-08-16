@@ -146,7 +146,9 @@ export default Mixin.create(
   value: computed(
     'property',
     function() {
-      return get(this, 'data.' + get(this, 'property'));
+      let property = get(this, 'property');
+
+      return get(this, `data.${property}`);
     }
   ),
 
