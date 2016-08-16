@@ -24,7 +24,9 @@ export default Component.extend(InputElement, {
   /** @type {String[]} */
   attributeBindings: [
     'autocomplete',
+    'autosave',
     'dirname',
+    'incremental',
     'inputmode',
     'list',
     'maxlength',
@@ -33,6 +35,7 @@ export default Component.extend(InputElement, {
     'placeholder',
     'readonly',
     'required',
+    'results',
     'size'
   ],
 
@@ -59,12 +62,29 @@ export default Component.extend(InputElement, {
   autocomplete: null,
 
   /**
+   * Specifies an autosave name for a search field, so prior searches can be saved.
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid/TP40008058-autocorrect}
+   * @type {?String}
+   */
+  autosave: null,
+
+  /**
    * Name of form control to use for sending the element's directionality in form submission
    *
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fe-dirname}
    * @type {?String}
    */
   dirname: null,
+
+  /**
+   * Specifies whether or not the search input type should perform the search as the user is typing.
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid/TP40008058-incremental}
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input}
+   * @type {?Boolean}
+   */
+  incremental: null,
 
   /**
    * Specifies what kind of input mechanism would be most helpful for users entering content into the form control.
@@ -129,6 +149,14 @@ export default Component.extend(InputElement, {
    * @type {?Boolean}
    */
   required: null,
+
+  /**
+   * Control the maximum number of entries that should be displayed in the native dropdown list of past search queries
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @type {?Number}
+   */
+  results: null,
 
   /**
    * Number of characters that, in a visual rendering, the user agent is to allow the user to see

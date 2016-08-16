@@ -21,7 +21,9 @@ Render an `input` HTML element with `type=search`
 ### HTML Attributes
 
 * autocomplete
+* autosave
 * dirname
+* incremental
 * inputmode
 * list
 * maxlength
@@ -30,6 +32,7 @@ Render an `input` HTML element with `type=search`
 * placeholder
 * readonly
 * required
+* results
 * size
 * all from ef-html-aria-attributes mixin
 * all from ef-html-global-attributes mixin
