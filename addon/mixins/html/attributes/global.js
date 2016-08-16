@@ -28,6 +28,7 @@ export default Mixin.create({
     'draggable',
     'dropzone',
     'hidden',
+    'inert',
     'is',
     'itemid',
     'itemprop',
@@ -108,6 +109,16 @@ export default Mixin.create({
    * @type {?Boolean}
    */
   hidden: null,
+
+  /**
+   * When inert the user agent must act as if the node was absent for the purposes of targeting user interaction events,
+   * may ignore the node for the purposes of text search user interfaces (commonly known as "find in page"),
+   * and may prevent the user from selecting text in that node.
+   *
+   * @see {@link https://html.spec.whatwg.org/multipage/interaction.html#inert-subtrees}
+   * @type {?Boolean}
+   */
+  inert: null,
 
   /**
    * In support of custom elements
