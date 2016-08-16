@@ -76,6 +76,17 @@ export default Mixin.create(
   },
 
   /**
+   * Create dynamic computed properties
+   *
+   * @returns {undefined}
+   */
+  init() {
+    this._super(...arguments);
+
+    this.createComputedProperties();
+  },
+
+  /**
    * HTML event: input
    *
    * Handle element value change
@@ -146,23 +157,6 @@ export default Mixin.create(
    */
   trackedValue: null,
 
-  /**
-   * Element value
-   *
-   * @type {?String|Number}
-   */
-  value: computed(
-    'property',
-    function() {
-      let property = get(this, 'property');
-      let value = `data.${property}`;
-
-      set(this, 'trackedValue', value);
-
-      return get(this, value);
-    }
-  ),
-
   // -------------------------------------------------------------------------
   // Observers
 
@@ -187,6 +181,29 @@ export default Mixin.create(
       }
 
       set(this, 'trackedValue', value);
+    }
+  },
+
+  /**
+   * Define and assign dynamic computed properties
+   *
+   * - `value` is a bound property between the element's value and the property on the data object
+   *
+   * @returns {undefined}
+   */
+  createComputedProperties() {
+    let property = get(this, 'property');
+
+    if (`${property}` !== 'null') {
+      this.value = computed(`data.${property}`, {
+        get() {
+          let value = get(this, `data.${property}`);
+
+          set(this, 'trackedValue', value);
+
+          return value;
+        }
+      });
     }
   }
 
