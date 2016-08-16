@@ -392,6 +392,45 @@ export default Mixin.create({
   },
 
   /**
+   * HTML event: gestureChange
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @param {Object} event Browser event object
+   * @returns {undefined}
+   */
+  gestureChange(event) {
+    this._super(...arguments);
+
+    this.sendEvent('onGestureChange', event);
+  },
+
+  /**
+   * HTML event: gestureEnd
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @param {Object} event Browser event object
+   * @returns {undefined}
+   */
+  gestureEnd(event) {
+    this._super(...arguments);
+
+    this.sendEvent('onGestureEnd', event);
+  },
+
+  /**
+   * HTML event: gestureStart
+   *
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @param {Object} event Browser event object
+   * @returns {undefined}
+   */
+  gestureStart(event) {
+    this._super(...arguments);
+
+    this.sendEvent('onGestureStart', event);
+  },
+
+  /**
    * HTML event: input
    *
    * @see {@link https://html.spec.whatwg.org/multipage/indices.html#event-input}
