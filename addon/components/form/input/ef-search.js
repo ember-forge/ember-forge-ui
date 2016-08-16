@@ -75,7 +75,7 @@ export default Component.extend(InputElement, {
   /**
    * Specifies an autosave name for a search field, so prior searches can be saved.
    *
-   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid/TP40008058-autocorrect}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @type {?String}
    */
   autosave: null,
@@ -91,7 +91,7 @@ export default Component.extend(InputElement, {
   /**
    * Specifies whether or not the search input type should perform the search as the user is typing.
    *
-   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid/TP40008058-incremental}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input}
    * @type {?Boolean}
    */
@@ -164,7 +164,7 @@ export default Component.extend(InputElement, {
   /**
    * Control the maximum number of entries that should be displayed in the native dropdown list of past search queries
    *
-   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @type {?Number}
    */
   results: null,

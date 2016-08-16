@@ -394,7 +394,7 @@ export default Mixin.create({
   /**
    * HTML event: gestureChange
    *
-   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @param {Object} event Browser event object
    * @returns {undefined}
    */
@@ -407,7 +407,7 @@ export default Mixin.create({
   /**
    * HTML event: gestureEnd
    *
-   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @param {Object} event Browser event object
    * @returns {undefined}
    */
@@ -420,7 +420,7 @@ export default Mixin.create({
   /**
    * HTML event: gestureStart
    *
-   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid}
+   * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @param {Object} event Browser event object
    * @returns {undefined}
    */
