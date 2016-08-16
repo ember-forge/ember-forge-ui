@@ -61,6 +61,7 @@ export default Component.extend(InputElement, {
   /**
    * Specifies the auto-capitalization behavior of text elements
    *
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea}
    * @see {@link https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html}
    * @type {?String}
    */
