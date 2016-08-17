@@ -51,33 +51,14 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   // Events
 
   /**
-   * Set the first `label` element's `for` attribute with the `id` of the first labelable element with a set `id`
-   *
-   * didInsertElement event hook
+   * Manage `label` element's `for` attribute
    *
    * @returns {undefined}
    */
   didInsertElement() {
     this._super(...arguments);
 
-    /**
-     * These are elements that can be associated with a label element.
-     *
-     * Also only selecting those that have an id set on them
-     *
-     * @see {@link https://html.spec.whatwg.org/multipage/forms.html#category-label}
-     * @type {String}
-     */
-    let selector = 'button[id], input[type!="hidden"][id], meter[id], output[id], progress[id], select[id], textarea[id]';
-
-    // Find first existence of a labelable element that has an id set
-    let $labelableElement = this.$().children(selector).first();
-
-    let $label = this.$('label');
-
-    if ($labelableElement && $label.get(0) && $label.first().attr('for') === undefined) {
-      $label.attr('for', $labelableElement.prop('id'));
-    }
+    this.manageLabelAttribute();
   },
 
   // -------------------------------------------------------------------------
@@ -107,12 +88,38 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fe-name}
    * @type {?String}
    */
-  name: null
+  name: null,
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * Set the first `label` element's `for` attribute with the `id` of the first labelable element with a set `id`
+   *
+   * @returns {undefined}
+   */
+  manageLabelAttribute() {
+    /**
+     * These are elements that can be associated with a label element.
+     *
+     * Also only selecting those that have an id set on them
+     *
+     * @see {@link https://html.spec.whatwg.org/multipage/forms.html#category-label}
+     * @type {String}
+     */
+    let selector = 'button[id], input[type!="hidden"][id], meter[id], output[id], progress[id], select[id], textarea[id]';
+
+    // Find first existence of a labelable element that has an id set
+    let $labelableElement = this.$().children(selector).first();
+
+    let $label = this.$('label');
+
+    if ($labelableElement && $label.get(0) && $label.first().attr('for') === undefined) {
+      $label.attr('for', $labelableElement.prop('id'));
+    }
+  }
 
 });
