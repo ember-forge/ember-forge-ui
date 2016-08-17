@@ -10,6 +10,7 @@ import InputChange from 'ember-forge-ui/mixins/form/input/event/input';
 const {
   computed,
   get,
+  isEmpty,
   Mixin,
   set
 } = Ember;
@@ -194,7 +195,7 @@ export default Mixin.create(
   createComputedProperties() {
     let property = get(this, 'property');
 
-    if (`${property}` !== 'null') {
+    if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
       this.value = computed(`data.${property}`, {
         get() {
           let value = get(this, `data.${property}`);
