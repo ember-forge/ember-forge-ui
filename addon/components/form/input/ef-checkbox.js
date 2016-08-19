@@ -183,14 +183,14 @@ export default Component.extend(InputElement, {
    * @returns {undefined}
    */
   handleChangeEvent() {
-      if (get(this, 'checked') !== this.readDOMAttr('checked')) {
-        if (get(this, 'internalChange')) {
-          this.$().prop('checked', get(this, 'checked'));
+    if (get(this, 'checked') !== this.readDOMAttr('checked')) {
+      if (get(this, 'internalChange')) {
+        this.$().prop('checked', get(this, 'checked'));
 
-        } else {
-          set(this, 'checked', this.readDOMAttr('checked'));
-        }
+      } else {
+        set(this, 'checked', this.readDOMAttr('checked'));
       }
+    }
 
     set(this, 'internalChange', false);
 
@@ -213,24 +213,45 @@ export default Component.extend(InputElement, {
   },
 
   /**
-   * Place element into checked state if the value of the `property` value equals the value of the `value` property
+   * Place component into checked state if the value of the `property` value equals the value of the `value` property
+   * Update data property with value if the value of the `checked` property is `true`
    *
    * @returns {undefined}
    */
   initializeState() {
     let property = get(this, 'property');
+    let valueEqualsProperty = this.getAttr('value') === get(this, `data.${property}`);
 
-    if (get(this, 'isInitializing')) {
-      if (this.getAttr('value') === get(this, `data.${property}`)) {
+    if(!get(this, 'checked')) {
+      if (get(this, 'isInitializing')) {
+        if (valueEqualsProperty) {
+          Ember.run.scheduleOnce('afterRender', () => {
+            set(this, 'checked', true);
+          });
+        }
+
+      } else {
         Ember.run.scheduleOnce('afterRender', () => {
-          set(this, 'checked', true);
+          set(this, 'checked', valueEqualsProperty);
         });
       }
 
     } else {
-      Ember.run.scheduleOnce('afterRender', () => {
-        set(this, 'checked', this.getAttr('value') === get(this, `data.${property}`));
-      });
+      if (get(this, 'isInitializing')) {
+        if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
+          Ember.run.scheduleOnce('afterRender', () => {
+            set(this, 'internalChange', true);
+            this.$().trigger('change');
+          });
+        }
+
+        this.toggleProperty('isInitializing');
+
+      } else {
+        Ember.run.scheduleOnce('afterRender', () => {
+          set(this, 'checked', valueEqualsProperty);
+        });
+      }
     }
   }
 });
