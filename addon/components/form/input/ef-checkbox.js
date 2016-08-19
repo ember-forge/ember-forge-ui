@@ -65,6 +65,17 @@ export default Component.extend(InputElement, {
     this.addObservers();
   },
 
+  /**
+   * Remove observers for dynamic properties
+   *
+   * @returns {undefined}
+   */
+  willDestroyElement() {
+    this._super(...arguments);
+
+    this.removeObservers();
+  },
+
   // -------------------------------------------------------------------------
   // Properties
 
@@ -253,5 +264,16 @@ export default Component.extend(InputElement, {
         });
       }
     }
+  },
+
+  /**
+   * Remove observers to dynamic properties
+   *
+   * @returns {undefined}
+   */
+  removeObservers() {
+    let property = get(this, 'property');
+
+    this.removeObserver(`data.${property}`, this, 'initializeState');
   }
 });
