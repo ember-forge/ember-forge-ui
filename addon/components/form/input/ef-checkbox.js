@@ -252,6 +252,7 @@ export default Component.extend(InputElement, {
         if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
           Ember.run.scheduleOnce('afterRender', () => {
             set(this, 'internalChange', true);
+            this.manageIndeterminateState();
             this.$().trigger('change');
           });
         }
