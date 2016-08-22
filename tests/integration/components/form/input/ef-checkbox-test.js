@@ -27,6 +27,18 @@ test('Default rendered state', function( assert ) {
     false,
     'Element is unchecked'
   );
+
+  assert.strictEqual(
+    this.$('>:first-child').prop('indeterminate'),
+    false,
+    'Element is not indeterminate'
+  );
+
+  assert.strictEqual(
+    this.$('>:first-child').prop('required'),
+    false,
+    'Element is not required'
+  );
 });
 
 test('`property` is bound to a `null` data property, no `value` or `checked` properties', function(assert) {
