@@ -1,3 +1,19 @@
 <h2 id="title">Welcome to Ember</h2>
 
 {{outlet}}
+
+{{#ef-form
+  data=theProperties
+  as |f|
+}}
+  {{#f.label}}
+    Is admin
+    {{f.input-checkbox property="isAdmin"
+      property="isAdmin"
+      value="jeremy"
+      checked=true
+      indeterminate=true
+    }}
+  {{/f.label}}
+
+{{/ef-form}}
