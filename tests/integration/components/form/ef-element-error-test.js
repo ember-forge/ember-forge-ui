@@ -1,0 +1,121 @@
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('form/ef-element-error', 'Integration | Component | form/ef element error', {
+  integration: true
+});
+
+test('Default rendered state', function(assert) {
+  const errorMessage = 'the error message';
+
+  this.set('errors', {
+    testValue: errorMessage
+  });
+
+  this.render(hbs`
+    {{form/ef-element-error
+      errors=errors
+      property="testValue"
+    }}
+  `);
+
+  assert.ok(
+    this.$('>:first-child').hasClass('ef-form-element-error'),
+    'Has class "ef-form-element-error"'
+  );
+
+  assert.strictEqual(
+    this.$('>:first-child').text().trim(),
+    errorMessage,
+    'Error message is displayed'
+  );
+});
+
+test('Error message can be overridden in template', function(assert) {
+  this.set('errors', {
+    testValue: 'the error message'
+  });
+
+  this.render(hbs`
+    {{#form/ef-element-error
+      errors=errors
+      property="testValue"
+    }}
+      new message instead
+    {{/form/ef-element-error}}
+  `);
+
+  assert.strictEqual(
+    this.$('>:first-child').text().trim(),
+    'new message instead',
+    'Error message was overridden by yielded value'
+  );
+});
+
+test('Error message can be overridden in template and original message is accessible', function(assert) {
+  this.set('errors', {
+    testValue: 'the error message'
+  });
+
+  this.render(hbs`
+    {{#form/ef-element-error
+      errors=errors
+      property="testValue"
+      as |message|
+    }}
+      new message instead: {{message}}
+    {{/form/ef-element-error}}
+  `);
+
+  assert.strictEqual(
+    this.$('>:first-child').text().trim(),
+    'new message instead: the error message',
+    'Original error message is accessible'
+  );
+});
+
+test('Error message can be updated', function(assert) {
+  this.set('errors', {
+    testValue: 'the error message'
+  });
+
+  this.render(hbs`
+    {{form/ef-element-error
+      errors=errors
+      property="testValue"
+    }}
+  `);
+
+  const newMessage = 'new message';
+
+  this.set('errors.testValue', newMessage);
+
+  assert.strictEqual(
+    this.$('>:first-child').text().trim(),
+    newMessage,
+    'Error message was updated'
+  );
+});
+
+test('Error message can be updated', function( assert ) {
+  this.set('errors', {
+    testValue: 'the error message'
+  });
+
+  this.render(hbs`
+    {{form/ef-element-error
+      errors=errors
+      property="testValue"
+    }}
+  `);
+
+  const newMessage = 'new message';
+
+  this.set('errors.testValue', newMessage);
+
+  assert.strictEqual(
+    this.$('>:first-child').text().trim(),
+    newMessage,
+    'Error message was updated'
+  );
+});

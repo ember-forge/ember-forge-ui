@@ -1,0 +1,8 @@
+{{~#if hasBlock~}}
+  {{setHasBlock}}
+  {{~#if message~}}
+    {{yield message}}
+  {{~/if~}}
+{{~else~}}
+  {{message}}
+{{~/if~}}
