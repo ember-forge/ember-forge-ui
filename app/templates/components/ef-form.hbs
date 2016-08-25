@@ -1,5 +1,9 @@
 {{yield (hash
-  error=(component "form/ef-element-error" errors=errors)
+  error=(component
+    "form/ef-element-error"
+    errors=errors
+    onRegisterError=(action "registerError")
+  )
   fieldset=(component "form/ef-fieldset")
   input-checkbox=(component "form/input/ef-checkbox" data=data)
   input-color=(component "form/input/ef-color" data=data)

@@ -39,6 +39,7 @@ export default Component.extend({
     this._super(...arguments);
 
     this.createComputedProperties();
+    this.registerError();
   },
 
   // -------------------------------------------------------------------------
@@ -124,6 +125,27 @@ export default Component.extend({
     }
 
     return isError;
+  },
+
+  /**
+   * Register that this element's error message is being addressed.
+   *
+   * Do so by calling the `onRegisterError` closure action
+   *
+   * @returns {undefined}
+   */
+  registerError() {
+    const property = get(this, 'property');
+    const proxiedAction = 'onRegisterError';
+
+    if (
+      !isEmpty(property) &&
+      !Array.isArray(get(this, `errors.${property}`)) &&
+      !isEmpty(get(this, proxiedAction)) &&
+      typeof get(this, proxiedAction) === 'function'
+    ) {
+      get(this, proxiedAction)(property);
+    }
   },
 
   /**

@@ -6,7 +6,9 @@ import Ember from 'ember';
 import GlobalAttributes from 'ember-forge-ui/mixins/html/attributes/global';
 
 const {
-  Component
+  Component,
+  get,
+  set
 } = Ember;
 
 /**
@@ -50,8 +52,34 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   // -------------------------------------------------------------------------
   // Actions
 
+  /** @type {Object} */
+  actions: {
+
+    /**
+     * Register error property being addressed by an `ef-element-error` component
+     *
+     * @function actions:registerError
+     * @param {String} property Name of the error property being registered
+     * @returns {undefined}
+     */
+    registerError(property) {
+      get(this, 'registeredErrors').push(property);
+    }
+  },
+
   // -------------------------------------------------------------------------
   // Events
+
+  /**
+   * Initialize array
+   *
+   * @returns {undefined}
+   */
+  init() {
+    this._super(...arguments);
+
+    set(this, 'registeredErrors', Ember.A());
+  },
 
   // -------------------------------------------------------------------------
   // Properties
@@ -103,7 +131,14 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    * @see {@link https://html.spec.whatwg.org/multipage/forms.html#attr-fs-novalidate}
    * @type {?Boolean}
    */
-  novalidate: null
+  novalidate: null,
+
+  /**
+   * Array of registered error properties
+   *
+   * @type {?ember/Array}
+   */
+  registeredErrors: null
 
   // -------------------------------------------------------------------------
   // Observers

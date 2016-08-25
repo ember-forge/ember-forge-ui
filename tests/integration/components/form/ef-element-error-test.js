@@ -1,5 +1,5 @@
-import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('form/ef-element-error', 'Integration | Component | form/ef element error', {
   integration: true
@@ -29,6 +29,29 @@ test('Default rendered state', function(assert) {
     errorMessage,
     'Error message is displayed'
   );
+});
+
+test('`onRegisterError` closure action is called with `property` value on render', function(assert) {
+  assert.expect(1);
+
+  const done = assert.async();
+
+  this.on('test-action', function(property) {
+    assert.strictEqual(
+      property,
+      'testValue',
+      'Property was expected value'
+    );
+
+    done();
+  });
+
+  this.render(hbs`
+    {{form/ef-element-error
+      property="testValue"
+      onRegisterError=(action "test-action")
+    }}
+  `);
 });
 
 test('Error message can be overridden in template', function(assert) {
