@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 const {
+  get,
+  isEmpty,
   Mixin
 } = Ember;
 
@@ -993,8 +995,8 @@ export default Mixin.create({
    * @returns {undefined}
    */
   sendEvent(proxiedAction, event) {
-    if (!Ember.isEmpty(this.get(proxiedAction))) {
-      this.get(proxiedAction)(event);
+    if (!isEmpty(get(this, proxiedAction))) {
+      get(this, proxiedAction)(event);
     }
   }
 
