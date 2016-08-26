@@ -31,7 +31,8 @@ export default Component.extend({
   // Events
 
   /**
-   * Create dynamic computed properties
+   * - Create dynamic computed properties
+   * - Register that error property is being handled at the element level
    *
    * @returns {undefined}
    */
