@@ -69,7 +69,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 // rendered HTML
 
 <form class="ef-form">
-  <div class="ef-form-error ef-form-error-hasMessages">
+  <div class="ef-form-error ef-hasContent">
     <ul class="ef-list">
       <li class="ef-list-item">
         ...
@@ -104,7 +104,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 // rendered HTML
 
 <form class="ef-form">
-  <div class="ef-form-error ef-form-error-hasMessages">
+  <div class="ef-form-error ef-hasContent">
     <p>...</p>
     <p>...</p>
   </div>
