@@ -124,26 +124,3 @@ test('Error message can be updated', function(assert) {
     'Error message was updated'
   );
 });
-
-test('Error message can be updated', function( assert ) {
-  this.set('errors', {
-    testValue: 'the error message'
-  });
-
-  this.render(hbs`
-    {{form/ef-element-error
-      errors=errors
-      property="testValue"
-    }}
-  `);
-
-  const newMessage = 'new message';
-
-  this.set('errors.testValue', newMessage);
-
-  assert.strictEqual(
-    this.$('>:first-child').text().trim(),
-    newMessage,
-    'Error message was updated'
-  );
-});
