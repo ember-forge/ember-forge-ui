@@ -75,12 +75,12 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
 <form class="ef-form">
   <input type="text" class="ef-input-text" value="">
-  <div class="ef-form-element-error">
+  <div class="ef-form-element-error ef-hasContent">
    First Name cannot be empty.
   </div>
 
   <input type="text" class="ef-input-text" value="Tomster">
-  <div class="ef-form-element-error">
+  <div class="ef-form-element-error ef-hasContent">
    ...
   </div>
 </form>
@@ -104,7 +104,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
 <form class="ef-form">
   <input type="text" class="ef-input-text" value="">
-  <div class="ef-form-element-error">
+  <div class="ef-form-element-error ef-hasContent">
    Please provide your name
   </div>
 </form>
@@ -128,7 +128,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 // rendered HTML
 
 <form class="ef-form">
-  <div class="ef-form-element-error">
+  <div class="ef-form-element-error ef-hasContent">
    Error: First Name cannot be empty.
   </div>
 </form>
