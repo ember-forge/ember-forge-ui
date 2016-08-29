@@ -22,7 +22,7 @@ export default Component.extend({
 
   /** @type {String[]} */
   classNameBindings: [
-    'hasMessages:ef-form-error-hasMessages'
+    'hasMessages:ef-hasContent'
   ],
 
   /** @type {String[]} */
