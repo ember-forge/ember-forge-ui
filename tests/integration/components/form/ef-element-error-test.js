@@ -24,6 +24,11 @@ test('Default rendered state', function(assert) {
     'Has class "ef-form-element-error"'
   );
 
+  assert.ok(
+    this.$('>:first-child').hasClass('ef-hasContent'),
+    'Has class "ef-hasContent"'
+  );
+
   assert.strictEqual(
     this.$('>:first-child').text().trim(),
     errorMessage,

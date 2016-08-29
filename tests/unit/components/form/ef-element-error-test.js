@@ -16,6 +16,12 @@ test('Default property values', function(assert) {
   );
 
   assert.strictEqual(
+    component.get('hasMessage'),
+    false,
+    '"hasMessage" property is false by default'
+  );
+
+  assert.strictEqual(
     component.get('pattern'),
     null,
     '"pattern" property is null by default'
@@ -112,6 +118,21 @@ test('setHasBlock() sets `hasBlock` to true', function(assert) {
     component.get('hasBlock'),
     true,
     '"hasBlock" property is true'
+  );
+});
+
+test('`hasMessage` is `true` when there is a message', function(assert) {
+  const component = this.subject({
+    errors: {
+      testProperty: 'test message'
+    },
+    property: 'testProperty'
+  });
+
+  assert.strictEqual(
+    component.get('hasMessage'),
+    true,
+    '"hasMessage" property is true'
   );
 });
 

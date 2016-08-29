@@ -20,6 +20,11 @@ export default Component.extend({
   // Attributes
 
   /** @type {String[]} */
+  classNameBindings: [
+    'hasMessage:ef-hasContent'
+  ],
+
+  /** @type {String[]} */
   classNames: [
     'ef-form-element-error'
   ],
@@ -55,6 +60,13 @@ export default Component.extend({
    * @type {Boolean}
    */
   hasBlock: false,
+
+  /**
+   * Whether there is an error messages to display
+   *
+   * @type {ember/Computed/notEmpty}
+   */
+  hasMessage: computed.notEmpty('message'),
 
   /**
    * Regular expression pattern to apply to error message.

@@ -36,7 +36,9 @@ Display error message for associated properties.
 
 ### CSS Class Name Bindings
 
-* None
+These are CSS class name bindings, listed as **property:** *class name applied* (default state)
+
+* **hasMessage:** *ef-hasContent* (defaults to `hasMessage: false`)
 
 
 ## Properties
