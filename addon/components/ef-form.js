@@ -63,7 +63,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
      * @returns {undefined}
      */
     registerError(property) {
-      get(this, 'registeredErrors').push(property);
+      get(this, 'registeredErrors').addObject(property);
     }
   },
 
