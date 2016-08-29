@@ -1,0 +1,11 @@
+{{~#if hasBlock~}}
+  {{yield messages}}
+{{~else~}}
+  {{#each messages as |message|}}
+    {{#ef-list}}
+      {{#ef-list-item}}
+        {{message}}
+      {{/ef-list-item}}
+    {{/ef-list}}
+  {{/each}}
+{{~/if~}}
