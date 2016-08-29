@@ -5,8 +5,15 @@
       errors=errors
       onRegisterError=(action "registerError")
     )
+
     fieldset=(component "form/ef-fieldset")
-    form-error=(component "form/ef-form-error" errors=errors registeredErrors=registeredErrors)
+
+    form-error=(component
+      "form/ef-form-error"
+      errors=errors
+      registeredErrors=registeredErrors
+    )
+
     input-checkbox=(component "form/input/ef-checkbox" data=data)
     input-color=(component "form/input/ef-color" data=data)
     input-date=(component "form/input/ef-date" data=data)
