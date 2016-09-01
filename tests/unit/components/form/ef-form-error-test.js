@@ -152,6 +152,28 @@ test('updateMessages()', function(assert) {
   );
 });
 
+test( 'Observer keys are correct', function( assert ) {
+  const component = this.subject({
+    errors: {
+      error1: null,
+      error2: null
+    },
+    registeredErrors: ['error1']
+  });
+
+  this.render();
+
+  assert.ok(
+    component.__ember_meta__._listeners.includes('registeredErrors.[]:change'),
+    'registeredErrors.[] is being observed'
+  );
+
+  assert.ok(
+    component.__ember_meta__._listeners.includes('errors.error2:change'),
+    'errors.error2 is being observed'
+  );
+});
+
 test('There are no references to Ember.$, $ or jQuery', function(assert) {
   globalLibraries.setupSpies();
 
