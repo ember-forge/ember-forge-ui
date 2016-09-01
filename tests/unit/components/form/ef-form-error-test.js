@@ -8,11 +8,6 @@ const {
 } = Ember;
 
 moduleForComponent('form/ef-form-error', 'Unit | Component | form/ef form error', {
-  needs: [
-    'component:ef-list',
-    'component:ef-list-item'
-  ],
-
   unit: true
 });
 
@@ -108,6 +103,7 @@ test('`hasMessages` is `true` when there are messages', function(assert) {
         'one'
       ]
     },
+    layout: null,
     registeredErrors: ['error1']
   });
 
@@ -135,6 +131,7 @@ test('updateMessages()', function(assert) {
         'two'
       ]
     },
+    layout: null,
     registeredErrors: ['error1']
   });
 
