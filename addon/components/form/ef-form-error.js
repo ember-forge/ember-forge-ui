@@ -88,6 +88,13 @@ export default Component.extend({
   availableErrors: null,
 
   /**
+   * Errors object bound to `ef-form` component
+   *
+   * @type {?Object}
+   */
+  errors: null,
+
+  /**
    * Whether there are any error messages to display
    *
    * @type {ember/Computed/notEmpty}
@@ -100,6 +107,13 @@ export default Component.extend({
    * @type {?ember/Array}
    */
   messages: null,
+
+  /**
+   * Property from `ef-form` component that contains errors being handled by `ef-element-error` components
+   *
+   * @type {?Object}
+   */
+  registeredErrors: null,
 
   // -------------------------------------------------------------------------
   // Observers
