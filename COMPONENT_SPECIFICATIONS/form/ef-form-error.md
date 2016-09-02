@@ -38,7 +38,7 @@ Display error messages for properties that are not being managed by individual `
 
 These are CSS class name bindings, listed as **property:** *class name applied* (default state)
 
-* **hasMessages:** *ef-hasContent* (defaults to `hasMessages: false`)
+* **hasMessages:** *ef-error* (defaults to `hasMessages: false`)
 
 
 ## Properties
@@ -69,7 +69,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 // rendered HTML
 
 <form class="ef-form">
-  <div class="ef-form-error ef-hasContent">
+  <div class="ef-form-error ef-error">
     <ul class="ef-list">
       <li class="ef-list-item">
         ...
@@ -104,7 +104,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 // rendered HTML
 
 <form class="ef-form">
-  <div class="ef-form-error ef-hasContent">
+  <div class="ef-form-error ef-error">
     <p>...</p>
     <p>...</p>
   </div>

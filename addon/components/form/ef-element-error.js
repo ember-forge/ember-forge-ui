@@ -21,7 +21,7 @@ export default Component.extend({
 
   /** @type {String[]} */
   classNameBindings: [
-    'hasMessage:ef-hasContent'
+    'hasMessage:ef-error'
   ],
 
   /** @type {String[]} */
@@ -87,6 +87,7 @@ export default Component.extend({
    * Define and assign dynamic computed properties
    *
    * - `message` is a bound property between the element's value and the property on the error object
+   * - it also facilitates the tracking of whether the element is in an error state or not
    *
    * @returns {undefined}
    */
@@ -104,7 +105,11 @@ export default Component.extend({
             const message = get(this, error);
 
             if (this.isError(message)) {
+              this.registerErrorState(property, true);
               return message;
+
+            } else {
+              this.registerErrorState(property, false);
             }
           }
         }
@@ -158,6 +163,23 @@ export default Component.extend({
       typeof get(this, proxiedAction) === 'function'
     ) {
       get(this, proxiedAction)(property);
+    }
+  },
+
+  /**
+   * Register whether the associated element is in an error state or not
+   *
+   * Do so by calling the `onRegisterErrorState` closure action
+   *
+   * @param {String} property Name of the error property being registered
+   * @param {Boolean} state Error state of the element
+   * @returns {undefined}
+   */
+  registerErrorState(property, state) {
+    const proxiedAction = 'onRegisterErrorState';
+
+    if (!isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
+      get(this, proxiedAction)(property, state);
     }
   },
 

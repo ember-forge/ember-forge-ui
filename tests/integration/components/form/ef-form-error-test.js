@@ -38,8 +38,8 @@ test('When displaying error messages', function(assert) {
   this.set('errors.error2', 'updated');
 
   assert.ok(
-    this.$('>:first-child').hasClass('ef-hasContent'),
-    'Has class "ef-hasContent"'
+    this.$('>:first-child').hasClass('ef-error'),
+    'Has class "ef-error"'
   );
 });
 

@@ -103,6 +103,21 @@ test('registerError() calls closure action when validation of `property` and `on
   );
 });
 
+test('registerErrorState() calls closure action when validation of `onRegisterErrorState` passes', function(assert) {
+  const spy = sinon.spy();
+
+  const component = this.subject({
+    onRegisterErrorState: spy
+  });
+
+  component.registerErrorState('testProperty', true);
+
+  assert.ok(
+    spy.calledWith('testProperty', true),
+    'Closure action is called'
+  );
+});
+
 test('setHasBlock() sets `hasBlock` to true', function(assert) {
   const component = this.subject();
 

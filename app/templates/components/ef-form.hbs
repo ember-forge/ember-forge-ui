@@ -4,6 +4,7 @@
       "form/ef-element-error"
       errors=errors
       onRegisterError=(action "registerError")
+      onRegisterErrorState=(action "registerErrorState")
     )
 
     fieldset=(component "form/ef-fieldset")
@@ -14,27 +15,113 @@
       registeredErrors=registeredErrors
     )
 
-    input-checkbox=(component "form/input/ef-checkbox" data=data)
-    input-color=(component "form/input/ef-color" data=data)
-    input-date=(component "form/input/ef-date" data=data)
-    input-datetime-local=(component "form/input/ef-datetime-local" data=data)
-    input-email=(component "form/input/ef-email" data=data)
-    input-hidden=(component "form/input/ef-hidden" data=data)
-    input-month=(component "form/input/ef-month" data=data)
-    input-number=(component "form/input/ef-number" data=data)
-    input-password=(component "form/input/ef-password" data=data)
-    input-range=(component "form/input/ef-range" data=data)
-    input-search=(component "form/input/ef-search" data=data)
-    input-telephone=(component "form/input/ef-telephone" data=data)
-    input-text=(component "form/input/ef-text" data=data)
-    input-time=(component "form/input/ef-time" data=data)
-    input-url=(component "form/input/ef-url" data=data)
-    input-week=(component "form/input/ef-week" data=data)
+    input-checkbox=(component
+      "form/input/ef-checkbox"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-color=(component
+      "form/input/ef-color"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-date=(component
+      "form/input/ef-date"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-datetime-local=(component
+      "form/input/ef-datetime-local"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-email=(component
+      "form/input/ef-email"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-hidden=(component
+      "form/input/ef-hidden"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-month=(component
+      "form/input/ef-month"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-number=(component
+      "form/input/ef-number"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-password=(component
+      "form/input/ef-password"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-range=(component
+      "form/input/ef-range"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-search=(component
+      "form/input/ef-search"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-telephone=(component
+      "form/input/ef-telephone"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-text=(component
+      "form/input/ef-text"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-time=(component
+      "form/input/ef-time"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-url=(component
+      "form/input/ef-url"
+      data=data
+      errorStates=errorStates
+    )
+
+    input-week=(component
+      "form/input/ef-week"
+      data=data
+      errorStates=errorStates
+    )
+
     label=(component "form/ef-label")
     legend=(component "form/ef-legend")
     reset=(component "ef-button" type="reset")
     submit=(component "ef-button" type="submit")
-    textarea=(component "form/ef-textarea" data=data)
+
+    textarea=(component
+      "form/ef-textarea"
+      data=data
+      errorStates=errorStates
+    )
   )
+  errorStates
   registeredErrors
 }}

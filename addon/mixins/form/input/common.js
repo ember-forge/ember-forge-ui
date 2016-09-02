@@ -54,6 +54,11 @@ export default Mixin.create(
     'value'
   ],
 
+  /** @type {String[]} */
+  classNameBindings: [
+    'errorState:ef-error'
+  ],
+
   /** @type {String} */
   tagName: 'input',
 
@@ -77,6 +82,17 @@ export default Mixin.create(
   },
 
   /**
+   * Add observers for dynamic properties
+   *
+   * @returns {undefined}
+   */
+  didInsertElement() {
+    this._super(...arguments);
+
+    this.addObservers();
+  },
+
+  /**
    * Create dynamic computed properties
    *
    * @returns {undefined}
@@ -85,6 +101,10 @@ export default Mixin.create(
     this._super(...arguments);
 
     this.createComputedProperties();
+
+    Ember.run.scheduleOnce('afterRender', () => {
+      this.updateErrorState();
+    });
   },
 
   /**
@@ -98,6 +118,17 @@ export default Mixin.create(
     this._super(...arguments);
 
     this.handleChangeEvent();
+  },
+
+  /**
+   * Remove observers for dynamic properties
+   *
+   * @returns {undefined}
+   */
+  willDestroyElement() {
+    this._super(...arguments);
+
+    this.removeObservers();
   },
 
   // -------------------------------------------------------------------------
@@ -126,6 +157,20 @@ export default Mixin.create(
    * @type {?Boolean}
    */
   disabled: null,
+
+  /**
+   * Error state of element
+   *
+   * @type {Boolean}
+   */
+  errorState: false,
+
+  /**
+   * Error state of elements
+   *
+   * @type {?Object}
+   */
+  errorStates: null,
 
   /**
    * Form associated with
@@ -165,6 +210,46 @@ export default Mixin.create(
   // Methods
 
   /**
+   * Add observers to dynamic properties
+   *
+   * @returns {undefined}
+   */
+  addObservers() {
+    let property = get(this, 'property');
+
+    if (!isEmpty(property)) {
+      this.addObserver(`errorStates.${property}`, this, 'updateErrorState');
+    }
+  },
+
+  /**
+   * Define and assign dynamic computed properties
+   *
+   * - `errorState` is the error state of the specific element
+   * - `value` is a bound property between the element's value and the property on the data object
+   *
+   * @returns {undefined}
+   */
+  createComputedProperties() {
+    let property = get(this, 'property');
+
+    if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
+      this.value = computed(
+        `data.${property}`,
+        {
+          get() {
+            let value = get(this, `data.${property}`);
+
+            set(this, 'trackedValue', value);
+
+            return value;
+          }
+        }
+      );
+    }
+  },
+
+  /**
    * If `onUpdate` contextual action is defined then call it with element's value.
    * If not then update the `data.<property>` path with the element's value.
    *
@@ -186,26 +271,25 @@ export default Mixin.create(
   },
 
   /**
-   * Define and assign dynamic computed properties
-   *
-   * - `value` is a bound property between the element's value and the property on the data object
+   * Remove observers to dynamic properties
    *
    * @returns {undefined}
    */
-  createComputedProperties() {
+  removeObservers() {
     let property = get(this, 'property');
 
-    if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
-      this.value = computed(`data.${property}`, {
-        get() {
-          let value = get(this, `data.${property}`);
+    this.removeObserver(`errorStates.${property}`, this, 'updateErrorState');
+  },
 
-          set(this, 'trackedValue', value);
+  /**
+   * Set `errorState` value to `errorStates.${property}` value
+   *
+   * @returns {undefined}
+   */
+  updateErrorState() {
+    let property = get(this, 'property');
 
-          return value;
-        }
-      });
-    }
+    set(this, 'errorState', Boolean(get(this, `errorStates.${property}`)));
   }
 
 });

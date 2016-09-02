@@ -38,7 +38,7 @@ Display error message for associated properties.
 
 These are CSS class name bindings, listed as **property:** *class name applied* (default state)
 
-* **hasMessage:** *ef-hasContent* (defaults to `hasMessage: false`)
+* **hasMessage:** *ef-error* (defaults to `hasMessage: false`)
 
 
 ## Properties
@@ -75,12 +75,12 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
 <form class="ef-form">
   <input type="text" class="ef-input-text" value="">
-  <div class="ef-form-element-error ef-hasContent">
+  <div class="ef-form-element-error ef-error">
    First Name cannot be empty.
   </div>
 
   <input type="text" class="ef-input-text" value="Tomster">
-  <div class="ef-form-element-error ef-hasContent">
+  <div class="ef-form-element-error ef-error">
    ...
   </div>
 </form>
@@ -104,7 +104,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
 <form class="ef-form">
   <input type="text" class="ef-input-text" value="">
-  <div class="ef-form-element-error ef-hasContent">
+  <div class="ef-form-element-error ef-error">
    Please provide your name
   </div>
 </form>
@@ -128,7 +128,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 // rendered HTML
 
 <form class="ef-form">
-  <div class="ef-form-element-error ef-hasContent">
+  <div class="ef-form-element-error ef-error">
    Error: First Name cannot be empty.
   </div>
 </form>

@@ -64,6 +64,18 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
      */
     registerError(property) {
       get(this, 'registeredErrors').addObject(property);
+    },
+
+    /**
+     * Register error property being addressed by an `ef-element-error` component
+     *
+     * @function actions:registerErrorState
+     * @param {String} property Name of the error property being registered
+     * @param {Boolean} state Error state of the element
+     * @returns {undefined}
+     */
+    registerErrorState(property, state) {
+      set(this, `errorStates.${property}`, state);
     }
   },
 
@@ -71,13 +83,14 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   // Events
 
   /**
-   * Initialize array
+   * Initialize property values
    *
    * @returns {undefined}
    */
   init() {
     this._super(...arguments);
 
+    set(this, 'errorStates', {});
     set(this, 'registeredErrors', Ember.A());
   },
 
@@ -116,6 +129,13 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    * @type {?Object}
    */
   data: null,
+
+  /**
+   * Error state of elements
+   *
+   * @type {?Object}
+   */
+  errorStates: null,
 
   /**
    * Represents the form's name within the forms collection
