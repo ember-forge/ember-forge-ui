@@ -3,6 +3,7 @@ import ComponentData from 'ember-forge-ui/mixins/component/data';
 import DataAttributes from 'ember-forge-ui/mixins/html/attributes/data';
 import ElementEvents from 'ember-forge-ui/mixins/html/events/element';
 import Ember from 'ember';
+import ErrorState from 'ember-forge-ui/mixins/form/error-state';
 import GlobalAttributes from 'ember-forge-ui/mixins/html/attributes/global';
 import InputSelection from 'ember-forge-ui/mixins/form/input/event/selection';
 import InputChange from 'ember-forge-ui/mixins/form/input/event/input';
@@ -21,6 +22,7 @@ const {
  * @module
  * @augments ember/Mixin
  * @augments ember-forge-ui/mixins/component/data
+ * @augments ember-forge-ui/mixins/form/error-state
  * @augments ember-forge-ui/mixins/form/input/event/input
  * @augments ember-forge-ui/mixins/form/input/event/selection
  * @augments ember-forge-ui/mixins/html/attributes/aria
@@ -33,6 +35,7 @@ export default Mixin.create(
   ComponentData,
   DataAttributes,
   ElementEvents,
+  ErrorState,
   GlobalAttributes,
   InputSelection,
   InputChange,
@@ -82,17 +85,6 @@ export default Mixin.create(
   },
 
   /**
-   * Add observers for dynamic properties
-   *
-   * @returns {undefined}
-   */
-  didInsertElement() {
-    this._super(...arguments);
-
-    this.addObservers();
-  },
-
-  /**
    * Create dynamic computed properties
    *
    * @returns {undefined}
@@ -101,10 +93,6 @@ export default Mixin.create(
     this._super(...arguments);
 
     this.createComputedProperties();
-
-    Ember.run.scheduleOnce('afterRender', () => {
-      this.updateErrorState();
-    });
   },
 
   /**
@@ -118,17 +106,6 @@ export default Mixin.create(
     this._super(...arguments);
 
     this.handleChangeEvent();
-  },
-
-  /**
-   * Remove observers for dynamic properties
-   *
-   * @returns {undefined}
-   */
-  willDestroyElement() {
-    this._super(...arguments);
-
-    this.removeObservers();
   },
 
   // -------------------------------------------------------------------------
@@ -157,20 +134,6 @@ export default Mixin.create(
    * @type {?Boolean}
    */
   disabled: null,
-
-  /**
-   * Error state of element
-   *
-   * @type {Boolean}
-   */
-  errorState: false,
-
-  /**
-   * Error state of elements
-   *
-   * @type {?Object}
-   */
-  errorStates: null,
 
   /**
    * Form associated with
@@ -208,19 +171,6 @@ export default Mixin.create(
 
   // -------------------------------------------------------------------------
   // Methods
-
-  /**
-   * Add observers to dynamic properties
-   *
-   * @returns {undefined}
-   */
-  addObservers() {
-    let property = get(this, 'property');
-
-    if (!isEmpty(property)) {
-      this.addObserver(`errorStates.${property}`, this, 'updateErrorState');
-    }
-  },
 
   /**
    * Define and assign dynamic computed properties
@@ -268,28 +218,6 @@ export default Mixin.create(
 
       set(this, 'trackedValue', value);
     }
-  },
-
-  /**
-   * Remove observers to dynamic properties
-   *
-   * @returns {undefined}
-   */
-  removeObservers() {
-    let property = get(this, 'property');
-
-    this.removeObserver(`errorStates.${property}`, this, 'updateErrorState');
-  },
-
-  /**
-   * Set `errorState` value to `errorStates.${property}` value
-   *
-   * @returns {undefined}
-   */
-  updateErrorState() {
-    let property = get(this, 'property');
-
-    set(this, 'errorState', Boolean(get(this, `errorStates.${property}`)));
   }
 
 });
