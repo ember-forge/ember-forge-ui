@@ -1,6 +1,4 @@
-//import Ember from 'ember';
 import globalLibraries from '../../../helpers/sl/synchronous/global-libraries';
-//import sinon from 'sinon';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('form/ef-form-text', 'Unit | Component | form/ef form text', {
