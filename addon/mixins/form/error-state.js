@@ -1,9 +1,11 @@
 import Ember from 'ember';
 
 const {
+  addObserver,
   get,
   isEmpty,
   Mixin,
+  removeObserver,
   set
 } = Ember;
 
@@ -101,7 +103,7 @@ export default Mixin.create({
     let property = get(this, 'property');
 
     if (!isEmpty(property)) {
-      this.addObserver(`errorStates.${property}`, this, 'updateErrorState');
+      addObserver(this, `errorStates.${property}`, this, 'updateErrorState');
     }
   },
 
@@ -113,7 +115,7 @@ export default Mixin.create({
   removeObservers() {
     let property = get(this, 'property');
 
-    this.removeObserver(`errorStates.${property}`, this, 'updateErrorState');
+    removeObserver(this, `errorStates.${property}`, this, 'updateErrorState');
   },
 
   /**
