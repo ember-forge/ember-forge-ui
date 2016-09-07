@@ -2,10 +2,13 @@ import Ember from 'ember';
 import InputElement from 'ember-forge-ui/mixins/form/input/common';
 
 const {
+  addObserver,
   Component,
   get,
   isEmpty,
   observer,
+  removeObserver,
+  run,
   set
 } = Ember;
 
@@ -183,7 +186,7 @@ export default Component.extend(InputElement, {
     let property = get(this, 'property');
 
     if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`)) && !isEmpty(this.getAttr('value'))) {
-      this.addObserver(`data.${property}`, this, 'initializeState');
+      addObserver(this, `data.${property}`, this, 'initializeState');
     }
   },
 
@@ -212,7 +215,7 @@ export default Component.extend(InputElement, {
       null;
 
     if (value !== get(this, 'trackedValue')) {
-      if (!Ember.isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
+      if (!isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
         this.get('onUpdate')(value);
 
       } else {
@@ -236,13 +239,13 @@ export default Component.extend(InputElement, {
     if(!get(this, 'checked')) {
       if (get(this, 'isInitializing')) {
         if (valueEqualsProperty) {
-          Ember.run.scheduleOnce('afterRender', () => {
+          run.scheduleOnce('afterRender', () => {
             set(this, 'checked', true);
           });
         }
 
       } else {
-        Ember.run.scheduleOnce('afterRender', () => {
+        run.scheduleOnce('afterRender', () => {
           set(this, 'checked', valueEqualsProperty);
         });
       }
@@ -250,7 +253,7 @@ export default Component.extend(InputElement, {
     } else {
       if (get(this, 'isInitializing')) {
         if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
-          Ember.run.scheduleOnce('afterRender', () => {
+          run.scheduleOnce('afterRender', () => {
             set(this, 'internalChange', true);
             this.manageIndeterminateState();
             this.$().trigger('change');
@@ -260,7 +263,7 @@ export default Component.extend(InputElement, {
         this.toggleProperty('isInitializing');
 
       } else {
-        Ember.run.scheduleOnce('afterRender', () => {
+        run.scheduleOnce('afterRender', () => {
           set(this, 'checked', valueEqualsProperty);
         });
       }
@@ -275,6 +278,6 @@ export default Component.extend(InputElement, {
   removeObservers() {
     let property = get(this, 'property');
 
-    this.removeObserver(`data.${property}`, this, 'initializeState');
+    removeObserver(this, `data.${property}`, this, 'initializeState');
   }
 });

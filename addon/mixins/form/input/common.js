@@ -209,7 +209,7 @@ export default Mixin.create(
     let value = this.$().val();
 
     if (value !== get(this, 'trackedValue')) {
-      if (!Ember.isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
+      if (!isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
         this.get('onUpdate')(value);
 
       } else {

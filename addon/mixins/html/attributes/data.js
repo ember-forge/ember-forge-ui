@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 const {
   get,
-  Mixin
+  Mixin,
+  set
 } = Ember;
 
 /**
@@ -63,7 +64,7 @@ export default Mixin.create({
       }
     });
 
-    this.set('attributeBindings', bindings);
+    set(this, 'attributeBindings', bindings);
   }
 
 });
