@@ -6,6 +6,7 @@ const {
   isEmpty,
   Mixin,
   removeObserver,
+  run,
   set
 } = Ember;
 
@@ -48,7 +49,7 @@ export default Mixin.create({
   init() {
     this._super(...arguments);
 
-    Ember.run.scheduleOnce('afterRender', () => {
+    run.scheduleOnce('afterRender', () => {
       this.updateErrorState();
     });
   },
