@@ -1,10 +1,12 @@
 import Ember from 'ember';
 
 const {
+  addObserver,
   Component,
   computed,
   get,
   isEmpty,
+  removeObserver,
   set
 } = Ember;
 
@@ -135,10 +137,10 @@ export default Component.extend({
 
     set(this, 'availableErrors', [...propertiesNotManaged]);
 
-    this.addObserver('registeredErrors.[]', this, 'updateMessages');
+    addObserver(this, 'registeredErrors.[]', this, 'updateMessages');
 
     get(this, 'availableErrors').forEach((value) => {
-      this.addObserver(`errors.${value}`, this, 'updateMessages');
+      addObserver(this, `errors.${value}`, this, 'updateMessages');
     });
   },
 
@@ -148,10 +150,10 @@ export default Component.extend({
    * @returns {undefined}
    */
   removeObservers() {
-    this.removeObserver('registeredErrors.[]', this, 'updateMessages');
+    removeObserver(this, 'registeredErrors.[]', this, 'updateMessages');
 
     get(this, 'availableErrors').forEach((value) => {
-      this.removeObserver(`errors.${value}`, this, 'updateMessages');
+      removeObserver(this, `errors.${value}`, this, 'updateMessages');
     });
   },
 
