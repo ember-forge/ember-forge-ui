@@ -6,9 +6,13 @@ import Ember from 'ember';
 import GlobalAttributes from 'ember-forge-ui/mixins/html/attributes/global';
 
 const {
+  addObserver,
   Component,
   get,
-  set
+  isEmpty,
+  removeObserver,
+  set,
+  setProperties
 } = Ember;
 
 /**
@@ -64,18 +68,6 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
      */
     registerError(property) {
       get(this, 'registeredErrors').addObject(property);
-    },
-
-    /**
-     * Register error property being addressed by an `ef-element-error` component
-     *
-     * @function actions:registerErrorState
-     * @param {String} property Name of the error property being registered
-     * @param {Boolean} state Error state of the element
-     * @returns {undefined}
-     */
-    registerErrorState(property, state) {
-      set(this, `errorStates.${property}`, state);
     }
   },
 
@@ -84,6 +76,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
 
   /**
    * Initialize property values
+   * Add observers for dynamic properties
    *
    * @returns {undefined}
    */
@@ -92,6 +85,20 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
 
     set(this, 'errorStates', {});
     set(this, 'registeredErrors', Ember.A());
+
+    this.setErrorState();
+    this.addObservers();
+  },
+
+  /**
+   * Remove observers for dynamic properties
+   *
+   * @returns {undefined}
+   */
+  willDestroyElement() {
+    this._super(...arguments);
+
+    this.removeObservers();
   },
 
   // -------------------------------------------------------------------------
@@ -131,6 +138,13 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   data: null,
 
   /**
+   * Holds the error messages associated with each property
+   *
+   * @type {?Object}
+   */
+  errors: null,
+
+  /**
    * Error state of elements
    *
    * @type {?Object}
@@ -158,12 +172,71 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    *
    * @type {?ember/Array}
    */
-  registeredErrors: null
+  registeredErrors: null,
 
   // -------------------------------------------------------------------------
   // Observers
 
   // -------------------------------------------------------------------------
   // Methods
+
+  /**
+   * Add observers to dynamic properties
+   *
+   * @returns {undefined}
+   */
+  addObservers() {
+    Object.keys(get(this, 'errors')).forEach((value) => {
+      addObserver(this, `errors.${value}`, get(this, 'generateObserverFunction')(value));
+    });
+  },
+
+  /**
+   * Generate function to be called by observed property changes
+   *
+   * @param {String} property
+   * @returns {Function}
+   */
+  generateObserverFunction(property) {
+    return function() {
+      this.setErrorState(property, this);
+    };
+  },
+
+  /**
+   * Remove observers to dynamic properties
+   *
+   * @returns {undefined}
+   */
+  removeObservers() {
+    Object.keys(get(this, 'errors')).forEach((value) => {
+      removeObserver(this, `errors.${value}`, get(this, 'generateObserverFunction')(value));
+    });
+  },
+
+  /**
+   * Initialize all error states or set whether a data property is in an error state or not
+   *
+   * @returns {undefined}
+   */
+  setErrorState(property, context) {
+    context = context || this;
+
+    // Initialization
+    if (isEmpty(property)) {
+      const propertiesHash = {};
+
+      Object.keys(get(this, 'errors')).forEach(function(value) {
+        let property = value.replace('errors.', '');
+        propertiesHash[`errorStates.${property}`] = !isEmpty(get(context, `errors.${property}`));
+      });
+
+      setProperties(context, propertiesHash);
+
+    // Observers
+    } else {
+      set(context, `errorStates.${property}`, !isEmpty(get(context, `errors.${property}`)));
+    }
+  }
 
 });

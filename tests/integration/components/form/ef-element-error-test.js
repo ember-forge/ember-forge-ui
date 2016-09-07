@@ -59,35 +59,6 @@ test('`onRegisterError` closure action is called with `property` value on render
   `);
 });
 
-test('`onRegisterErrorState` closure action is called with `property` and `state` value on render', function(assert) {
-  assert.expect(2);
-
-  const done = assert.async();
-
-  this.on('test-action', function(property, state) {
-    assert.strictEqual(
-      property,
-      'testValue',
-      'property was expected value'
-    );
-
-    assert.strictEqual(
-      state,
-      false,
-      'state was expected value'
-    );
-
-    done();
-  });
-
-  this.render(hbs`
-    {{form/ef-element-error
-      property="testValue"
-      onRegisterErrorState=(action "test-action")
-    }}
-  `);
-});
-
 test('Error message can be overridden in template', function(assert) {
   this.set('errors', {
     testValue: 'the error message'
