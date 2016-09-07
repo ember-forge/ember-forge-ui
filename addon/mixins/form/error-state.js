@@ -11,7 +11,7 @@ const {
 } = Ember;
 
 /**
- * ???
+ * Set error state for specified property
  *
  * @module
  * @augments ember/Mixin
