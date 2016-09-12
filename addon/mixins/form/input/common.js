@@ -13,7 +13,8 @@ const {
   get,
   isEmpty,
   Mixin,
-  set
+  set,
+  typeOf
 } = Ember;
 
 /**
@@ -209,7 +210,7 @@ export default Mixin.create(
     let value = this.$().val();
 
     if (value !== get(this, 'trackedValue')) {
-      if (!isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
+      if (!isEmpty(get(this, 'onUpdate')) && typeOf(get(this, 'onUpdate')) === 'function') {
         this.get('onUpdate')(value);
 
       } else {

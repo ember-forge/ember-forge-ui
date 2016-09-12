@@ -3,7 +3,8 @@ import Ember from 'ember';
 const {
   get,
   isEmpty,
-  Mixin
+  Mixin,
+  typeOf
 } = Ember;
 
 /**
@@ -39,7 +40,7 @@ export default Mixin.create({
 
     let proxiedAction = 'onCreateData';
 
-    if (!isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
+    if (!isEmpty(get(this, proxiedAction)) && typeOf(get(this, proxiedAction)) === 'function') {
       let data = {};
       data.id = get(this, 'elementId');
 

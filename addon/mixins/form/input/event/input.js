@@ -3,7 +3,8 @@ import Ember from 'ember';
 const {
   get,
   isEmpty,
-  Mixin
+  Mixin,
+  typeOf
 } = Ember;
 
 /**
@@ -38,13 +39,13 @@ export default Mixin.create({
    * @returns {undefined}
    */
   input(event) {
-    if (!isEmpty(get(this, 'onInput')) && typeof get(this, 'onInput') === 'function') {
+    if (!isEmpty(get(this, 'onInput')) && typeOf(get(this, 'onInput')) === 'function') {
       this._super(...arguments);
     }
 
     let proxiedAction = 'onInputData';
 
-    if (!isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
+    if (!isEmpty(get(this, proxiedAction)) && typeOf(get(this, proxiedAction)) === 'function') {
       get(this, proxiedAction)(this.getInputData(event));
     }
   },

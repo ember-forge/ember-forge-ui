@@ -3,7 +3,8 @@ import Ember from 'ember';
 const {
   get,
   isEmpty,
-  Mixin
+  Mixin,
+  typeOf
 } = Ember;
 
 /**
@@ -40,13 +41,13 @@ export default Mixin.create({
    * @returns {undefined}
    */
   select() {
-    if (!isEmpty(get(this, 'onSelect')) && typeof get(this, 'onSelect') === 'function') {
+    if (!isEmpty(get(this, 'onSelect')) && typeOf(get(this, 'onSelect')) === 'function') {
       this._super(...arguments);
     }
 
     let proxiedAction = 'onSelectData';
 
-    if (!isEmpty(get(this, proxiedAction)) && typeof get(this, proxiedAction) === 'function') {
+    if (!isEmpty(get(this, proxiedAction)) && typeOf(get(this, proxiedAction)) === 'function') {
       get(this, proxiedAction)(this.getSelectionData(event));
     }
   },
@@ -83,7 +84,7 @@ export default Mixin.create({
     let selectionDirection = element.selectionDirection || null;
     let start;
 
-    if (typeof element.selectionStart === 'number' && typeof element.selectionEnd === 'number') {
+    if (typeOf(element.selectionStart) === 'number' && typeOf(element.selectionEnd) === 'number') {
       start = element.selectionStart;
       end = element.selectionEnd;
 

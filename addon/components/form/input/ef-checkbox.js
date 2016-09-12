@@ -9,7 +9,8 @@ const {
   observer,
   removeObserver,
   run,
-  set
+  set,
+  typeOf
 } = Ember;
 
 /**
@@ -215,7 +216,7 @@ export default Component.extend(InputElement, {
       null;
 
     if (value !== get(this, 'trackedValue')) {
-      if (!isEmpty(get(this, 'onUpdate')) && typeof get(this, 'onUpdate') === 'function') {
+      if (!isEmpty(get(this, 'onUpdate')) && typeOf(get(this, 'onUpdate')) === 'function') {
         this.get('onUpdate')(value);
 
       } else {
