@@ -7,6 +7,7 @@ const {
   get,
   isEmpty,
   removeObserver,
+  run,
   set
 } = Ember;
 
@@ -158,6 +159,18 @@ export default Component.extend({
   },
 
   /**
+   * Schedule messages to be updated afterRender
+   *
+   * @param {Array} messages
+   * @returns {undefined}
+   */
+  scheduleMessagesUpdate(messages) {
+    run.scheduleOnce('afterRender', () => {
+      set(this, 'messages', messages);
+    });
+  },
+
+  /**
    * Update messages array
    *
    * @returns {undefined}
@@ -180,7 +193,7 @@ export default Component.extend({
       }
     });
 
-    set(this, 'messages', messages);
+    this.scheduleMessagesUpdate(messages);
   }
 
 });
