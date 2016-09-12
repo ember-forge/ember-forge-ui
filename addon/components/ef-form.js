@@ -68,6 +68,25 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
      */
     registerError(property) {
       get(this, 'registeredErrors').addObject(property);
+    },
+
+    /**
+     * Register whether there's a pattern match against a property's error string
+     *
+     * @function actions:registerErrorPatternMatch
+     * @param {String} property
+     * @param {String} id
+     * @param {Boolean} state
+     * @returns {undefined}
+     */
+    registerErrorPatternMatch(property, id, state) {
+      if (isEmpty(get(this, `registeredPatterns.${property}`))) {
+        set(this, `registeredPatterns.${property}`, {});
+      }
+
+      set(this, `registeredPatterns.${property}.${id}`, state);
+
+      this.updatePatternMatchingResults();
     }
   },
 
@@ -85,7 +104,9 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
 
     set(this, 'errorStates', {});
     set(this, 'registeredErrors', Ember.A());
+    set(this, 'registeredPatterns', {});
 
+    this.initializePatternMatches();
     this.setErrorState();
     this.addObservers();
   },
@@ -168,6 +189,20 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   novalidate: null,
 
   /**
+   * State of pattern matching of individual `ef-element-error` instances
+   *
+   * @type {?Object}
+   */
+  registeredPatterns: null,
+
+  /**
+   * Whether (error) properties have successful pattern matches against them
+   *
+   * @type {?Object}
+   */
+  patternMatches: null,
+
+  /**
    * Array of registered error properties
    *
    * @type {?ember/Array}
@@ -204,6 +239,22 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   },
 
   /**
+   * Initialize pattern matches
+   *
+   * @returns {undefined}
+   */
+  initializePatternMatches() {
+    set(this, 'patternMatches', {});
+
+    const propertiesHash = {};
+    Object.keys(get(this, 'errors')).forEach(function(property) {
+      propertiesHash[`patternMatches.${property}`] = null;
+    });
+
+    setProperties(this, propertiesHash);
+  },
+
+  /**
    * Remove observers to dynamic properties
    *
    * @returns {undefined}
@@ -237,6 +288,26 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
     } else {
       set(context, `errorStates.${property}`, !isEmpty(get(context, `errors.${property}`)));
     }
+  },
+
+  /**
+   * Set whether there is at least a single pattern match or not for the (error) property
+   *
+   * @returns {undefined}
+   */
+  updatePatternMatchingResults() {
+    const propertiesHash = {};
+
+    Object.keys(get(this, 'registeredPatterns')).forEach((property) => {
+      let values = Ember.A();
+      Object.keys(get(this, `registeredPatterns.${property}`)).forEach((id) => {
+        values.push(get(this, `registeredPatterns.${property}.${id}`));
+      });
+
+      propertiesHash[`patternMatches.${property}`] = values.contains(true);
+    });
+
+    setProperties(this, propertiesHash);
   }
 
 });

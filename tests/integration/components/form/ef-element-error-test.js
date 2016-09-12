@@ -36,7 +36,7 @@ test('Default rendered state', function(assert) {
   );
 });
 
-test('`onRegisterError` closure action is called with `property` value on render', function(assert) {
+test('onRegisterError closure action is called with property value on render', function(assert) {
   assert.expect(1);
 
   const done = assert.async();
@@ -55,6 +55,29 @@ test('`onRegisterError` closure action is called with `property` value on render
     {{form/ef-element-error
       property="testValue"
       onRegisterError=(action "test-action")
+    }}
+  `);
+});
+
+test('onRegisterErrorPatternMatch closure action is called with property value on render', function(assert) {
+  assert.expect(1);
+
+  const done = assert.async();
+
+  this.on('test-action', function(property) {
+    assert.strictEqual(
+      property,
+      'testValue',
+      'Property was expected value'
+    );
+
+    done();
+  });
+
+  this.render(hbs`
+    {{form/ef-element-error
+      property="testValue"
+      onRegisterErrorPatternMatch=(action "test-action")
     }}
   `);
 });

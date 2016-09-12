@@ -134,3 +134,21 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 </form>
 ```
 
+
+```
+{{#f.error property="age" as |message|}}
+  fallback error message if regex patterns don't match
+  <br>original message: {{message}}
+{{/f.error}}
+{{f.error property="age"}}
+{{#f.error property="age" pattern=errorPattern as |message|}}
+  The first pattern matched (bound value)
+  <br>original message: {{message}}
+{{/f.error}}
+{{f.error property="age" pattern=errorPattern}}
+{{#f.error property="age" pattern="error2" as |message|}}
+  The second pattern matched (hardcoded)
+  <br>original message: {{message}}
+{{/f.error}}
+```
+

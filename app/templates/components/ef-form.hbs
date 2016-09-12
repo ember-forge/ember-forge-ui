@@ -3,7 +3,10 @@
     error=(component
       "form/ef-element-error"
       errors=errors
+      errorStates=errorStates
       onRegisterError=(action "registerError")
+      onRegisterErrorPatternMatch=(action "registerErrorPatternMatch")
+      patternMatches=patternMatches
     )
 
     fieldset=(component "form/ef-fieldset")
@@ -123,5 +126,6 @@
     )
   )
   errorStates
+  patternMatches
   registeredErrors
 }}
