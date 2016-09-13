@@ -41,26 +41,15 @@ test('Default property values', function(assert) {
 });
 
 test('init() calls expected methods', function(assert) {
-  run.begin();
-
-  assert.expect(3);
-
-  const done = assert.async();
   const errorSpy = sinon.spy();
+  const messageSpy = sinon.spy();
   const observerSpy = sinon.spy();
 
   this.subject({
     addDynamicObservers: observerSpy,
     property: 'something',
     registerError: errorSpy,
-    updateMessage() {
-      assert.ok(
-        true,
-        'registerError() is called once during init'
-      );
-
-      done();
-    }
+    updateMessage: messageSpy
   });
 
   assert.ok(
@@ -69,28 +58,92 @@ test('init() calls expected methods', function(assert) {
   );
 
   assert.ok(
+    messageSpy.calledOnce,
+    'updateMessage() is called once'
+  );
+
+  assert.ok(
     observerSpy.calledOnce,
     'addDynamicObservers() is called once'
   );
-
-  run.end();
 });
 
 test('willClearRender() calls expected methods', function(assert) {
   const component = this.subject();
+  const deregisterSpy = sinon.spy(component, 'deregisterError');
   const observerSpy = sinon.spy(component, 'removeDynamicObservers');
 
   component.trigger('willClearRender');
 
   assert.ok(
-    observerSpy.called,
+    deregisterSpy.calledOnce,
+    'deregisterError() is called once during willClearRender'
+  );
+
+  assert.ok(
+    observerSpy.calledOnce,
     'removeDynamicObservers() is called once during willClearRender'
   );
 });
 
-test('registerError() calls closure action when validation of `property` and `onRegisterError` passes', function(assert) {
-  run.begin();
+test('deregisterError() calls closure action when validation of `property` and `onDeregisterError` passes', function(assert) {
+  const spy = sinon.spy();
 
+  const component = this.subject({
+    onDeregisterError: spy,
+    property: ''
+  });
+
+  component.deregisterError();
+
+  assert.strictEqual(
+    spy.calledOnce,
+    false,
+    'Closure action not called when `property` is empty string'
+  );
+
+  component.set('property', []);
+
+  component.deregisterError();
+
+  assert.strictEqual(
+    spy.calledOnce,
+    false,
+    'Closure action not called when `property` is an array'
+  );
+
+  component.set('property', 'testProperty');
+  component.set('onDeregisterError', '');
+
+  component.deregisterError();
+
+  assert.strictEqual(
+    spy.calledOnce,
+    false,
+    'Closure action not called when `onDeregisterError` is an empty string'
+  );
+
+  component.set('onDeregisterError', []);
+
+  component.deregisterError();
+
+  assert.strictEqual(
+    spy.calledWith(),
+    false,
+    'Closure action not called when `onDeregisterError` is not function'
+  );
+
+  component.set('onDeregisterError', spy);
+
+  component.deregisterError();
+
+  assert.ok(
+    spy.calledWith('testProperty'),
+    'Closure action is called'
+  );
+});
+
+test('registerError() calls closure action when validation of `property` and `onRegisterError` passes', function(assert) {
   const spy = sinon.spy();
 
   const component = this.subject({
@@ -145,8 +198,6 @@ test('registerError() calls closure action when validation of `property` and `on
     spy.calledWith('testProperty'),
     'Closure action is called'
   );
-
-  run.end();
 });
 
 test('registerErrorPatternMatch() calls closure action when validation of `onRegisterErrorPatternMatch` passes', function(assert) {
@@ -215,8 +266,6 @@ test('`hasMessage` is `true` when there is a message', function(assert) {
 });
 
 test('updateMessage(): null pattern and pattern match true', function(assert) {
-  run.begin();
-
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
   const component = this.subject({
@@ -240,13 +289,9 @@ test('updateMessage(): null pattern and pattern match true', function(assert) {
     messageSpy.calledWith(null),
     'scheduleMessageUpdate() called with null'
   );
-
-  run.end();
 });
 
 test('updateMessage(): null pattern and pattern match false', function(assert) {
-  run.begin();
-
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
   const component = this.subject({
@@ -273,13 +318,9 @@ test('updateMessage(): null pattern and pattern match false', function(assert) {
     messageSpy.calledWith('error message'),
     'scheduleMessageUpdate() called with expected value'
   );
-
-  run.end();
 });
 
 test('updateMessage(): non-null pattern, in error state and regex match', function(assert) {
-  run.begin();
-
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
   const component = this.subject({
@@ -309,13 +350,9 @@ test('updateMessage(): non-null pattern, in error state and regex match', functi
     messageSpy.calledWith('error message'),
     'scheduleMessageUpdate() called with expected value'
   );
-
-  run.end();
 });
 
 test('updateMessage(): non-null pattern, not in error state', function(assert) {
-  run.begin();
-
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
   const component = this.subject({
@@ -345,13 +382,9 @@ test('updateMessage(): non-null pattern, not in error state', function(assert) {
     messageSpy.calledWith(null),
     'scheduleMessageUpdate() called with null'
   );
-
-  run.end();
 });
 
 test('updateMessage(): non-null pattern, in error state, no regex match', function(assert) {
-  run.begin();
-
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
   const component = this.subject({
@@ -381,13 +414,9 @@ test('updateMessage(): non-null pattern, in error state, no regex match', functi
     messageSpy.calledWith(null),
     'scheduleMessageUpdate() called with null'
   );
-
-  run.end();
 });
 
 test('updateMessage(): non-null pattern, invalid regex', function(assert) {
-  run.begin();
-
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
   const component = this.subject({
@@ -417,8 +446,6 @@ test('updateMessage(): non-null pattern, invalid regex', function(assert) {
     messageSpy.calledWith(null),
     'scheduleMessageUpdate() called with null'
   );
-
-  run.end();
 });
 
 skip('scheduleMessageUpdate() sets message in afterRender', function() {

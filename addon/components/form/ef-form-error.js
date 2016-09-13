@@ -48,11 +48,14 @@ export default Component.extend({
     this._super(...arguments);
 
     set(this, 'allErrorProperties', Object.keys(get(this, 'errors')));
+    set(this, 'availableErrors', Ember.A());
     set(this, 'messages', Ember.A());
+    set(this, 'previousAvailableErrors', Ember.A());
   },
 
   /**
-   * Add observers for dynamic properties
+   * - Add observers for dynamic properties
+   * - Initialize available errors
    *
    * @returns {undefined}
    */
@@ -60,6 +63,7 @@ export default Component.extend({
     this._super(...arguments);
 
     this.addDynamicObservers();
+    this.updateAvailableErrors();
   },
 
   /**
@@ -67,7 +71,7 @@ export default Component.extend({
    *
    * @returns {undefined}
    */
-  willDestroyElement() {
+  willClearRender() {
     this._super(...arguments);
 
     this.removeDynamicObservers();
@@ -112,6 +116,14 @@ export default Component.extend({
   messages: null,
 
   /**
+   * Error properties that are not being managed by individual `form/ef-element-error` instances
+   * before updated by observers
+   *
+   * @type {?Array}
+   */
+  previousAvailableErrors: null,
+
+  /**
    * Property from `ef-form` component that contains errors being handled by `ef-element-error` components
    *
    * @type {?Object}
@@ -130,12 +142,9 @@ export default Component.extend({
    * @returns {undefined}
    */
   addDynamicObservers() {
-
-// react to "registeredErrors" changes by calling "updateAvailableErrors()" (which updates "availableErrors")
     addObserver(this, 'registeredErrors.[]', this, 'updateAvailableErrors');
-
-// react to "availableErrors" changes by removing previous observers and adding new ones (that call "updateMessages")
     addObserver(this, 'availableErrors.[]', this, 'updateDynamicObservers');
+    addObserver(this, 'availableErrors.[]', this, 'updateMessages');
   },
 
   /**
@@ -145,6 +154,8 @@ export default Component.extend({
    */
   removeDynamicObservers() {
     removeObserver(this, 'registeredErrors.[]', this, 'updateMessages');
+    removeObserver(this, 'availableErrors.[]', this, 'updateDynamicObservers');
+    removeObserver(this, 'availableErrors.[]', this, 'updateMessages');
 
     get(this, 'availableErrors').forEach((value) => {
       removeObserver(this, `errors.${value}`, this, 'updateMessages');
@@ -157,8 +168,7 @@ export default Component.extend({
    * @returns {undefined}
    */
   updateDynamicObservers() {
-console.warn('this needs to be against a previously-known list, not the new one already updated');
-    get(this, 'availableErrors').forEach((value) => {
+    get(this, 'previousAvailableErrors').forEach((value) => {
       removeObserver(this, `errors.${value}`, this, 'updateMessages');
     });
 
@@ -179,6 +189,12 @@ console.warn('this needs to be against a previously-known list, not the new one 
     });
   },
 
+  /**
+   * Determine which errors are being handled by this component
+   * (not being handled by individual `ef-element` error instancces)
+   *
+   * @returns {undefined}
+   */
   updateAvailableErrors() {
     const allErrorProperties = new Set(get(this, 'allErrorProperties'));
     const registeredProperties = new Set(get(this, 'registeredErrors'));
@@ -186,6 +202,7 @@ console.warn('this needs to be against a previously-known list, not the new one 
       [...allErrorProperties].filter(property => !registeredProperties.has(property))
     );
 
+    set(this, 'previousAvailableErrors', get(this, 'availableErrors'));
     set(this, 'availableErrors', [...propertiesNotManaged]);
   },
 
@@ -196,8 +213,7 @@ console.warn('this needs to be against a previously-known list, not the new one 
    */
   updateMessages() {
     let messages = [];
-console.info('ef-form-error updateMessages()');
-console.log('availableErrors', get(this, 'availableErrors'));
+
     get(this, 'availableErrors').forEach((property) => {
       let theMessage = get(this, `errors.${property}`);
 

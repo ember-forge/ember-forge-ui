@@ -64,6 +64,6 @@ test('Messages update', function(assert) {
   assert.strictEqual(
     this.$('>:first-child').text().trim(),
     'updated again',
-    'Messagse are updated'
+    'Messages are updated'
   );
 });

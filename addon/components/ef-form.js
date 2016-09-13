@@ -60,6 +60,17 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   actions: {
 
     /**
+     * Deregister error property being addressed by an `ef-element-error` component
+     *
+     * @function actions:deregisterError
+     * @param {String} property Name of the error property being deregistered
+     * @returns {undefined}
+     */
+    deregisterError(property) {
+      get(this, 'registeredErrors').removeObject(property);
+    },
+
+    /**
      * Register error property being addressed by an `ef-element-error` component
      *
      * @function actions:registerError
@@ -108,7 +119,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
 
     this.initializePatternMatches();
     this.setErrorState();
-    this.addObservers();
+    this.addDynamicObservers();
   },
 
   /**
@@ -116,10 +127,10 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    *
    * @returns {undefined}
    */
-  willDestroyElement() {
+  willClearRender() {
     this._super(...arguments);
 
-    this.removeObservers();
+    this.removeDynamicObservers();
   },
 
   // -------------------------------------------------------------------------
@@ -220,9 +231,9 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    *
    * @returns {undefined}
    */
-  addObservers() {
-    Object.keys(get(this, 'errors')).forEach((value) => {
-      addObserver(this, `errors.${value}`, get(this, 'generateObserverFunction')(value));
+  addDynamicObservers() {
+    Object.keys(get(this, 'errors')).forEach((property) => {
+      addObserver(this, `errors.${property}`, get(this, 'generateObserverFunction')(property));
     });
   },
 
@@ -259,9 +270,9 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    *
    * @returns {undefined}
    */
-  removeObservers() {
-    Object.keys(get(this, 'errors')).forEach((value) => {
-      removeObserver(this, `errors.${value}`, get(this, 'generateObserverFunction')(value));
+  removeDynamicObservers() {
+    Object.keys(get(this, 'errors')).forEach((property) => {
+      removeObserver(this, `errors.${property}`, get(this, 'generateObserverFunction')(property));
     });
   },
 

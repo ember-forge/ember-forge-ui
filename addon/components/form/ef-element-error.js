@@ -58,9 +58,7 @@ export default Component.extend(ErrorState, {
       this.registerError();
       this.addDynamicObservers();
 
-      run.scheduleOnce('afterRender', () => {
-        this.updateMessage();
-      });
+      this.updateMessage();
     }
   },
 
@@ -73,6 +71,7 @@ export default Component.extend(ErrorState, {
     this._super(...arguments);
 
     this.removeDynamicObservers();
+    this.deregisterError();
   },
 
   // -------------------------------------------------------------------------
@@ -125,6 +124,27 @@ export default Component.extend(ErrorState, {
     addObserver(this, `errors.${property}`, this, 'updateMessage');
     addObserver(this, 'pattern', this, 'updateMessage');
     addObserver(this, `patternMatches.${property}`, this, 'updateMessage');
+  },
+
+  /**
+   * Deregister that this element's error message is being addressed.
+   *
+   * Do so by calling the `onDeregisterError` closure action
+   *
+   * @returns {undefined}
+   */
+  deregisterError() {
+    const property = get(this, 'property');
+    const proxiedAction = 'onDeregisterError';
+
+    if (
+      !isEmpty(property) &&
+      !Array.isArray(get(this, `errors.${property}`)) &&
+      !isEmpty(get(this, proxiedAction)) &&
+      typeof get(this, proxiedAction) === 'function'
+    ) {
+      get(this, proxiedAction)(property);
+    }
   },
 
   /**
@@ -200,7 +220,6 @@ export default Component.extend(ErrorState, {
     let errorMessage = get(this, `errors.${property}`);
 
     if (pattern !== null) {
-
       try {
         const regularExpression = new RegExp(pattern);
 
