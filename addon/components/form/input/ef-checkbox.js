@@ -66,7 +66,7 @@ export default Component.extend(InputElement, {
   init() {
     this._super(...arguments);
 
-    this.addObservers();
+    this.addDynamicObservers();
   },
 
   /**
@@ -77,7 +77,7 @@ export default Component.extend(InputElement, {
   willDestroyElement() {
     this._super(...arguments);
 
-    this.removeObservers();
+    this.removeDynamicObservers();
   },
 
   // -------------------------------------------------------------------------
@@ -183,7 +183,7 @@ export default Component.extend(InputElement, {
    *
    * @returns {undefined}
    */
-  addObservers() {
+  addDynamicObservers() {
     let property = get(this, 'property');
 
     if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`)) && !isEmpty(this.getAttr('value'))) {
@@ -276,7 +276,7 @@ export default Component.extend(InputElement, {
    *
    * @returns {undefined}
    */
-  removeObservers() {
+  removeDynamicObservers() {
     let property = get(this, 'property');
 
     removeObserver(this, `data.${property}`, this, 'initializeState');

@@ -37,7 +37,7 @@ export default Mixin.create({
   didInsertElement() {
     this._super(...arguments);
 
-    this.addObservers();
+    this.addDynamicObservers();
   },
 
   /**
@@ -59,7 +59,7 @@ export default Mixin.create({
   willDestroyElement() {
     this._super(...arguments);
 
-    this.removeObservers();
+    this.removeDynamicObservers();
   },
 
   // -------------------------------------------------------------------------
@@ -97,7 +97,7 @@ export default Mixin.create({
    *
    * @returns {undefined}
    */
-  addObservers() {
+  addDynamicObservers() {
     let property = get(this, 'property');
 
     if (!isEmpty(property)) {
@@ -110,7 +110,7 @@ export default Mixin.create({
    *
    * @returns {undefined}
    */
-  removeObservers() {
+  removeDynamicObservers() {
     let property = get(this, 'property');
 
     removeObserver(this, `errorStates.${property}`, this, 'updateErrorState');
