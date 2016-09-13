@@ -74,7 +74,7 @@ export default Component.extend(InputElement, {
    *
    * @returns {undefined}
    */
-  willDestroyElement() {
+  willClearRender() {
     this._super(...arguments);
 
     this.removeDynamicObservers();
