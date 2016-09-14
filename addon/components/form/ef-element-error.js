@@ -8,7 +8,7 @@ const {
   get,
   isEmpty,
   removeObserver,
-  run,
+  run: { scheduleOnce },
   set,
   typeOf
 } = Ember;
@@ -204,7 +204,7 @@ export default Component.extend(ErrorState, {
    * @returns {undefined}
    */
   scheduleMessageUpdate(message) {
-    run.scheduleOnce('afterRender', () => {
+    scheduleOnce('afterRender', () => {
       set(this, 'message', message);
     });
   },

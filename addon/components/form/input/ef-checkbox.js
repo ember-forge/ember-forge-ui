@@ -8,7 +8,7 @@ const {
   isEmpty,
   observer,
   removeObserver,
-  run,
+  run: { scheduleOnce },
   set,
   typeOf
 } = Ember;
@@ -240,13 +240,13 @@ export default Component.extend(InputElement, {
     if(!get(this, 'checked')) {
       if (get(this, 'isInitializing')) {
         if (valueEqualsProperty) {
-          run.scheduleOnce('afterRender', () => {
+          scheduleOnce('afterRender', () => {
             set(this, 'checked', true);
           });
         }
 
       } else {
-        run.scheduleOnce('afterRender', () => {
+        scheduleOnce('afterRender', () => {
           set(this, 'checked', valueEqualsProperty);
         });
       }
@@ -254,7 +254,7 @@ export default Component.extend(InputElement, {
     } else {
       if (get(this, 'isInitializing')) {
         if (!isEmpty(property) && !Array.isArray(get(this, `data.${property}`))) {
-          run.scheduleOnce('afterRender', () => {
+          scheduleOnce('afterRender', () => {
             set(this, 'internalChange', true);
             this.manageIndeterminateState();
             this.$().trigger('change');
@@ -264,7 +264,7 @@ export default Component.extend(InputElement, {
         this.toggleProperty('isInitializing');
 
       } else {
-        run.scheduleOnce('afterRender', () => {
+        scheduleOnce('afterRender', () => {
           set(this, 'checked', valueEqualsProperty);
         });
       }
