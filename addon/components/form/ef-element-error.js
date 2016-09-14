@@ -4,7 +4,7 @@ import ErrorState from 'ember-forge-ui/mixins/form/error-state';
 const {
   addObserver,
   Component,
-  computed,
+  computed: { notEmpty },
   get,
   isEmpty,
   removeObserver,
@@ -82,7 +82,7 @@ export default Component.extend(ErrorState, {
    *
    * @type {ember/Computed/notEmpty}
    */
-  hasMessage: computed.notEmpty('message'),
+  hasMessage: notEmpty('message'),
 
   /**
    * Error message to display

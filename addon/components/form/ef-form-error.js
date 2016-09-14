@@ -3,7 +3,7 @@ import Ember from 'ember';
 const {
   addObserver,
   Component,
-  computed,
+  computed: { notEmpty },
   get,
   isEmpty,
   removeObserver,
@@ -106,7 +106,7 @@ export default Component.extend({
    *
    * @type {ember/Computed/notEmpty}
    */
-  hasMessages: computed.notEmpty('messages'),
+  hasMessages: notEmpty('messages'),
 
   /**
    * Error messages for properties that are not being managed by individual `form/ef-element-error` instances
