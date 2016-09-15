@@ -26,7 +26,7 @@ export default Component.extend({
   ],
 
   /** @type {String} */
-  tagName: '',
+//  tagName: '',
 
   // -------------------------------------------------------------------------
   // Actions
