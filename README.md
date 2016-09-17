@@ -161,8 +161,8 @@ afterInstall: function() {
 ```
 afterInstall: function() {
   return this.addAddonsToProject([
-    { name: 'existing-companion-addon-extending', version: '^1.0.1' },
-    { name: 'some-other-addon', version: '^2.1.0' }
+    { name: 'existing-companion-addon-extending', version: '1.0.1' },
+    { name: 'some-other-addon', version: '2.1.0' }
   ]);
 }
 ```
