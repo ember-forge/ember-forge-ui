@@ -107,6 +107,13 @@ export default Component.extend(ErrorState, {
    */
   patternMatches: null,
 
+  /**
+   * Whether validation has occurred
+   *
+   * @type {Boolean}
+   */
+  validationHasOccurred: false,
+
   // -------------------------------------------------------------------------
   // Observers
 
@@ -121,6 +128,7 @@ export default Component.extend(ErrorState, {
   addDynamicObservers() {
     const property = get(this, 'property');
 
+    addObserver(this, 'validationHasOccurred', this, 'updateMessage');
     addObserver(this, `errors.${property}`, this, 'updateMessage');
     addObserver(this, 'pattern', this, 'updateMessage');
     addObserver(this, `patternMatches.${property}`, this, 'updateMessage');
@@ -192,6 +200,7 @@ export default Component.extend(ErrorState, {
   removeDynamicObservers() {
     const property = get(this, 'property');
 
+    removeObserver(this, 'validationHasOccurred', this, 'updateMessage');
     removeObserver(this, `errors.${property}`, this, 'updateMessage');
     removeObserver(this, 'pattern', this, 'updateMessage');
     removeObserver(this, `patternMatches.${property}`, this, 'updateMessage');
@@ -215,36 +224,38 @@ export default Component.extend(ErrorState, {
    * @returns {undefined}
    */
   updateMessage() {
-    const pattern = get(this, 'pattern');
-    const property = get(this, 'property');
-    let errorMessage = get(this, `errors.${property}`);
+    if (get(this, 'validationHasOccurred') === true) {
+      const pattern = get(this, 'pattern');
+      const property = get(this, 'property');
+      let errorMessage = get(this, `errors.${property}`);
 
-    if (pattern !== null) {
-      try {
-        const regularExpression = new RegExp(pattern);
+      if (pattern !== null) {
+        try {
+          const regularExpression = new RegExp(pattern);
 
-        if (get(this, 'errorState') === true && regularExpression.test(errorMessage)) {
-          this.registerErrorPatternMatch(true);
+          if (get(this, 'errorState') === true && regularExpression.test(errorMessage)) {
+            this.registerErrorPatternMatch(true);
 
-        } else {
+          } else {
+            this.registerErrorPatternMatch(false);
+            errorMessage = null;
+          }
+
+        } catch(e) {
           this.registerErrorPatternMatch(false);
           errorMessage = null;
         }
 
-      } catch(e) {
+      } else {
         this.registerErrorPatternMatch(false);
-        errorMessage = null;
+
+        if (get(this, `patternMatches.${property}`) === true ) {
+          errorMessage = null;
+        }
       }
 
-    } else {
-      this.registerErrorPatternMatch(false);
-
-      if (get(this, `patternMatches.${property}`) === true ) {
-        errorMessage = null;
-      }
+      this.scheduleMessageUpdate(errorMessage);
     }
-
-    this.scheduleMessageUpdate(errorMessage);
   }
 
 });

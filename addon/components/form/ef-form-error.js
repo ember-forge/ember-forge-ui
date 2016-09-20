@@ -130,6 +130,13 @@ export default Component.extend({
    */
   registeredErrors: null,
 
+  /**
+   * Whether validation has occurred
+   *
+   * @type {Boolean}
+   */
+  validationHasOccurred: false,
+
   // -------------------------------------------------------------------------
   // Observers
 
@@ -145,6 +152,7 @@ export default Component.extend({
     addObserver(this, 'registeredErrors.[]', this, 'updateAvailableErrors');
     addObserver(this, 'availableErrors.[]', this, 'updateDynamicObservers');
     addObserver(this, 'availableErrors.[]', this, 'updateMessages');
+    addObserver(this, 'validationHasOccurred', this, 'updateMessages');
   },
 
   /**
@@ -156,6 +164,7 @@ export default Component.extend({
     removeObserver(this, 'registeredErrors.[]', this, 'updateMessages');
     removeObserver(this, 'availableErrors.[]', this, 'updateDynamicObservers');
     removeObserver(this, 'availableErrors.[]', this, 'updateMessages');
+    removeObserver(this, 'validationHasOccurred', this, 'updateMessages');
 
     get(this, 'availableErrors').forEach((value) => {
       removeObserver(this, `errors.${value}`, this, 'updateMessages');
@@ -214,20 +223,22 @@ export default Component.extend({
   updateMessages() {
     let messages = [];
 
-    get(this, 'availableErrors').forEach((property) => {
-      let theMessage = get(this, `errors.${property}`);
+    if (get(this, 'validationHasOccurred') === true) {
+      get(this, 'availableErrors').forEach((property) => {
+        let theMessage = get(this, `errors.${property}`);
 
-      if (!isEmpty(theMessage)) {
-        if (Array.isArray(theMessage)) {
-          theMessage.forEach(function(message) {
-            messages.push(message);
-          });
+        if (!isEmpty(theMessage)) {
+          if (Array.isArray(theMessage)) {
+            theMessage.forEach(function(message) {
+              messages.push(message);
+            });
 
-        } else {
-          messages.push(theMessage);
+          } else {
+            messages.push(theMessage);
+          }
         }
-      }
-    });
+      });
+    }
 
     this.scheduleMessagesUpdate(messages);
   }

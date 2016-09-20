@@ -12,7 +12,8 @@ const {
   isEmpty,
   removeObserver,
   set,
-  setProperties
+  setProperties,
+  typeOf
 } = Ember;
 
 /**
@@ -123,6 +124,37 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   },
 
   /**
+   * - Prevent event default on HTML form element on submit
+   * - If `onValidation` closure action is specified perform data validation
+   * - If `onSubmit` closure action is specified perform data submission (if specified validation passed)
+   *
+   * @override
+   * @see {@link https://html.spec.whatwg.org/multipage/indices.html#event-submit}
+   * @param {Object} event Browser event object
+   * @returns {undefined}
+   */
+  submit(event) {
+    event.preventDefault();
+
+    let proxiedAction = 'onValidate';
+    let validationSuccessful = true;
+
+    if (!isEmpty(get(this, proxiedAction)) && typeOf(get(this, proxiedAction)) === 'function') {
+      validationSuccessful = Boolean(get(this, proxiedAction)(get(this, 'data')));
+
+      set(this, 'validationHasOccurred', true);
+    }
+
+    if (validationSuccessful === true) {
+      let proxiedAction = 'onSubmit';
+
+      if (!isEmpty(get(this, proxiedAction)) && typeOf(get(this, proxiedAction)) === 'function') {
+        get(this, proxiedAction)(get(this, 'data'));
+      }
+    }
+  },
+
+  /**
    * Remove observers for dynamic properties
    *
    * @returns {undefined}
@@ -220,6 +252,15 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    */
   registeredErrors: null,
 
+  /**
+   * Whether validation has occurred
+   *
+   * Meaning that an `onValidate` closure action was specified and called
+   *
+   * @type {Boolean}
+   */
+  validationHasOccurred: false,
+
   // -------------------------------------------------------------------------
   // Observers
 
@@ -233,6 +274,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    */
   addDynamicObservers() {
     Object.keys(get(this, 'errors')).forEach((property) => {
+      addObserver(this, `validationHasOccurred`, get(this, 'generateObserverFunction')(property));
       addObserver(this, `errors.${property}`, get(this, 'generateObserverFunction')(property));
     });
   },
@@ -272,6 +314,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    */
   removeDynamicObservers() {
     Object.keys(get(this, 'errors')).forEach((property) => {
+      removeObserver(this, `validationHasOccurred`, get(this, 'generateObserverFunction')(property));
       removeObserver(this, `errors.${property}`, get(this, 'generateObserverFunction')(property));
     });
   },
@@ -284,20 +327,22 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   setErrorState(property, context) {
     context = context || this;
 
+    const inErrorState = get(context, 'validationHasOccurred') && !isEmpty(get(context, `errors.${property}`));
+
     // Initialization
     if (isEmpty(property)) {
       const propertiesHash = {};
 
       Object.keys(get(this, 'errors')).forEach(function(value) {
         let property = value.replace('errors.', '');
-        propertiesHash[`errorStates.${property}`] = !isEmpty(get(context, `errors.${property}`));
+        propertiesHash[`errorStates.${property}`] = inErrorState;
       });
 
       setProperties(context, propertiesHash);
 
     // Observers
     } else {
-      set(context, `errorStates.${property}`, !isEmpty(get(context, `errors.${property}`)));
+      set(context, `errorStates.${property}`, inErrorState);
     }
   },
 
