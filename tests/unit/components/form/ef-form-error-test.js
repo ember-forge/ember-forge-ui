@@ -51,6 +51,12 @@ test('Default property values', function(assert) {
     true,
     '"messages" property is null by default'
   );
+
+  assert.strictEqual(
+    component.get('validationHasOccurred'),
+    false,
+    '"validationHasOccurred" property is false by default'
+  );
 });
 
 test('didInsertElement() calls expected methods', function(assert) {
@@ -120,7 +126,8 @@ test('`hasMessages` is `true` when there are messages', function(assert) {
       ]
     },
     layout: null,
-    registeredErrors: ['error1']
+    registeredErrors: ['error1'],
+    validationHasOccurred: false
   });
 
   this.render();
@@ -131,8 +138,18 @@ test('`hasMessages` is `true` when there are messages', function(assert) {
 
   assert.strictEqual(
     component.get('hasMessages'),
+    false,
+    '"hasMessages" property is false when validation has not occurred'
+  );
+
+  run(() => {
+    component.set('validationHasOccurred', true);
+  });
+
+  assert.strictEqual(
+    component.get('hasMessages'),
     true,
-    '"hasMessages" property is true'
+    '"hasMessages" property is true when validation has occurred'
   );
 });
 
@@ -154,7 +171,8 @@ test('updateMessages()', function(assert) {
       ]
     },
     layout: null,
-    registeredErrors: ['error1']
+    registeredErrors: ['error1'],
+    validationHasOccurred: false
   });
 
   this.render();
@@ -165,12 +183,22 @@ test('updateMessages()', function(assert) {
 
   assert.deepEqual(
     component.get('messages'),
+    [],
+    'updateMessages() does not update messages when validation has not occurred'
+  );
+
+  run(() => {
+    component.set('validationHasOccurred', true);
+  });
+
+  assert.deepEqual(
+    component.get('messages'),
     [
       'error2 message',
       'one',
       'two'
     ],
-    'updateMessages() updates messages'
+    'updateMessages() updates messages when validation has occurred'
   );
 });
 
@@ -201,6 +229,11 @@ test('Observer keys are correct', function( assert ) {
   assert.ok(
     component.__ember_meta__._listeners.includes('registeredErrors.[]:change'),
     'registeredErrors.[] is being observed'
+  );
+
+  assert.ok(
+    component.__ember_meta__._listeners.includes('validationHasOccurred:change'),
+    'validationHasOccurred is being observed'
   );
 });
 

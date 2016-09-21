@@ -6,6 +6,34 @@ moduleForComponent('form/ef-element-error', 'Integration | Component | form/ef e
 });
 
 test('Default rendered state', function(assert) {
+  this.set('errors', {});
+
+  this.render(hbs`
+    {{form/ef-element-error
+      errors=errors
+      property="testValue"
+      validationHasOccurred=false
+    }}
+  `);
+
+  assert.ok(
+    this.$('>:first-child').hasClass('ef-form-element-error'),
+    'Has class "ef-form-element-error"'
+  );
+
+  assert.notOk(
+    this.$('>:first-child').hasClass('ef-error'),
+    'Does not have class "ef-error"'
+  );
+
+  assert.strictEqual(
+    this.$('>:first-child').text().trim(),
+    '',
+    'No error message is displayed'
+  );
+});
+
+test('Error message displays when validation has occurred', function(assert) {
   const errorMessage = 'the error message';
 
   this.set('errors', {
@@ -16,13 +44,9 @@ test('Default rendered state', function(assert) {
     {{form/ef-element-error
       errors=errors
       property="testValue"
+      validationHasOccurred=true
     }}
   `);
-
-  assert.ok(
-    this.$('>:first-child').hasClass('ef-form-element-error'),
-    'Has class "ef-form-element-error"'
-  );
 
   assert.ok(
     this.$('>:first-child').hasClass('ef-error'),
@@ -32,7 +56,7 @@ test('Default rendered state', function(assert) {
   assert.strictEqual(
     this.$('>:first-child').text().trim(),
     errorMessage,
-    'Error message is displayed'
+    'No error message is displayed'
   );
 });
 
@@ -55,6 +79,7 @@ test('onRegisterErrorPatternMatch closure action is called with property value o
     {{form/ef-element-error
       property="testValue"
       onRegisterErrorPatternMatch=(action "test-action")
+      validationHasOccurred=true
     }}
   `);
 });
@@ -68,6 +93,7 @@ test('Error message can be overridden in template', function(assert) {
     {{#form/ef-element-error
       errors=errors
       property="testValue"
+      validationHasOccurred=true
     }}
       new message instead
     {{/form/ef-element-error}}
@@ -89,6 +115,7 @@ test('Error message can be overridden in template and original message is access
     {{#form/ef-element-error
       errors=errors
       property="testValue"
+      validationHasOccurred=true
       as |message|
     }}
       new message instead: {{message}}
@@ -111,6 +138,7 @@ test('Error message can be updated', function(assert) {
     {{form/ef-element-error
       errors=errors
       property="testValue"
+      validationHasOccurred=true
     }}
   `);
 

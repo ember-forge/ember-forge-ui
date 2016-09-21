@@ -32,6 +32,7 @@ test('When displaying error messages', function(assert) {
     {{form/ef-form-error
       errors=errors
       registeredErrors=registeredErrors
+      validationHasOccurred=true
     }}
   `);
 
@@ -55,6 +56,7 @@ test('Messages update', function(assert) {
     {{form/ef-form-error
       errors=errors
       registeredErrors=registeredErrors
+      validationHasOccurred=true
     }}
   `);
 

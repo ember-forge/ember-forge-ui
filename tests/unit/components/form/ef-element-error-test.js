@@ -38,6 +38,12 @@ test('Default property values', function(assert) {
     null,
     '"patternMatches" property is null by default'
   );
+
+  assert.strictEqual(
+    component.get('validationHasOccurred'),
+    false,
+    '"validationHasOccurred" property is false by default'
+  );
 });
 
 test('init() calls expected methods', function(assert) {
@@ -265,6 +271,21 @@ test('`hasMessage` is `true` when there is a message', function(assert) {
   run.end();
 });
 
+test('updateMessage(): message not updated when validation has not occurred', function(assert) {
+  const messageSpy = sinon.spy();
+  const component = this.subject({
+    scheduleMessageUpdate: messageSpy
+  });
+
+  component.updateMessage();
+
+  assert.strictEqual(
+    messageSpy.callCount,
+    0,
+    'Message not updated'
+  );
+});
+
 test('updateMessage(): null pattern and pattern match true', function(assert) {
   const messageSpy = sinon.spy();
   const registerSpy = sinon.spy();
@@ -275,7 +296,8 @@ test('updateMessage(): null pattern and pattern match true', function(assert) {
     },
     property: 'testProperty',
     registerErrorPatternMatch: registerSpy,
-    scheduleMessageUpdate: messageSpy
+    scheduleMessageUpdate: messageSpy,
+    validationHasOccurred: true
   });
 
   component.updateMessage();
@@ -304,7 +326,8 @@ test('updateMessage(): null pattern and pattern match false', function(assert) {
     },
     property: 'testProperty',
     registerErrorPatternMatch: registerSpy,
-    scheduleMessageUpdate: messageSpy
+    scheduleMessageUpdate: messageSpy,
+    validationHasOccurred: true
   });
 
   component.updateMessage();
@@ -336,7 +359,8 @@ test('updateMessage(): non-null pattern, in error state and regex match', functi
     },
     property: 'testProperty',
     registerErrorPatternMatch: registerSpy,
-    scheduleMessageUpdate: messageSpy
+    scheduleMessageUpdate: messageSpy,
+    validationHasOccurred: true
   });
 
   component.updateMessage();
@@ -368,7 +392,8 @@ test('updateMessage(): non-null pattern, not in error state', function(assert) {
     },
     property: 'testProperty',
     registerErrorPatternMatch: registerSpy,
-    scheduleMessageUpdate: messageSpy
+    scheduleMessageUpdate: messageSpy,
+    validationHasOccurred: true
   });
 
   component.updateMessage();
@@ -400,7 +425,8 @@ test('updateMessage(): non-null pattern, in error state, no regex match', functi
     },
     property: 'testProperty',
     registerErrorPatternMatch: registerSpy,
-    scheduleMessageUpdate: messageSpy
+    scheduleMessageUpdate: messageSpy,
+    validationHasOccurred: true
   });
 
   component.updateMessage();
@@ -432,7 +458,8 @@ test('updateMessage(): non-null pattern, invalid regex', function(assert) {
     },
     property: 'testProperty',
     registerErrorPatternMatch: registerSpy,
-    scheduleMessageUpdate: messageSpy
+    scheduleMessageUpdate: messageSpy,
+    validationHasOccurred: true
   });
 
   component.updateMessage();
@@ -471,6 +498,11 @@ test( 'Observer keys are correct', function( assert ) {
   assert.ok(
     component.__ember_meta__._listeners.includes('patternMatches.testProperty:change'),
     'patternMatches.testProperty is being observed'
+  );
+
+  assert.ok(
+    component.__ember_meta__._listeners.includes('validationHasOccurred:change'),
+    'validationHasOccurred is being observed'
   );
 
   run.end();
