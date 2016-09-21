@@ -326,9 +326,7 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
    * @param {Object} context Javascript context in which to execute this code
    * @returns {undefined}
    */
-  setErrorState(property, context) {
-    context = context || this;
-
+  setErrorState(property, context = this) {
     const inErrorState = get(context, 'validationHasOccurred') && !isEmpty(get(context, `errors.${property}`));
 
     // Initialization
