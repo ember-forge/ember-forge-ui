@@ -322,6 +322,8 @@ export default Component.extend(AriaAttributes, ComponentData, DataAttributes, E
   /**
    * Initialize all error states or set whether a data property is in an error state or not
    *
+   * @param {String} property
+   * @param {Object} context Javascript context in which to execute this code
    * @returns {undefined}
    */
   setErrorState(property, context) {
