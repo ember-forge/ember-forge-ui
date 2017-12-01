@@ -111,7 +111,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
     {{#ef-list-group-header}}
       Letters
-    {{/ef-list-header}}
+    {{/ef-list-group-header}}
 
     {{#ef-list-item}}
       A
@@ -121,7 +121,7 @@ These are CSS class name bindings, listed as **property:** *class name applied* 
 
     {{#ef-list-group-header}}
       Numbers
-    {{/ef-list-header}}
+    {{/ef-list-group-header}}
 
     {{#ef-list-item}}
       1
