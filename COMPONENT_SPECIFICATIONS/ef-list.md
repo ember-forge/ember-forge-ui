@@ -77,7 +77,7 @@ none
 
   {{#ef-list-group-header}}
     Letters
-  {{/ef-list-header}}
+  {{/ef-list-group-header}}
 
   {{#ef-list-item}}
     A
@@ -87,7 +87,7 @@ none
 
   {{#ef-list-group-header}}
     Numbers
-  {{/ef-list-header}}
+  {{/ef-list-group-header}}
 
   {{#ef-list-item}}
     1
